@@ -286,6 +286,8 @@ function build() {
     const dir = page.meta.slug ? join(OUT, page.meta.slug) : OUT;
     mkdirSync(dir, { recursive: true });
     writeFileSync(join(dir, 'index.html'), html);
+    // Vercel et la plupart des hébergeurs statiques servent 404.html à la racine
+    if (page.meta.slug === '404') writeFileSync(join(OUT, '404.html'), html);
     if (!page.meta.noindex) urls.push({ loc: canonical(page.meta.slug), priority: page.meta.priority ?? 0.7 });
     console.log('✓', page.meta.slug || '(accueil)');
   }

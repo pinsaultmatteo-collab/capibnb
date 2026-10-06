@@ -1,0 +1,11 @@
+{
+  "name": "capibnb-site",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Site CAPIBNB — conciergerie Airbnb à Toulouse (site statique généré)",
+  "type": "module",
+  "scripts": {
+    "build": "node build/build.mjs",
+    "dev": "node build/serve.mjs"
+  }
+}
