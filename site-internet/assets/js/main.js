@@ -174,50 +174,67 @@
     if (first) $('.faq__q', first).click();
   });
 
-  /* ---------- Orbite des métiers (accueil) ---------- */
+  /* ---------- Orbite des métiers (accueil) : schéma sticky, étapes au scroll ---------- */
   const orbit = $('[data-orbit]');
   if (orbit) {
     const nodes = $$('.orbit__node', orbit);
-    const items = $$('.metier');
-    let current = 0;
-    let timer;
+    const steps = $$('.metier-step');
+    const label = $('[data-orbit-label]', orbit);
+    const names = ['Lancement', 'Revenus', 'Voyageurs', 'Intendance', 'Administratif'];
+    let current = -1;
     const activate = (i) => {
+      if (i === current) return;
       current = i;
       nodes.forEach((n, k) => n.classList.toggle('is-active', k === i));
-      items.forEach((n, k) => n.classList.toggle('is-active', k === i));
+      steps.forEach((n, k) => n.classList.toggle('is-active', k === i));
+      if (label) label.textContent = `0${i + 1} · ${names[i] || ''}`;
     };
-    const auto = () => {
-      clearInterval(timer);
-      if (reduceMotion) return;
-      timer = setInterval(() => activate((current + 1) % nodes.length), 3800);
-    };
-    nodes.forEach((n, i) =>
-      n.addEventListener('click', () => {
-        activate(i);
-        auto();
-      })
-    );
-    items.forEach((n, i) =>
-      n.addEventListener('click', () => {
-        activate(i);
-        auto();
-      })
-    );
-    // positionne les nœuds sur le cercle
-    const place = () => {
-      const n = nodes.length;
-      nodes.forEach((node, i) => {
-        const ang = -90 + (360 / n) * i;
-        const r = 42.8; // % : rayon de l’anneau SVG (240/560)
-        const x = 50 + r * Math.cos((ang * Math.PI) / 180);
-        const y = 50 + r * Math.sin((ang * Math.PI) / 180);
-        node.style.left = x + '%';
-        node.style.top = y + '%';
-      });
-    };
-    place();
+    // positionne les nœuds sur l'anneau SVG (r = 240/560)
+    nodes.forEach((node, i) => {
+      const ang = -90 + (360 / nodes.length) * i;
+      node.style.left = 50 + 42.8 * Math.cos((ang * Math.PI) / 180) + '%';
+      node.style.top = 50 + 42.8 * Math.sin((ang * Math.PI) / 180) + '%';
+    });
+    // l'étape qui traverse le centre de l'écran s'allume
+    if (steps.length) {
+      const io = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((e) => {
+            if (e.isIntersecting) activate(Number(e.target.dataset.step));
+          });
+        },
+        { rootMargin: '-42% 0px -42% 0px', threshold: 0 }
+      );
+      steps.forEach((st) => io.observe(st));
+      // clic sur un nœud : on fait défiler jusqu'à l'étape
+      nodes.forEach((n, i) =>
+        n.addEventListener('click', () => {
+          const target = steps[i];
+          const top = target.getBoundingClientRect().top + window.scrollY - window.innerHeight / 2 + target.offsetHeight / 2;
+          window.scrollTo({ top, behavior: reduceMotion ? 'auto' : 'smooth' });
+        })
+      );
+    } else {
+      nodes.forEach((n, i) => n.addEventListener('click', () => activate(i)));
+    }
     activate(0);
-    auto();
+  }
+
+  /* ---------- Inclinaison 3D au survol ([data-tilt]) ---------- */
+  if (!reduceMotion && window.matchMedia('(pointer: fine)').matches) {
+    $$('[data-tilt]').forEach((el) => {
+      el.addEventListener('pointermove', (e) => {
+        const r = el.getBoundingClientRect();
+        const px = (e.clientX - r.left) / r.width - 0.5;
+        const py = (e.clientY - r.top) / r.height - 0.5;
+        el.style.setProperty('--ry', `${px * 14}deg`);
+        el.style.setProperty('--rx', `${-py * 14}deg`);
+      });
+      el.addEventListener('pointerleave', () => {
+        el.style.setProperty('--ry', '0deg');
+        el.style.setProperty('--rx', '0deg');
+      });
+    });
   }
 
   /* ---------- Frise du turnover épinglée (GSAP) ---------- */

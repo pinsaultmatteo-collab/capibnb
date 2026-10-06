@@ -91,11 +91,6 @@
         <a href="/simulateur/" class="btn btn--primary btn--lg" data-magnetic>Simuler mes revenus <svg class="icon " viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
         <a href="/services/" class="btn btn--ghost-light btn--lg">Découvrir nos services</a>
       </div>
-      <div class="hero__stats">
-        <div class="hero__stat"><strong>22 %</strong><span>TTC, linge et boîte à clés inclus</span></div>
-        <div class="hero__stat"><strong>5/5</strong><span>Note Google des propriétaires</span></div>
-        <div class="hero__stat"><strong>7j/7</strong><span>Réponse aux voyageurs</span></div>
-      </div>
     </div>
     <div class="hero__scene" aria-hidden="true">
       <div class="hero__canvas" data-hero-3d></div>
@@ -118,13 +113,80 @@
   </ul>
 </div>
 
-<!-- ============ MARQUEE QUARTIERS ============ -->
-<div class="marquee" aria-hidden="true">
-  <div class="marquee__track">
-    <span>Capitole</span><span>Carmes</span><span>Saint-Cyprien</span><span>Chalets</span><span>Minimes</span><span>Rangueil</span><span>Compans-Caffarelli</span><span>Saint-Michel</span><span>Côte Pavée</span><span>Esquirol</span><span>Busca</span><span>Blagnac</span>
-    <span>Capitole</span><span>Carmes</span><span>Saint-Cyprien</span><span>Chalets</span><span>Minimes</span><span>Rangueil</span><span>Compans-Caffarelli</span><span>Saint-Michel</span><span>Côte Pavée</span><span>Esquirol</span><span>Busca</span><span>Blagnac</span>
+<!-- ============ PLAQUES DE RUE : LES QUARTIERS ============ -->
+<section class="section section--tight quartiers" aria-labelledby="titre-quartiers">
+  <div class="container">
+    <div class="quartiers__head" data-reveal>
+      <div>
+        <p class="eyebrow">Du Capitole à Blagnac</p>
+        <h2 id="titre-quartiers" class="display display--sm">Les quartiers où nous gérons des logements.</h2>
+      </div>
+      <p class="quartiers__note">Estimation pour un T2 standard, données de marché Toulouse 2026. Cliquez sur une plaque pour lancer le simulateur dans ce quartier.</p>
+    </div>
+    <div class="plaques" data-reveal-group>
+      <a class="plaque" href="/simulateur/?typo=t2&quartier=capitole" data-tilt>
+        <span class="plaque__fr">Capitole</span>
+        <span class="plaque__oc">Capitòli</span>
+        <span class="plaque__data"><strong>≈ 104 €</strong> la nuit · <strong>70 %</strong> d’occupation</span>
+      </a>
+      <a class="plaque" href="/simulateur/?typo=t2&quartier=carmes" data-tilt>
+        <span class="plaque__fr">Carmes</span>
+        <span class="plaque__oc">Carmes</span>
+        <span class="plaque__data"><strong>≈ 102 €</strong> la nuit · <strong>70 %</strong> d’occupation</span>
+      </a>
+      <a class="plaque" href="/simulateur/?typo=t2&quartier=carmes" data-tilt>
+        <span class="plaque__fr">Esquirol</span>
+        <span class="plaque__oc">Esquiròl</span>
+        <span class="plaque__data"><strong>≈ 102 €</strong> la nuit · <strong>70 %</strong> d’occupation</span>
+      </a>
+      <a class="plaque" href="/simulateur/?typo=t2&quartier=saint-cyprien" data-tilt>
+        <span class="plaque__fr">Saint-Cyprien</span>
+        <span class="plaque__oc">Sant Çubran</span>
+        <span class="plaque__data"><strong>≈ 94 €</strong> la nuit · <strong>69 %</strong> d’occupation</span>
+      </a>
+      <a class="plaque" href="/simulateur/?typo=t2&quartier=chalets" data-tilt>
+        <span class="plaque__fr">Compans-Caffarelli</span>
+        <span class="plaque__oc">Compans-Caffarelli</span>
+        <span class="plaque__data"><strong>≈ 94 €</strong> la nuit · <strong>68 %</strong> d’occupation</span>
+      </a>
+      <a class="plaque" href="/simulateur/?typo=t2&quartier=chalets" data-tilt>
+        <span class="plaque__fr">Chalets</span>
+        <span class="plaque__oc">Chalets</span>
+        <span class="plaque__data"><strong>≈ 94 €</strong> la nuit · <strong>68 %</strong> d’occupation</span>
+      </a>
+      <a class="plaque" href="/simulateur/?typo=t2&quartier=saint-michel" data-tilt>
+        <span class="plaque__fr">Saint-Michel</span>
+        <span class="plaque__oc">Sant Miquèl</span>
+        <span class="plaque__data"><strong>≈ 88 €</strong> la nuit · <strong>67 %</strong> d’occupation</span>
+      </a>
+      <a class="plaque" href="/simulateur/?typo=t2&quartier=saint-michel" data-tilt>
+        <span class="plaque__fr">Busca</span>
+        <span class="plaque__oc">La Busca</span>
+        <span class="plaque__data"><strong>≈ 88 €</strong> la nuit · <strong>67 %</strong> d’occupation</span>
+      </a>
+      <a class="plaque" href="/simulateur/?typo=t2&quartier=minimes" data-tilt>
+        <span class="plaque__fr">Minimes</span>
+        <span class="plaque__oc">Minimas</span>
+        <span class="plaque__data"><strong>≈ 83 €</strong> la nuit · <strong>66 %</strong> d’occupation</span>
+      </a>
+      <a class="plaque" href="/simulateur/?typo=t2&quartier=rangueil" data-tilt>
+        <span class="plaque__fr">Rangueil</span>
+        <span class="plaque__oc">Ranguèlh</span>
+        <span class="plaque__data"><strong>≈ 84 €</strong> la nuit · <strong>66 %</strong> d’occupation</span>
+      </a>
+      <a class="plaque" href="/simulateur/?typo=t2&quartier=rangueil" data-tilt>
+        <span class="plaque__fr">Côte Pavée</span>
+        <span class="plaque__oc">Còsta Pavada</span>
+        <span class="plaque__data"><strong>≈ 84 €</strong> la nuit · <strong>66 %</strong> d’occupation</span>
+      </a>
+      <a class="plaque" href="/simulateur/?typo=t2&quartier=blagnac" data-tilt>
+        <span class="plaque__fr">Blagnac</span>
+        <span class="plaque__oc">Blanhac</span>
+        <span class="plaque__data"><strong>≈ 82 €</strong> la nuit · <strong>66 %</strong> d’occupation</span>
+      </a>
+    </div>
   </div>
-</div>
+</section>
 
 <!-- ============ LE MARCHÉ A CHANGÉ ============ -->
 <section class="section" aria-labelledby="titre-marche">
@@ -172,51 +234,79 @@
     <div class="section-head">
       <p class="eyebrow">Ce qu’on fait pour vous</p>
       <h2 id="titre-metiers" class="display display--lg">Cinq métiers, <em>un seul interlocuteur.</em></h2>
-      <p class="lead">Une location courte durée qui tourne bien, c’est cinq métiers qui s’enchaînent sans accroc. Chez CAPIBNB, tout passe par Dylan et son équipe. Cliquez sur une étape pour voir ce que ça change pour vous.</p>
+      <p class="lead">Une location courte durée qui tourne bien, c’est cinq métiers qui s’enchaînent sans accroc. Chez CAPIBNB, tout passe par Dylan et son équipe. Voici ce que chaque étape change pour vous.</p>
     </div>
-    <div class="metiers">
-      <div class="orbit" data-orbit data-reveal>
-        <svg viewBox="0 0 560 560" aria-hidden="true">
-          <circle class="orbit__ring" cx="280" cy="280" r="240"/>
-          <circle class="orbit__ring orbit__ring--dash" cx="280" cy="280" r="240"/>
-          <circle class="orbit__ring" cx="280" cy="280" r="150" stroke-dasharray="2 10"/>
-          <circle class="orbit__traveller" r="7"/>
-        </svg>
-        <div class="orbit__center">
-          <svg class="logo-mark" viewBox="0 0 600 600" aria-hidden="true" focusable="false">
+    <div class="metiers metiers--scroll">
+      <div class="metiers__sticky">
+        <div class="orbit" data-orbit data-reveal>
+          <svg viewBox="0 0 560 560" aria-hidden="true">
+            <circle class="orbit__ring" cx="280" cy="280" r="240"/>
+            <circle class="orbit__ring orbit__ring--dash" cx="280" cy="280" r="240"/>
+            <circle class="orbit__ring" cx="280" cy="280" r="150" stroke-dasharray="2 10"/>
+            <circle class="orbit__traveller" r="7"/>
+          </svg>
+          <div class="orbit__center">
+            <svg class="logo-mark" viewBox="0 0 600 600" aria-hidden="true" focusable="false">
   <circle cx="300" cy="300" r="215" fill="none" stroke="url(#lg-ring)" stroke-width="50"/>
   <path d="M 408 274 A 110 110 0 1 0 408 326" fill="none" stroke="url(#lg-ring)" stroke-width="50"/>
   <text x="300" y="300" text-anchor="middle" dominant-baseline="central" font-family="Manrope, Poppins, Arial, sans-serif" font-weight="800" font-size="86" letter-spacing="2" fill="#fff">BNB</text>
 </svg>
-          <small>Dylan &amp; l’équipe</small>
+            <small data-orbit-label>Lancement</small>
+          </div>
+          <button class="orbit__node" type="button" aria-label="Lancement du bien"><svg class="icon " viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 8h3l2-3h6l2 3h3v11H4Z"/><circle cx="12" cy="13" r="3.5"/></svg><span>Lancement</span></button>
+          <button class="orbit__node" type="button" aria-label="Pilotage des revenus"><svg class="icon " viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 20V10M10 20V4M16 20v-8M22 20H2"/></svg><span>Revenus</span></button>
+          <button class="orbit__node" type="button" aria-label="Relation voyageurs"><svg class="icon " viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 5h16v11H9l-5 4Z"/><path d="M8 9h8M8 12h5"/></svg><span>Voyageurs</span></button>
+          <button class="orbit__node" type="button" aria-label="Intendance du logement"><svg class="icon " viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v4M12 17v4M3 12h4M17 12h4M6 6l2.5 2.5M15.5 15.5 18 18M6 18l2.5-2.5M15.5 8.5 18 6"/></svg><span>Intendance</span></button>
+          <button class="orbit__node" type="button" aria-label="Administratif et conformité"><svg class="icon " viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 3h7l5 5v13H7Z"/><path d="M14 3v5h5M10 13h5M10 17h5"/></svg><span>Administratif</span></button>
         </div>
-        <button class="orbit__node" type="button" aria-label="Lancement du bien"><svg class="icon " viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 8h3l2-3h6l2 3h3v11H4Z"/><circle cx="12" cy="13" r="3.5"/></svg><span>Lancement</span></button>
-        <button class="orbit__node" type="button" aria-label="Pilotage des revenus"><svg class="icon " viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 20V10M10 20V4M16 20v-8M22 20H2"/></svg><span>Revenus</span></button>
-        <button class="orbit__node" type="button" aria-label="Relation voyageurs"><svg class="icon " viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 5h16v11H9l-5 4Z"/><path d="M8 9h8M8 12h5"/></svg><span>Voyageurs</span></button>
-        <button class="orbit__node" type="button" aria-label="Intendance du logement"><svg class="icon " viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v4M12 17v4M3 12h4M17 12h4M6 6l2.5 2.5M15.5 15.5 18 18M6 18l2.5-2.5M15.5 8.5 18 6"/></svg><span>Intendance</span></button>
-        <button class="orbit__node" type="button" aria-label="Administratif et conformité"><svg class="icon " viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 3h7l5 5v13H7Z"/><path d="M14 3v5h5M10 13h5M10 17h5"/></svg><span>Administratif</span></button>
+        <p class="metiers__hint"><svg class="icon " viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg> Faites défiler : chaque étape s’allume sur le schéma.</p>
       </div>
-      <div class="metiers__list" data-reveal-group>
-        <button class="metier" type="button">
-          <span class="metier__num">1</span>
-          <span><h3>Lancement du bien <small>Onboarding</small></h3><p>Conseils d’aménagement, photos professionnelles, rédaction et optimisation de l’annonce, mise en ligne sur Airbnb et Booking, pose de la boîte à clés, livret d’accueil. Votre logement est prêt à louer en quelques jours.</p></span>
-        </button>
-        <button class="metier" type="button">
-          <span class="metier__num">2</span>
-          <span><h3>Pilotage des revenus <small>Quotidien</small></h3><p>Tarification dynamique selon la saison, les événements toulousains et la demande du moment, durées minimum ajustées, calendriers synchronisés entre plateformes. Chaque nuit se vend au bon prix.</p></span>
-        </button>
-        <button class="metier" type="button">
-          <span class="metier__num">3</span>
-          <span><h3>Relation voyageurs <small>7j/7</small></h3><p>Réponses avant réservation, vérification des profils, instructions d’arrivée, assistance pendant le séjour, gestion des imprévus et demande d’avis au départ. Vous ne recevez plus un seul message.</p></span>
-        </button>
-        <button class="metier" type="button">
-          <span class="metier__num">4</span>
-          <span><h3>Intendance du logement <small>À chaque rotation</small></h3><p>Ménage complet, linge de lit et de toilette, réassort des consommables, contrôle des équipements, petites réparations et coordination des artisans. Votre bien reste impeccable, année après année.</p></span>
-        </button>
-        <button class="metier" type="button">
-          <span class="metier__num">5</span>
-          <span><h3>Administratif &amp; conformité <small>Mensuel + annuel</small></h3><p>Numéro d’enregistrement, taxe de séjour, changement d’usage si nécessaire, accompagnement au classement meublé de tourisme, relevé mensuel et récapitulatif annuel pour votre déclaration. Vous dormez tranquille.</p></span>
-        </button>
+      <div class="metiers__steps">
+        <article class="metier-step" data-step="0">
+          <div class="metier-step__head">
+            <span class="metier-step__num">01</span>
+            <span class="metier-step__freq">Onboarding</span>
+          </div>
+          <h3>Lancement du bien</h3>
+          <p>Conseils d’aménagement, photos professionnelles, rédaction et optimisation de l’annonce, mise en ligne sur Airbnb et Booking, pose de la boîte à clés, livret d’accueil. Votre logement est prêt à louer en une dizaine de jours.</p>
+          <ul><li><svg class="icon " viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12 5 5L20 7"/></svg>Photos pro et annonce qui convertit</li><li><svg class="icon " viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12 5 5L20 7"/></svg>Boîte à clés posée, matériel offert</li><li><svg class="icon " viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12 5 5L20 7"/></svg>Calendriers Airbnb et Booking synchronisés</li></ul>
+        </article>
+        <article class="metier-step" data-step="1">
+          <div class="metier-step__head">
+            <span class="metier-step__num">02</span>
+            <span class="metier-step__freq">Quotidien</span>
+          </div>
+          <h3>Pilotage des revenus</h3>
+          <p>Tarification dynamique selon la saison, les événements toulousains et la demande du moment, durées minimum ajustées, promotions ciblées sur les dernières disponibilités. Chaque nuit se vend au bon prix.</p>
+          <ul><li><svg class="icon " viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12 5 5L20 7"/></svg>Prix ajusté chaque jour, pas chaque saison</li><li><svg class="icon " viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12 5 5L20 7"/></svg>Match au Stadium, salon au MEETT : on anticipe</li><li><svg class="icon " viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12 5 5L20 7"/></svg>Souvent 15 à 20 % de revenus en plus</li></ul>
+        </article>
+        <article class="metier-step" data-step="2">
+          <div class="metier-step__head">
+            <span class="metier-step__num">03</span>
+            <span class="metier-step__freq">7j/7</span>
+          </div>
+          <h3>Relation voyageurs</h3>
+          <p>Réponses avant réservation, vérification des profils, instructions d’arrivée, assistance pendant le séjour, gestion des imprévus et demande d’avis au départ. Vous ne recevez plus un seul message.</p>
+          <ul><li><svg class="icon " viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12 5 5L20 7"/></svg>Réponse rapide, en français et en anglais</li><li><svg class="icon " viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12 5 5L20 7"/></svg>Arrivée autonome 24h/24</li><li><svg class="icon " viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12 5 5L20 7"/></svg>Avis demandés et répondus, un par un</li></ul>
+        </article>
+        <article class="metier-step" data-step="3">
+          <div class="metier-step__head">
+            <span class="metier-step__num">04</span>
+            <span class="metier-step__freq">À chaque rotation</span>
+          </div>
+          <h3>Intendance du logement</h3>
+          <p>Ménage complet selon un protocole hôtelier, linge de lit et de toilette fourni, réassort des consommables, contrôle des équipements, petites réparations et coordination des artisans. Votre bien reste impeccable.</p>
+          <ul><li><svg class="icon " viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12 5 5L20 7"/></svg>Photo de contrôle à chaque passage</li><li><svg class="icon " viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12 5 5L20 7"/></svg>Linge hôtelier lavé par nos soins</li><li><svg class="icon " viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12 5 5L20 7"/></svg>Pannes et réparations gérées avec votre accord</li></ul>
+        </article>
+        <article class="metier-step" data-step="4">
+          <div class="metier-step__head">
+            <span class="metier-step__num">05</span>
+            <span class="metier-step__freq">Mensuel + annuel</span>
+          </div>
+          <h3>Administratif et conformité</h3>
+          <p>Numéro d’enregistrement, taxe de séjour, changement d’usage si nécessaire, accompagnement au classement meublé de tourisme, relevé mensuel et récapitulatif annuel pour votre déclaration. Vous dormez tranquille.</p>
+          <ul><li><svg class="icon " viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12 5 5L20 7"/></svg>Conformité toulousaine incluse, pas en option</li><li><svg class="icon " viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12 5 5L20 7"/></svg>Relevé mensuel clair et virement du net</li><li><svg class="icon " viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12 5 5L20 7"/></svg>Classement meublé : 50 % d’abattement au lieu de 30 %</li></ul>
+        </article>
       </div>
     </div>
   </div>
