@@ -38,3 +38,9 @@ node build/serve.mjs      # prévisualisation sur http://localhost:8791
 - Copier tout `site-internet/` (y compris `.htaccess` et `php/`) dans `public_html/`.
 - Créer l'adresse technique `site@conciergeriecapibnb.fr` (expéditeur des formulaires) ou modifier `$FROM` dans `php/send.php`.
 - Tester un envoi de formulaire, vérifier les 301 (`/?page_id=1381` → `/simulateur/`), soumettre `sitemap.xml` à la Search Console.
+
+## Déploiement Vercel (aperçu)
+
+`vercel.json` à la racine configure tout : build `node build/build.mjs`, dossier de sortie `site-internet`, redirections 301, en-têtes, `404.html`. Laisser le champ « Root Directory » vide dans les réglages du projet Vercel. Chaque push sur `main` redéploie.
+
+Limite : Vercel n'exécute pas PHP, donc `php/send.php` ne fonctionne pas sur l'aperçu Vercel. Les formulaires basculent automatiquement sur un lien `mailto:` vers contact@conciergeriecapibnb.fr. En production chez Hostinger, l'envoi PHP fonctionne normalement.
