@@ -1,0 +1,161 @@
+<!--meta
+{
+  "slug": "reglementation-airbnb-toulouse",
+  "title": "Réglementation Airbnb à Toulouse 2026 : règles, obligations, amendes",
+  "description": "Numéro d’enregistrement, plafond de 120 nuits, changement d’usage, taxe de séjour, classement meublé de tourisme : tout ce qu’un propriétaire toulousain doit savoir en 2026, et comment CAPIBNB s’en occupe.",
+  "darkHero": true,
+  "priority": 0.8,
+  "scripts": ["/assets/js/reglementation.js"],
+  "jsonld": [{
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      { "@type": "Question", "name": "Airbnb est-il interdit à Toulouse ?", "acceptedAnswer": { "@type": "Answer", "text": "Non. La location courte durée est autorisée à Toulouse, mais encadrée : numéro d’enregistrement obligatoire, 120 nuits maximum par an pour une résidence principale, autorisation de changement d’usage pour une résidence secondaire." } },
+      { "@type": "Question", "name": "Combien de nuits peut-on louer sa résidence principale à Toulouse ?", "acceptedAnswer": { "@type": "Answer", "text": "120 nuits par an maximum. Toulouse n’a pas abaissé ce plafond à 90 nuits." } },
+      { "@type": "Question", "name": "Qu’est-ce que le changement d’usage ?", "acceptedAnswer": { "@type": "Answer", "text": "Pour louer une résidence secondaire en courte durée à Toulouse, il faut une autorisation de changement d’usage. Pour un particulier, elle est temporaire (2 ans renouvelables), limitée à 2 logements, sans compensation. À partir de 3 logements ou pour une société, le changement d’usage est à caractère réel, avec compensation." } }
+    ]
+  }]
+}
+-->
+
+<section class="page-hero page-hero--dark">
+  <div class="page-hero__glow"></div>
+  <div class="container">
+    <div class="page-hero__inner" data-reveal>
+      <ul class="breadcrumb"><li><a href="/">Accueil</a></li><li>Réglementation à Toulouse</li></ul>
+      <p class="eyebrow">Réglementation 2026</p>
+      <h1 class="display display--lg">Louer en courte durée à Toulouse : <em>les règles, sans jargon.</em></h1>
+      <p class="lead">Depuis 2023, la Métropole a resserré l’encadrement et des milliers d’annonces non conformes ont disparu. Bonne nouvelle : louer reste tout à fait possible, à condition de respecter quelques obligations. Les voici, et voici comment nous les prenons en charge pour vous.</p>
+      <div class="btn-row">
+        <a href="#verifier" class="btn btn--primary">Vérifier ma situation {{> arrowIcon}}</a>
+        <a href="/contact/" class="btn btn--ghost-light">Poser une question à Dylan</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ WIZARD ============ -->
+<section class="section" id="verifier" aria-labelledby="titre-wizard">
+  <div class="container">
+    <div class="section-head">
+      <p class="eyebrow">En trois questions</p>
+      <h2 id="titre-wizard" class="display display--lg">Mon logement est-il <em>en règle ?</em></h2>
+      <p class="lead">Répondez, la liste de vos obligations s’affiche. Elle est indicative : chaque dossier se vérifie auprès de Toulouse Métropole, ce que nous faisons avec vous.</p>
+    </div>
+    <div class="wizard" data-wizard data-reveal>
+      <div class="wizard__q">
+        <div class="field">
+          <fieldset><legend>1. Quel est le statut du logement ?</legend>
+            <div class="chips">
+              <label class="chip"><input type="radio" name="statut" value="principale" checked><span>Ma résidence principale</span></label>
+              <label class="chip"><input type="radio" name="statut" value="secondaire"><span>Résidence secondaire ou investissement</span></label>
+            </div>
+          </fieldset>
+        </div>
+        <div class="field">
+          <fieldset><legend>2. Combien de logements louez-vous en courte durée à Toulouse ?</legend>
+            <div class="chips">
+              <label class="chip"><input type="radio" name="nb" value="1" checked><span>1</span></label>
+              <label class="chip"><input type="radio" name="nb" value="2"><span>2</span></label>
+              <label class="chip"><input type="radio" name="nb" value="3"><span>3 et plus</span></label>
+            </div>
+          </fieldset>
+        </div>
+        <div class="field">
+          <fieldset><legend>3. Qui est propriétaire ?</legend>
+            <div class="chips">
+              <label class="chip"><input type="radio" name="qui" value="particulier" checked><span>Moi, en nom propre</span></label>
+              <label class="chip"><input type="radio" name="qui" value="societe"><span>Une société (SCI, SARL…)</span></label>
+            </div>
+          </fieldset>
+        </div>
+        <p class="notice">{{> iconInfo}}<span>Toulouse est en zone tendue. Les règles ci-dessous s’appliquent à la commune de Toulouse ; les communes de la métropole peuvent avoir des règles propres, nous les vérifions pour vous.</span></p>
+      </div>
+      <div class="wizard__out" aria-live="polite">
+        <div class="wizard__verdict" data-wizard-verdict></div>
+        <h3 data-wizard-title>Vos obligations</h3>
+        <ul data-wizard-list></ul>
+        <div class="btn-row"><a href="/contact/" class="btn btn--primary">On s’occupe du dossier {{> arrowIcon}}</a></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ TABLEAU ============ -->
+<section class="section section--white" aria-labelledby="titre-tableau">
+  <div class="container">
+    <div class="section-head">
+      <p class="eyebrow">Le détail</p>
+      <h2 id="titre-tableau" class="display display--lg">Les obligations, <em>une par une.</em></h2>
+    </div>
+    <div class="prose" style="max-width:none" data-reveal>
+      <table>
+        <thead><tr><th>Obligation</th><th>La règle à Toulouse</th><th>Si vous ne le faites pas</th><th>CAPIBNB</th></tr></thead>
+        <tbody>
+          <tr><td><strong>Numéro d’enregistrement</strong></td><td>Obligatoire pour toute annonce, obtenu via le téléservice national. Date butoir : 20 mai 2026. Doit figurer sur l’annonce.</td><td><span class="penalty">jusqu’à 5 000 €</span><br><small>10 000 € au niveau national, retrait de l’annonce</small></td><td>Nous déclarons et affichons le numéro.</td></tr>
+          <tr><td><strong>Résidence principale</strong></td><td>120 nuits maximum par année civile. Toulouse n’est pas passée à 90 nuits.</td><td><span class="penalty">jusqu’à 10 000 €</span></td><td>Compteur suivi, calendrier bloqué avant la limite.</td></tr>
+          <tr><td><strong>Résidence secondaire, particulier</strong></td><td>Autorisation temporaire de changement d’usage, sans compensation. 2 ans renouvelables, 2 logements maximum, 90 jours consécutifs maximum par voyageur.</td><td><span class="penalty">jusqu’à 50 000 €</span><br><small>+ astreinte journalière</small></td><td>Dossier monté et déposé avec vous.</td></tr>
+          <tr><td><strong>3 logements et plus, ou société</strong></td><td>Changement d’usage à caractère réel avec compensation (transformation d’une surface équivalente en logement, selon les zones A, B, C).</td><td><span class="penalty">jusqu’à 50 000 €</span><br><small>+ astreinte journalière</small></td><td>Étude au cas par cas, orientation honnête.</td></tr>
+          <tr><td><strong>Taxe de séjour</strong></td><td>Collectée automatiquement par Airbnb et Booking ; à déclarer pour les réservations directes.</td><td>Taxation d’office</td><td>Suivi et déclaration incluses.</td></tr>
+          <tr><td><strong>Normes du logement</strong></td><td>Décret 2023-695 (décence, sécurité). DPE renforcé en zone tendue avec la loi Le Meur.</td><td>Retrait de l’annonce</td><td>Vérification au lancement, conseils de mise aux normes.</td></tr>
+          <tr><td><strong>Déclaration des revenus</strong></td><td>Régime des BIC. Non classé : micro-BIC jusqu’à 15 000 €, abattement 30 %. Classé : jusqu’à 83 600 €, abattement 50 %.</td><td>Redressement</td><td>Récapitulatif annuel fourni, accompagnement au classement.</td></tr>
+        </tbody>
+      </table>
+      <p class="small muted">Informations à jour en octobre 2026, à titre indicatif. Sources : Toulouse Métropole, service-public.fr, loi n° 2024-1039 dite « Le Meur ». Elles ne remplacent pas un conseil juridique ou fiscal personnalisé.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CLASSEMENT ============ -->
+<section class="section section--sand" aria-labelledby="titre-classement">
+  <div class="container">
+    <div class="split split--top">
+      <div data-reveal>
+        <p class="eyebrow">Le levier fiscal n°1</p>
+        <h2 id="titre-classement" class="display display--lg">Le classement meublé de tourisme, <em>150 à 300 € qui en rapportent des milliers.</em></h2>
+        <p class="lead">Depuis les revenus 2025, l’écart entre un meublé classé et non classé est devenu considérable : 50 % d’abattement au lieu de 30 %, et un plafond de recettes de 83 600 € au lieu de 15 000 €. Au-delà de 15 000 € non classé, c’est le régime réel ou… le classement.</p>
+      </div>
+      <div class="grid" data-reveal-group>
+        <article class="card"><div class="card__icon">{{> iconStar}}</div><h3>Ce que c’est</h3><p>Une visite d’un organisme accrédité attribue 1 à 5 étoiles à votre logement selon une grille d’équipements et de services. Valable 5 ans. Coût : 150 à 300 € selon l’organisme et la surface.</p></article>
+        <article class="card"><div class="card__icon">{{> iconEuro}}</div><h3>Ce que ça change</h3><p>Sur 20 000 € de recettes, un meublé non classé dépasse le plafond du micro-BIC. Classé, il reste au micro-BIC avec 10 000 € d’abattement. Et la taxe de séjour devient forfaitaire par étoile.</p></article>
+        <article class="card"><div class="card__icon">{{> iconCheck}}</div><h3>Ce qu’on fait</h3><p>Nous préparons le logement pour la grille (équipements, affichages), choisissons l’organisme, organisons la visite et déclarons le classement sur vos annonces.</p></article>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ MARCHÉ ============ -->
+<section class="section section--dark" aria-labelledby="titre-marche">
+  <div class="container">
+    <div class="section-head">
+      <p class="eyebrow">Pourquoi c’est une opportunité</p>
+      <h2 id="titre-marche" class="display display--lg">Moins d’annonces, <em>plus de voyageurs par logement.</em></h2>
+      <p class="lead">La réglementation a fait le tri. Les logements conformes, bien gérés, récupèrent la demande de ceux qui ont disparu. C’est le moment d’être du bon côté.</p>
+    </div>
+    <div class="stats" data-reveal-group>
+      <div class="stat"><div class="stat__value"><span data-count="9000">0</span></div><p class="stat__label">annonces à Toulouse en 2016</p></div>
+      <div class="stat"><div class="stat__value"><span data-count="6000">0</span></div><p class="stat__label">annonces fin 2024</p></div>
+      <div class="stat"><div class="stat__value"><span data-count="4200">0</span></div><p class="stat__label">annonces actives en septembre 2026</p><span class="stat__src" style="color:rgba(255,255,255,.4)">AirDNA</span></div>
+      <div class="stat"><div class="stat__value"><span data-count="67">0</span><span class="unit">%</span></div><p class="stat__label">taux d’occupation moyen, en hausse</p><span class="stat__src" style="color:rgba(255,255,255,.4)">AirDNA</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FAQ ============ -->
+<section class="section" aria-labelledby="titre-faq">
+  <div class="container container--narrow">
+    <div class="section-head section-head--center">
+      <p class="eyebrow">Questions fréquentes</p>
+      <h2 id="titre-faq" class="display display--md">« C’est illégal à Toulouse ? » <em>et autres idées reçues.</em></h2>
+    </div>
+    <div class="faq">
+      <div class="faq__item"><button class="faq__q" type="button">Airbnb est-il interdit à Toulouse ?{{> iconPlus}}</button><div class="faq__a"><div><p>Non. La location courte durée est autorisée et encadrée. Ce qui a changé, c’est que l’administration contrôle désormais réellement : numéro d’enregistrement, plafond de nuits, changement d’usage. Les logements en règle ne risquent rien, et profitent du départ des autres.</p></div></div></div>
+      <div class="faq__item"><button class="faq__q" type="button">Je loue ma résidence principale : que dois-je faire ?{{> iconPlus}}</button><div class="faq__a"><div><p>Obtenir votre numéro d’enregistrement, l’afficher sur l’annonce, et ne pas dépasser 120 nuits par an. Pas de changement d’usage à demander. Nous faisons la déclaration avec vous et suivons le compteur de nuits.</p></div></div></div>
+      <div class="faq__item"><button class="faq__q" type="button">J’ai un appartement d’investissement : combien de temps pour l’autorisation ?{{> iconPlus}}</button><div class="faq__a"><div><p>L’autorisation temporaire de changement d’usage se demande auprès de Toulouse Métropole. Comptez quelques semaines. Elle est accordée pour 2 ans renouvelables, dans la limite de 2 logements par particulier. Nous montons le dossier pendant que nous préparons l’annonce, pour ne pas perdre de temps.</p></div></div></div>
+      <div class="faq__item"><button class="faq__q" type="button">Ma copropriété peut-elle m’interdire la courte durée ?{{> iconPlus}}</button><div class="faq__a"><div><p>Le règlement de copropriété peut contenir une clause d’habitation bourgeoise exclusive qui s’y oppose, et la loi Le Meur permet désormais à l’assemblée générale de l’interdire à la majorité des deux tiers dans les immeubles dont le règlement prohibe l’activité commerciale. Vérifiez votre règlement : nous le lisons avec vous avant la mise en ligne.</p></div></div></div>
+      <div class="faq__item"><button class="faq__q" type="button">Que risque-t-on vraiment ?{{> iconPlus}}</button><div class="faq__a"><div><p>Des amendes civiles jusqu’à 5 000 € pour l’absence de numéro, 10 000 € pour le dépassement des 120 nuits, 50 000 € par logement pour un changement d’usage non autorisé, avec astreinte. Les plateformes retirent aussi les annonces sans numéro. La conformité coûte quelques heures ; l’absence de conformité coûte le prix d’une voiture.</p></div></div></div>
+    </div>
+  </div>
+</section>
+
+{{> cta}}

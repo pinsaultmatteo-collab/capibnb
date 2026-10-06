@@ -1,0 +1,77 @@
+<!--meta
+{
+  "slug": "avis",
+  "title": "Avis clients : ce que disent les propriétaires toulousains",
+  "description": "Note Google 5/5. Découvrez les avis des propriétaires qui ont confié la gestion de leur Airbnb à Toulouse à CAPIBNB : réactivité, ménage irréprochable, revenus passifs.",
+  "priority": 0.7,
+  "jsonld": [{
+    "@context": "https://schema.org",
+    "@type": "LocalBusiness",
+    "@id": "https://conciergeriecapibnb.fr/#business",
+    "name": "CAPIBNB",
+    "review": [
+      { "@type": "Review", "author": { "@type": "Person", "name": "Léo" }, "reviewRating": { "@type": "Rating", "ratingValue": "5" }, "reviewBody": "Je suis très satisfait de cette conciergerie pour mon Airbnb sur Toulouse. Je recommande fortement cette entreprise qui s’occupe très bien de mon appartement." },
+      { "@type": "Review", "author": { "@type": "Person", "name": "Sam" }, "reviewRating": { "@type": "Rating", "ratingValue": "5" }, "reviewBody": "Une expérience exceptionnelle avec cette conciergerie à Toulouse ! Professionnelle, axée sur le client et experte dans la gestion des hébergements Airbnb. Je recommande vivement Capibnb." },
+      { "@type": "Review", "author": { "@type": "Person", "name": "Mattéo" }, "reviewRating": { "@type": "Rating", "ratingValue": "5" }, "reviewBody": "Conciergerie au top, j’ai plusieurs logements en location courte durée à Toulouse gérés par Capibnb : réactifs, compétents, ménages bien faits." }
+    ]
+  }]
+}
+-->
+
+<section class="page-hero">
+  <div class="container">
+    <div class="page-hero__inner" data-reveal>
+      <ul class="breadcrumb"><li><a href="/">Accueil</a></li><li>Avis clients</li></ul>
+      <p class="eyebrow">Avis clients</p>
+      <h1 class="display display--lg">Ce que disent les propriétaires <em>qui nous ont confié leurs clés.</em></h1>
+      <p class="lead">CAPIBNB est une jeune conciergerie, et chaque avis compte. Ceux-ci viennent de propriétaires toulousains, pour des studios comme pour plusieurs logements gérés en parallèle.</p>
+      <div style="margin-top: 28px">
+        <a class="google-badge" href="#" rel="noopener" target="_blank">{{> iconGoogle}}<span>5,0 / 5 <span class="stars" aria-hidden="true">{{> starsFive}}</span><small>Note Google · fiche CAPIBNB Toulouse</small></span></a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section section--white section--tight" aria-label="Témoignages">
+  <div class="container">
+    {{> testimonials}}
+  </div>
+</section>
+
+<!-- ============ CE QU'ON ENTEND ============ -->
+<section class="section" aria-labelledby="titre-themes">
+  <div class="container">
+    <div class="section-head">
+      <p class="eyebrow">Ce qui revient le plus</p>
+      <h2 id="titre-themes" class="display display--lg">Trois mots dans presque <em>tous les retours.</em></h2>
+    </div>
+    <div class="grid grid--3" data-reveal-group>
+      <article class="card"><div class="card__icon">{{> iconClock}}</div><h3>« Réactifs »</h3><p>Un message de voyageur sans réponse, c’est une réservation perdue et une note qui baisse. Dylan et l’équipe répondent 7j/7, et vous rappellent sous 24 h.</p></article>
+      <article class="card"><div class="card__icon">{{> iconSparkle}}</div><h3>« Les ménages sont bien faits »</h3><p>Le ménage est le premier critère des avis voyageurs et la première cause de dégradation d’un logement. Protocole hôtelier, photo de contrôle à chaque passage.</p></article>
+      <article class="card"><div class="card__icon">{{> iconHome}}</div><h3>« Ils s’occupent très bien de mon appartement »</h3><p>Gérer comme pour soi : c’est la promesse d’un fondateur qui est lui-même propriétaire en courte durée, et qui le reste.</p></article>
+    </div>
+  </div>
+</section>
+
+<!-- ============ LAISSER UN AVIS ============ -->
+<section class="section section--dark" aria-labelledby="titre-laisser">
+  <div class="container">
+    <div class="split">
+      <div data-reveal>
+        <p class="eyebrow">Vous êtes client</p>
+        <h2 id="titre-laisser" class="display display--lg">Un avis, c’est deux minutes <em>qui comptent beaucoup.</em></h2>
+        <p class="lead">Si vous êtes propriétaire chez CAPIBNB, votre retour sur Google aide d’autres Toulousains à franchir le pas. Et si quelque chose ne vous a pas plu, dites-le d’abord à Dylan : il préfère le savoir avant tout le monde.</p>
+        <div class="btn-row">
+          <a href="#" class="btn btn--primary" rel="noopener" target="_blank">Laisser un avis Google {{> arrowIcon}}</a>
+          <a href="/contact/" class="btn btn--ghost-light">Écrire à Dylan</a>
+        </div>
+      </div>
+      <div class="grid" data-reveal-group>
+        <article class="card card--dark"><div class="card__icon">{{> iconUsers}}</div><h3>Vous êtes voyageur ?</h3><p>Les avis se laissent directement sur Airbnb ou Booking après votre séjour. Ils sont lus, et chacun reçoit une réponse.</p></article>
+        <article class="card card--dark"><div class="card__icon">{{> iconShield}}</div><h3>Des avis vérifiés</h3><p>Nous ne publions que des avis laissés sur Google ou sur les plateformes par des personnes identifiées. Pas d’avis écrits par nous, pas d’avis achetés.</p></article>
+      </div>
+    </div>
+  </div>
+</section>
+
+{{> cta}}

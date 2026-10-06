@@ -1,0 +1,337 @@
+<!--meta
+{
+  "slug": "",
+  "title": "CAPIBNB · Conciergerie Airbnb à Toulouse, 22 % TTC tout compris",
+  "description": "Conciergerie Airbnb et Booking à Toulouse. Un investisseur toulousain gère votre location courte durée de A à Z : annonce, prix, voyageurs, ménage, administratif. 22 % TTC, linge et boîte à clés inclus. Simulez vos revenus.",
+  "darkHero": true,
+  "priority": 1.0,
+  "scripts": ["/assets/js/hero3d.js", "/assets/js/simulateur.js"],
+  "jsonld": [{
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "name": "CAPIBNB",
+    "url": "https://conciergeriecapibnb.fr/",
+    "inLanguage": "fr-FR"
+  }]
+}
+-->
+
+<!-- ============ HERO ============ -->
+<section class="hero" aria-labelledby="titre-hero">
+  <div class="hero__bg"></div>
+  <div class="hero__grain" aria-hidden="true"></div>
+  <div class="container hero__inner">
+    <div class="hero__content">
+      <p class="hero__badge">{{> logoMark}} Conciergerie Airbnb &amp; Booking · Toulouse <span class="dot" aria-hidden="true"></span><span class="muted">Nouveaux logements acceptés</span></p>
+      <h1 id="titre-hero" class="display display--lg display--on-dark hero__title" data-split>Votre appartement toulousain, géré <em>comme si c’était le nôtre.</em></h1>
+      <p class="hero__lead">CAPIBNB prend en main votre location courte durée de A à Z : annonce, prix, voyageurs, ménage, administratif. Vous encaissez chaque mois, on s’occupe de tout le reste. <strong>22 % TTC tout compris</strong>, sans mauvaise surprise.</p>
+      <div class="btn-row">
+        <a href="/simulateur/" class="btn btn--primary btn--lg" data-magnetic>Simuler mes revenus {{> arrowIcon}}</a>
+        <a href="/services/" class="btn btn--ghost-light btn--lg">Découvrir nos services</a>
+      </div>
+      <div class="hero__stats">
+        <div class="hero__stat"><strong>22 %</strong><span>TTC, linge et boîte à clés inclus</span></div>
+        <div class="hero__stat"><strong>5/5</strong><span>Note Google des propriétaires</span></div>
+        <div class="hero__stat"><strong>7j/7</strong><span>Réponse aux voyageurs</span></div>
+      </div>
+    </div>
+    <div class="hero__scene" aria-hidden="true">
+      <div class="hero__canvas" data-hero-3d></div>
+      <div class="hero__floating hero__floating--1" style="--d:1.3s">{{> iconCalendar}}<div><strong>Nouvelle réservation</strong><small>T2 Carmes · 4 nuits · tarif ajusté</small></div></div>
+      <div class="hero__floating hero__floating--2" style="--d:1.6s">{{> iconSparkle}}<div><strong>Ménage validé</strong><small>Photo de contrôle archivée</small></div></div>
+      <div class="hero__floating hero__floating--3" style="--d:1.9s">{{> iconKey}}<div><strong>Arrivée autonome</strong><small>Code envoyé au voyageur</small></div></div>
+    </div>
+  </div>
+  <div class="hero__scroll" aria-hidden="true">Découvrir</div>
+</section>
+
+{{> trustbar}}
+
+<!-- ============ MARQUEE QUARTIERS ============ -->
+<div class="marquee" aria-hidden="true">
+  <div class="marquee__track">
+    <span>Capitole</span><span>Carmes</span><span>Saint-Cyprien</span><span>Chalets</span><span>Minimes</span><span>Rangueil</span><span>Compans-Caffarelli</span><span>Saint-Michel</span><span>Côte Pavée</span><span>Esquirol</span><span>Busca</span><span>Blagnac</span>
+    <span>Capitole</span><span>Carmes</span><span>Saint-Cyprien</span><span>Chalets</span><span>Minimes</span><span>Rangueil</span><span>Compans-Caffarelli</span><span>Saint-Michel</span><span>Côte Pavée</span><span>Esquirol</span><span>Busca</span><span>Blagnac</span>
+  </div>
+</div>
+
+<!-- ============ LE MARCHÉ A CHANGÉ ============ -->
+<section class="section" aria-labelledby="titre-marche">
+  <div class="container">
+    <div class="split split--top">
+      <div data-reveal>
+        <p class="eyebrow">Toulouse, 2026</p>
+        <h2 id="titre-marche" class="display display--lg">La courte durée « en amateur », c’est <em>terminé.</em> Tant mieux pour les propriétaires bien accompagnés.</h2>
+      </div>
+      <div data-reveal>
+        <p class="lead">Depuis la date butoir du numéro d’enregistrement, le parc toulousain a fondu d’un tiers. Les logements qui restent sont mieux gérés, mieux notés, et affichent une occupation en hausse. Autrement dit : c’est exactement le moment de passer en mode pro, sans y passer vos soirées.</p>
+        <div class="btn-row">
+          <a href="/reglementation-airbnb-toulouse/" class="link-arrow">Comprendre la réglementation toulousaine {{> arrowIcon}}</a>
+        </div>
+      </div>
+    </div>
+    <div class="stats" data-reveal-group style="margin-top: clamp(40px, 6vw, 72px)">
+      <div class="stat">
+        <div class="stat__value"><span data-count="38,8" data-prefix="−">0</span><span class="unit">%</span></div>
+        <p class="stat__label">d’annonces actives à Toulouse en 12 mois. Le marché se professionnalise.</p>
+        <span class="stat__src">Source AirDNA, sept. 2026</span>
+      </div>
+      <div class="stat">
+        <div class="stat__value"><span data-count="4200">0</span></div>
+        <p class="stat__label">annonces actives aujourd’hui, contre 9 000 en 2016. Moins de concurrence pour les logements sérieux.</p>
+        <span class="stat__src">Sources AirDNA, AirROI</span>
+      </div>
+      <div class="stat">
+        <div class="stat__value"><span data-count="67">0</span><span class="unit">%</span></div>
+        <p class="stat__label">de taux d’occupation moyen, en hausse. Un T2 bien géré se loue environ 245 nuits par an.</p>
+        <span class="stat__src">Source AirDNA</span>
+      </div>
+      <div class="stat">
+        <div class="stat__value"><span data-count="36">0</span><span class="unit">j</span></div>
+        <p class="stat__label">de délai moyen de réservation. La tarification doit bouger chaque jour, pas chaque saison.</p>
+        <span class="stat__src">Source AirROI</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ LES 5 MÉTIERS (ORBITE) ============ -->
+<section class="section section--sand" aria-labelledby="titre-metiers">
+  <div class="container">
+    <div class="section-head">
+      <p class="eyebrow">Ce qu’on fait pour vous</p>
+      <h2 id="titre-metiers" class="display display--lg">Cinq métiers, <em>un seul interlocuteur.</em></h2>
+      <p class="lead">Une location courte durée qui tourne bien, c’est cinq métiers qui s’enchaînent sans accroc. Chez CAPIBNB, tout passe par Dylan et son équipe. Cliquez sur une étape pour voir ce que ça change pour vous.</p>
+    </div>
+    <div class="metiers">
+      <div class="orbit" data-orbit data-reveal>
+        <svg viewBox="0 0 560 560" aria-hidden="true">
+          <circle class="orbit__ring" cx="280" cy="280" r="240"/>
+          <circle class="orbit__ring orbit__ring--dash" cx="280" cy="280" r="240"/>
+          <circle class="orbit__ring" cx="280" cy="280" r="150" stroke-dasharray="2 10"/>
+          <circle class="orbit__traveller" r="7"/>
+        </svg>
+        <div class="orbit__center">
+          {{> logoMark}}
+          <small>Dylan &amp; l’équipe</small>
+        </div>
+        <button class="orbit__node" type="button" aria-label="Lancement du bien">{{> iconCamera}}<span>Lancement</span></button>
+        <button class="orbit__node" type="button" aria-label="Pilotage des revenus">{{> iconChart}}<span>Revenus</span></button>
+        <button class="orbit__node" type="button" aria-label="Relation voyageurs">{{> iconChat}}<span>Voyageurs</span></button>
+        <button class="orbit__node" type="button" aria-label="Intendance du logement">{{> iconSparkle}}<span>Intendance</span></button>
+        <button class="orbit__node" type="button" aria-label="Administratif et conformité">{{> iconFile}}<span>Administratif</span></button>
+      </div>
+      <div class="metiers__list" data-reveal-group>
+        <button class="metier" type="button">
+          <span class="metier__num">1</span>
+          <span><h3>Lancement du bien <small>Onboarding</small></h3><p>Conseils d’aménagement, photos professionnelles, rédaction et optimisation de l’annonce, mise en ligne sur Airbnb et Booking, pose de la boîte à clés, livret d’accueil. Votre logement est prêt à louer en quelques jours.</p></span>
+        </button>
+        <button class="metier" type="button">
+          <span class="metier__num">2</span>
+          <span><h3>Pilotage des revenus <small>Quotidien</small></h3><p>Tarification dynamique selon la saison, les événements toulousains et la demande du moment, durées minimum ajustées, calendriers synchronisés entre plateformes. Chaque nuit se vend au bon prix.</p></span>
+        </button>
+        <button class="metier" type="button">
+          <span class="metier__num">3</span>
+          <span><h3>Relation voyageurs <small>7j/7</small></h3><p>Réponses avant réservation, vérification des profils, instructions d’arrivée, assistance pendant le séjour, gestion des imprévus et demande d’avis au départ. Vous ne recevez plus un seul message.</p></span>
+        </button>
+        <button class="metier" type="button">
+          <span class="metier__num">4</span>
+          <span><h3>Intendance du logement <small>À chaque rotation</small></h3><p>Ménage complet, linge de lit et de toilette, réassort des consommables, contrôle des équipements, petites réparations et coordination des artisans. Votre bien reste impeccable, année après année.</p></span>
+        </button>
+        <button class="metier" type="button">
+          <span class="metier__num">5</span>
+          <span><h3>Administratif &amp; conformité <small>Mensuel + annuel</small></h3><p>Numéro d’enregistrement, taxe de séjour, changement d’usage si nécessaire, accompagnement au classement meublé de tourisme, relevé mensuel et récapitulatif annuel pour votre déclaration. Vous dormez tranquille.</p></span>
+        </button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ TURNOVER (FRISE ÉPINGLÉE) ============ -->
+<section class="section section--dark turnover" data-turnover aria-labelledby="titre-turnover">
+  <div class="container" style="margin-bottom: clamp(28px, 4vw, 48px)">
+    <div class="section-head" data-reveal>
+      <p class="eyebrow">Dans les coulisses</p>
+      <h2 id="titre-turnover" class="display display--md">Les quelques heures entre <em>deux voyageurs.</em></h2>
+      <p class="lead">C’est là que tout se joue : la note, les avis, la durée de vie de votre logement. Voici le protocole déroulé à chaque départ, sans que vous ayez à lever le petit doigt.</p>
+    </div>
+  </div>
+  <div class="turnover__progress" aria-hidden="true"><span></span></div>
+  <div class="turnover__pin">
+    <div class="turnover__track">
+      <article class="turnover__step"><span class="turnover__time">11:00</span>{{> iconKey}}<div><h3>Départ des voyageurs</h3><p>Le code de la boîte à clés est désactivé. Message de remerciement envoyé, demande d’avis programmée.</p></div></article>
+      <article class="turnover__step"><span class="turnover__time">11:10</span>{{> iconCamera}}<div><h3>Contrôle du logement</h3><p>Tour complet du logement : oublis, casse éventuelle, état général. Tout est noté et photographié.</p></div></article>
+      <article class="turnover__step"><span class="turnover__time">11:30</span>{{> iconSparkle}}<div><h3>Ménage complet</h3><p>Protocole hôtelier : cuisine, salle de bain, sols, vitres, poussière. Le logement est remis à neuf, pas juste « propre ».</p></div></article>
+      <article class="turnover__step"><span class="turnover__time">12:30</span>{{> iconBed}}<div><h3>Linge frais</h3><p>Draps et serviettes propres fournis par CAPIBNB, lits faits au carré. Le linge sale part en blanchisserie.</p></div></article>
+      <article class="turnover__step"><span class="turnover__time">13:00</span>{{> iconCoffee}}<div><h3>Réassort &amp; vérifications</h3><p>Café, thé, savon, papier, éponges. Wifi, TV, chauffage, eau chaude : tout est testé avant l’arrivée suivante.</p></div></article>
+      <article class="turnover__step"><span class="turnover__time">13:30</span>{{> iconShield}}<div><h3>Photo de contrôle</h3><p>Chaque pièce est photographiée et archivée. En cas de litige, la preuve existe. Votre bien est protégé.</p></div></article>
+      <article class="turnover__step"><span class="turnover__time">14:00</span>{{> iconChat}}<div><h3>Nouveau code, nouvelles instructions</h3><p>Le code de la boîte à clés est régénéré, les consignes d’arrivée et le livret d’accueil partent au voyageur suivant.</p></div></article>
+      <article class="turnover__step turnover__step--end"><span class="turnover__time">16:00</span>{{> iconHome}}<div><h3>Arrivée autonome</h3><p>Le voyageur entre seul, découvre un logement impeccable, et vous… vous n’avez rien eu à faire.</p></div></article>
+    </div>
+  </div>
+</section>
+
+<!-- ============ TARIF ============ -->
+<section class="section" aria-labelledby="titre-tarif">
+  <div class="container">
+    <div class="price-hero">
+      <div data-reveal>
+        <p class="eyebrow">Un tarif, pas de petites lignes</p>
+        <div class="price-big"><span>22</span><span class="unit">% TTC</span></div>
+        <p class="price-big__sub">du chiffre d’affaires, hors frais de ménage qui sont réglés par le voyageur. Linge, boîte à clés, photos, annonce et livret d’accueil sont inclus. Pas de frais d’entrée.</p>
+        <div class="btn-row">
+          <a href="/tarifs/" class="btn btn--dark">Voir le détail des tarifs {{> arrowIcon}}</a>
+        </div>
+      </div>
+      <div data-reveal>
+        <h2 id="titre-tarif" class="display display--sm" style="margin-bottom: 28px">Moins cher que la quasi-totalité des conciergeries toulousaines, <em>sans rogner sur le service.</em></h2>
+        <div class="compare" data-inview>
+          <div class="compare__row compare__row--us"><strong>CAPIBNB</strong><div class="compare__bar"><span style="--w:62%"></span></div><span class="compare__val">22 %</span></div>
+          <div class="compare__row"><span>Moyenne Toulouse</span><div class="compare__bar"><span style="--w:74%"></span></div><span class="compare__val">25,5 %</span></div>
+          <div class="compare__row"><span>Réseaux nationaux</span><div class="compare__bar"><span style="--w:80%"></span></div><span class="compare__val">jusqu’à 30 %</span></div>
+          <div class="compare__row"><span>Conciergeries premium</span><div class="compare__bar"><span style="--w:90%"></span></div><span class="compare__val">30 % et +</span></div>
+        </div>
+        <p class="small muted" style="margin-top: 18px">Commissions TTC constatées sur le marché toulousain en 2026 (fourchette 23 à 28 % pour les acteurs locaux, 30 % et plus pour le premium).</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ SIMULATEUR COMPACT ============ -->
+<section class="section section--sand" aria-labelledby="titre-sim">
+  <div class="container">
+    <div class="section-head section-head--center">
+      <p class="eyebrow">Combien rapporte un Airbnb à Toulouse ?</p>
+      <h2 id="titre-sim" class="display display--lg">Faites le calcul <em>en dix secondes.</em></h2>
+      <p class="lead">Choisissez votre typologie et votre quartier : le simulateur estime vos revenus nets après commission, comparés à un loyer classique.</p>
+    </div>
+    <div class="sim-mini" data-sim="mini" data-reveal>
+      <div style="display:grid; gap:24px">
+        <div class="field">
+          <fieldset>
+            <legend>Votre logement</legend>
+            <div class="chips">
+              <label class="chip"><input type="radio" name="typo" value="studio"><span>Studio</span></label>
+              <label class="chip"><input type="radio" name="typo" value="t1"><span>T1</span></label>
+              <label class="chip"><input type="radio" name="typo" value="t2" checked><span>T2</span></label>
+              <label class="chip"><input type="radio" name="typo" value="t3"><span>T3</span></label>
+              <label class="chip"><input type="radio" name="typo" value="t4"><span>T4 et +</span></label>
+              <label class="chip"><input type="radio" name="typo" value="villa"><span>Maison</span></label>
+            </div>
+          </fieldset>
+        </div>
+        <div class="field">
+          <label for="mini-quartier">Votre quartier</label>
+          <div class="select"><select id="mini-quartier" name="quartier"></select></div>
+        </div>
+        <a href="/simulateur/" class="link-arrow" data-sim-link>Affiner avec le standing, vos semaines perso, le statut du bien {{> arrowIcon}}</a>
+      </div>
+      <div class="sim-mini__out">
+        <p class="sim__label">Revenu net estimé pour vous</p>
+        <div class="sim-mini__net"><span data-sim-net-month>0 €</span> <small>/ mois</small></div>
+        <p class="sim__sub">après la commission CAPIBNB et les consommables, soit <strong data-sim-net-year>0 €</strong> par an</p>
+        <p class="sim-mini__vs">Un loyer longue durée rapporterait environ <strong data-sim-ld>0 €</strong> par mois. La courte durée bien gérée, c’est <strong data-sim-ratio>× 1,0</strong>.</p>
+        <div class="btn-row" style="margin-top:24px">
+          <a href="/simulateur/" class="btn btn--primary" data-sim-link>Voir le détail mois par mois {{> arrowIcon}}</a>
+        </div>
+      </div>
+    </div>
+    {{> simNote}}
+  </div>
+</section>
+
+<!-- ============ FONDATEUR ============ -->
+<section class="section" aria-labelledby="titre-dylan">
+  <div class="container founder">
+    <div class="founder__photo" data-reveal>
+      <img src="/assets/img/dylan-lg.webp" srcset="/assets/img/dylan-sm.webp 600w, /assets/img/dylan-lg.webp 989w" sizes="(max-width: 900px) 90vw, 40vw" alt="Dylan Carvalho, fondateur de CAPIBNB, devant son ordinateur" width="989" height="1497" loading="lazy">
+      <div class="founder__tag"><div><strong>Dylan Carvalho</strong>Fondateur · investisseur en courte durée</div>{{> logoMark}}</div>
+    </div>
+    <div data-reveal>
+      <p class="eyebrow">Qui gère votre bien</p>
+      <h2 id="titre-dylan" class="display display--lg">Un propriétaire qui gère <em>comme pour lui.</em></h2>
+      <blockquote class="founder__quote">« Petits bricolages, rénovations, puis investissements locatifs : l’immobilier, c’est depuis toujours. J’ai d’abord optimisé mes propres logements en courte durée, puis ceux de mes proches, puis de mes premiers clients. Je gère chaque bien exactement comme je gère les miens. »</blockquote>
+      <p class="lead">CAPIBNB est né à Toulouse en 2024, rue des Changes, au cœur des Carmes. Pas de plateforme nationale, pas de centre d’appels : un interlocuteur unique, joignable, qui connaît la ville, ses quartiers et sa réglementation.</p>
+      <div class="founder__facts">
+        <div class="founder__fact"><strong>Toulouse</strong><span>Intra-muros et métropole, rien d’autre</span></div>
+        <div class="founder__fact"><strong>1 contact</strong><span>Dylan, du premier appel au relevé mensuel</span></div>
+        <div class="founder__fact"><strong>Investisseur</strong><span>Lui-même propriétaire en courte durée</span></div>
+      </div>
+      <div class="btn-row">
+        <a href="/a-propos/" class="btn btn--ghost">Faire connaissance {{> arrowIcon}}</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ AVIS ============ -->
+<section class="section section--white" aria-labelledby="titre-avis">
+  <div class="container">
+    <div class="section-head section-head--center">
+      <p class="eyebrow">Ils nous ont confié leurs clés</p>
+      <h2 id="titre-avis" class="display display--lg">Des propriétaires toulousains <em>qui dorment tranquilles.</em></h2>
+      <div style="margin-top: 24px; display:flex; justify-content:center">
+        <a class="google-badge" href="/avis/">{{> iconGoogle}}<span>5,0 / 5 <span class="stars" aria-hidden="true">{{> starsFive}}</span><small>Note Google · avis de propriétaires</small></span></a>
+      </div>
+    </div>
+    {{> testimonials}}
+    <div class="text-center" style="margin-top: 40px">
+      <a href="/avis/" class="link-arrow">Lire tous les avis {{> arrowIcon}}</a>
+    </div>
+  </div>
+</section>
+
+<!-- ============ RÉGLEMENTATION ============ -->
+<section class="section section--dark" aria-labelledby="titre-reg">
+  <div class="container">
+    <div class="split split--top" style="margin-bottom: clamp(40px, 6vw, 64px)">
+      <div data-reveal>
+        <p class="eyebrow">Réglementation</p>
+        <h2 id="titre-reg" class="display display--lg">Toulouse encadre la courte durée. <em>On s’en occupe.</em></h2>
+      </div>
+      <div data-reveal>
+        <p class="lead">Numéro d’enregistrement, plafond de nuits, changement d’usage, taxe de séjour, classement meublé de tourisme : les règles ont changé et les amendes sont réelles. Chez CAPIBNB, la conformité fait partie du service, pas d’une option.</p>
+        <div class="btn-row">
+          <a href="/reglementation-airbnb-toulouse/" class="btn btn--primary">Vérifier ma situation {{> arrowIcon}}</a>
+        </div>
+      </div>
+    </div>
+    <div class="grid grid--3" data-reveal-group>
+      <article class="card card--dark">
+        <span class="card__num">01</span>
+        <div class="card__icon">{{> iconFile}}</div>
+        <h3>Numéro d’enregistrement</h3>
+        <p>Obligatoire pour toute annonce depuis le 20 mai 2026, via le téléservice national. Sans lui, l’annonce est retirée et l’amende peut atteindre 5 000 €.</p>
+      </article>
+      <article class="card card--dark">
+        <span class="card__num">02</span>
+        <div class="card__icon">{{> iconCalendar}}</div>
+        <h3>120 nuits en résidence principale</h3>
+        <p>Toulouse maintient le plafond de 120 nuits par an pour votre résidence principale. Nous suivons le compteur et bloquons le calendrier avant la limite.</p>
+      </article>
+      <article class="card card--dark">
+        <span class="card__num">03</span>
+        <div class="card__icon">{{> iconShield}}</div>
+        <h3>Résidence secondaire : changement d’usage</h3>
+        <p>Autorisation temporaire, deux logements maximum par particulier, 90 jours consécutifs par voyageur. Nous montons le dossier avec vous auprès de la Métropole.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ============ GALERIE ============ -->
+<section class="section" aria-labelledby="titre-galerie">
+  <div class="container">
+    <div class="section-head">
+      <p class="eyebrow">Des logements qu’on aime montrer</p>
+      <h2 id="titre-galerie" class="display display--lg">Vos voyageurs arrivent dans un logement <em>qui donne envie de revenir.</em></h2>
+    </div>
+    <div class="gallery" data-reveal-group>
+      <figure class="g-1"><img src="/assets/img/logement-t2-lumineux-lg.webp" srcset="/assets/img/logement-t2-lumineux-sm.webp 900w, /assets/img/logement-t2-lumineux-lg.webp 1600w" sizes="(max-width: 760px) 92vw, 58vw" alt="Salon lumineux d’un T2 géré par CAPIBNB à Toulouse, canapé bleu et vue sur les toits" width="1600" height="1066" loading="lazy"><figcaption>T2 lumineux · vue sur les toits</figcaption></figure>
+      <figure class="g-2"><img src="/assets/img/logement-salon-cosy-lg.webp" alt="Salon cosy d’un appartement géré par CAPIBNB, canapé en cuir et plantes" width="720" height="960" loading="lazy"><figcaption>Salon cosy · hypercentre</figcaption></figure>
+      <figure class="g-3"><div class="gallery__quote">« Un logement propre, un linge impeccable et une arrivée sans friction : c’est ça qui fait les 5 étoiles, et les 5 étoiles qui font le prix. »</div></figure>
+    </div>
+  </div>
+</section>
+
+{{> cta}}

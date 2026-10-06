@@ -1,0 +1,88 @@
+<!--meta
+{
+  "slug": "contact",
+  "title": "Contact : parlons de votre logement à Toulouse",
+  "description": "Contactez CAPIBNB, conciergerie Airbnb à Toulouse : 06 19 48 59 05, contact@conciergeriecapibnb.fr, 23 rue des Changes. Réponse sous 24 h, visite et estimation gratuites.",
+  "priority": 0.8,
+  "jsonld": [{
+    "@context": "https://schema.org",
+    "@type": "ContactPage",
+    "name": "Contact CAPIBNB",
+    "url": "https://conciergeriecapibnb.fr/contact/"
+  }]
+}
+-->
+
+<section class="page-hero" style="padding-bottom: clamp(24px, 4vw, 48px)">
+  <div class="container">
+    <div class="page-hero__inner" data-reveal>
+      <ul class="breadcrumb"><li><a href="/">Accueil</a></li><li>Contact</li></ul>
+      <p class="eyebrow">Contact</p>
+      <h1 class="display display--lg">Parlons de votre bien. <em>Réponse sous 24 h.</em></h1>
+      <p class="lead">Un appel, un message ou le formulaire : Dylan vous répond personnellement, avec une première estimation et un avis franc sur la courte durée pour votre logement. La visite et l’estimation sont gratuites et sans engagement.</p>
+    </div>
+  </div>
+</section>
+
+<section class="section section--tight" style="padding-top:0" aria-label="Coordonnées et formulaire">
+  <div class="container contact">
+    <div style="display:grid; gap: 20px">
+      <div class="contact__card" data-reveal>
+        <h2 class="display display--sm">Nous joindre</h2>
+        <ul class="contact__list">
+          <li>{{> iconPhone}}<div><strong>Téléphone</strong><a href="tel:+33619485905">+33 6 19 48 59 05</a><br><small class="muted">Du lundi au samedi, 9 h à 19 h. Urgences voyageurs 7j/7.</small></div></li>
+          <li>{{> iconMail}}<div><strong>E-mail</strong><a href="mailto:contact@conciergeriecapibnb.fr">contact@conciergeriecapibnb.fr</a></div></li>
+          <li>{{> iconPin}}<div><strong>Siège</strong><a href="https://maps.google.com/?q=23+rue+des+Changes+31000+Toulouse" target="_blank" rel="noopener">23 rue des Changes, 31000 Toulouse</a><br><small class="muted">Quartier des Carmes, métro Esquirol. Sur rendez-vous.</small></div></li>
+        </ul>
+        <div class="map" data-map-load>
+          <button type="button" class="btn btn--dark btn--sm" style="position:absolute; inset:50% auto auto 50%; transform:translate(-50%,-50%)">Afficher la carte Google Maps</button>
+          <template><iframe title="Carte : 23 rue des Changes, Toulouse" src="https://www.google.com/maps?q=23+rue+des+Changes,+31000+Toulouse&output=embed&hl=fr" loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen></iframe></template>
+        </div>
+        <p class="small muted" style="margin-top:12px">La carte est chargée depuis Google Maps à votre demande (voir <a href="/confidentialite/" style="text-decoration:underline">confidentialité</a>).</p>
+      </div>
+      <div class="card" data-reveal>
+        <h3>Ce qui se passe ensuite</h3>
+        <ol class="timeline" style="margin-top:18px; gap:18px">
+          <li><strong>Un premier échange</strong><p>Par téléphone, 15 minutes : votre logement, votre situation, vos attentes.</p></li>
+          <li><strong>La visite</strong><p>Dylan passe voir le logement, évalue le potentiel et vous remet une estimation chiffrée.</p></li>
+          <li><strong>La mise en ligne</strong><p>Si on y va ensemble, votre annonce est publiée sous une dizaine de jours.</p></li>
+        </ol>
+      </div>
+    </div>
+
+    <div class="contact__card" data-reveal>
+      <h2 class="display display--sm" style="margin-bottom:8px">Écrivez-nous</h2>
+      <p class="muted" style="margin-bottom:24px">Quelques détails sur votre logement nous aident à préparer la réponse. Tout est facultatif, sauf de quoi vous répondre.</p>
+      <form class="form" data-form data-subject="Contact via le site" action="/php/send.php" method="post">
+        <div class="form__hp" aria-hidden="true"><label>Ne pas remplir<input type="text" name="site_web" tabindex="-1" autocomplete="off"></label></div>
+        <div class="form__row">
+          <div><label for="c-nom">Votre nom *</label><input id="c-nom" type="text" name="nom" required autocomplete="name" placeholder="Prénom Nom"></div>
+          <div><label for="c-tel">Téléphone</label><input id="c-tel" type="tel" name="telephone" autocomplete="tel" placeholder="06 …"></div>
+        </div>
+        <div><label for="c-email">E-mail *</label><input id="c-email" type="email" name="email" required autocomplete="email" placeholder="vous@exemple.fr"></div>
+        <div class="form__row">
+          <div><label for="c-sujet">Vous êtes</label><select id="c-sujet" name="sujet"><option>Propriétaire, je veux une estimation</option><option>Propriétaire, j’ai une question</option><option>Propriétaire, j’hésite entre courte et longue durée</option><option>Voyageur</option><option>Autre</option></select></div>
+          <div><label for="c-typo">Type de logement</label><select id="c-typo" name="typologie"><option value="">—</option><option>Studio</option><option>T1</option><option>T2</option><option>T3</option><option>T4 et +</option><option>Maison / villa</option></select></div>
+        </div>
+        <div><label for="c-adresse">Adresse ou quartier du logement</label><input id="c-adresse" type="text" name="adresse" placeholder="Ex. Saint-Cyprien, rue Réclusane"></div>
+        <div><label for="c-msg">Votre message</label><textarea id="c-msg" name="message" placeholder="Surface, étage, état, votre situation (déjà en location ? résidence principale ?), vos questions…"></textarea></div>
+        <div class="form__consent"><input type="checkbox" id="c-consent" name="consentement" required><label for="c-consent">J’accepte que CAPIBNB utilise ces informations pour me répondre. Aucune newsletter, aucune revente de données. <a href="/confidentialite/" style="text-decoration:underline">Politique de confidentialité</a></label></div>
+        <div class="form__status" role="status" aria-live="polite"></div>
+        <button type="submit" class="btn btn--primary btn--lg">Envoyer ma demande {{> arrowIcon}}</button>
+      </form>
+    </div>
+  </div>
+</section>
+
+<section class="section section--sand" aria-labelledby="titre-autres">
+  <div class="container">
+    <div class="section-head section-head--center">
+      <p class="eyebrow">En attendant</p>
+      <h2 id="titre-autres" class="display display--md">Deux choses à faire <em>avant notre échange.</em></h2>
+    </div>
+    <div class="grid grid--2" data-reveal-group>
+      <a href="/simulateur/" class="card" style="display:block"><div class="card__icon">{{> iconChart}}</div><h3>Simuler vos revenus</h3><p>Typologie, quartier, standing : une estimation nette, mois par mois, comparée à un loyer classique. Dix secondes.</p><span class="link-arrow" style="margin-top:14px">Ouvrir le simulateur {{> arrowIcon}}</span></a>
+      <a href="/reglementation-airbnb-toulouse/" class="card" style="display:block"><div class="card__icon">{{> iconShield}}</div><h3>Vérifier votre situation</h3><p>Résidence principale ou secondaire, nombre de logements : la liste de vos obligations à Toulouse en trois questions.</p><span class="link-arrow" style="margin-top:14px">Vérifier ma situation {{> arrowIcon}}</span></a>
+    </div>
+  </div>
+</section>

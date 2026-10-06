@@ -1,0 +1,172 @@
+<!--meta
+{
+  "slug": "simulateur",
+  "title": "Simulateur de revenus Airbnb à Toulouse",
+  "description": "Combien rapporte un Airbnb à Toulouse ? Estimez en dix secondes vos revenus nets en location courte durée selon la typologie, le quartier et le standing de votre logement, comparés à un loyer classique.",
+  "priority": 0.9,
+  "scripts": ["/assets/js/simulateur.js"],
+  "bodyClass": "page-sim"
+}
+-->
+
+<section class="page-hero" style="padding-bottom: clamp(24px, 4vw, 48px)">
+  <div class="container">
+    <ul class="breadcrumb"><li><a href="/">Accueil</a></li><li>Simulateur de revenus</li></ul>
+    <div class="page-hero__inner" data-reveal>
+      <p class="eyebrow">Simulateur</p>
+      <h1 class="display display--lg">Combien peut rapporter votre logement <em>à Toulouse ?</em></h1>
+      <p class="lead">Réglez les curseurs, le résultat se met à jour instantanément : revenu net après commission et consommables, mois par mois, comparé à un loyer longue durée. Puis demandez l’étude détaillée, Dylan l’affine après visite.</p>
+    </div>
+  </div>
+</section>
+
+<section class="section section--tight" style="padding-top: 0" aria-label="Simulateur de revenus">
+  <div class="container">
+    <div class="sim" data-sim="full">
+      <form class="sim__form" onsubmit="return false">
+        <div class="field">
+          <fieldset>
+            <legend>Votre logement</legend>
+            <div class="chips">
+              <label class="chip"><input type="radio" name="typo" value="studio"><span>Studio</span></label>
+              <label class="chip"><input type="radio" name="typo" value="t1"><span>T1</span></label>
+              <label class="chip"><input type="radio" name="typo" value="t2" checked><span>T2</span></label>
+              <label class="chip"><input type="radio" name="typo" value="t3"><span>T3</span></label>
+              <label class="chip"><input type="radio" name="typo" value="t4"><span>T4 et +</span></label>
+              <label class="chip"><input type="radio" name="typo" value="villa"><span>Maison / villa</span></label>
+            </div>
+          </fieldset>
+        </div>
+        <div class="field">
+          <label for="sim-quartier">Quartier</label>
+          <div class="select"><select id="sim-quartier" name="quartier"></select></div>
+        </div>
+        <div class="field">
+          <fieldset>
+            <legend>Standing</legend>
+            <div class="chips">
+              <label class="chip"><input type="radio" name="standing" value="standard" checked><span>Standard</span></label>
+              <label class="chip"><input type="radio" name="standing" value="soigne"><span>Rénové, déco soignée</span></label>
+              <label class="chip"><input type="radio" name="standing" value="premium"><span>Premium</span></label>
+            </div>
+          </fieldset>
+        </div>
+        <div class="field">
+          <fieldset>
+            <legend>Statut du bien</legend>
+            <div class="chips">
+              <label class="chip"><input type="radio" name="statut" value="invest" checked><span>Investissement / résidence secondaire</span></label>
+              <label class="chip"><input type="radio" name="statut" value="principale"><span>Résidence principale</span></label>
+            </div>
+          </fieldset>
+        </div>
+        <div class="field range">
+          <div class="range__head"><label for="sim-semaines">Semaines que vous gardez pour vous</label><output for="sim-semaines">Aucune</output></div>
+          <input type="range" id="sim-semaines" name="semaines" min="0" max="10" step="1" value="0">
+        </div>
+        <div class="sim__alert" data-sim-alert role="status">{{> iconAlert}}<span>En résidence principale, Toulouse plafonne la location à <strong>120 nuits par an</strong>. L’estimation est limitée à ce plafond. Au-delà, il faut changer de statut : on vous explique tout sur la <a href="/reglementation-airbnb-toulouse/" style="text-decoration:underline">page réglementation</a>.</span></div>
+      </form>
+
+      <div class="sim__result">
+        <div class="sim__hero" data-reveal>
+          <p class="sim__label" data-sim-label>T2 · Carmes</p>
+          <div class="sim__net"><span data-sim-net-month>0 €</span><small>/ mois net</small></div>
+          <p class="sim__sub">Revenu net estimé pour vous, après la commission CAPIBNB de 22 % TTC et les consommables, soit <strong data-sim-net-year>0 €</strong> par an.</p>
+          <div class="sim__kpis">
+            <div class="sim__kpi"><strong data-sim-adr>0 €</strong><span>prix moyen par nuit</span></div>
+            <div class="sim__kpi"><strong data-sim-occ>0 %</strong><span>taux d’occupation</span></div>
+            <div class="sim__kpi"><strong data-sim-nights>0 nuits</strong><span>vendues sur l’année</span></div>
+          </div>
+        </div>
+
+        <div class="sim__chart" data-reveal>
+          <h3>Mois par mois</h3>
+          <p>Revenu net mensuel estimé selon la saisonnalité toulousaine : pics en octobre, août et avril, creux en juillet. La ligne pointillée représente le loyer longue durée.</p>
+          <svg data-sim-chart viewBox="0 0 640 240" role="img" aria-label="Revenus nets mensuels estimés"></svg>
+        </div>
+
+        <div class="sim__compare" data-reveal>
+          <h3>Courte durée gérée vs loyer classique</h3>
+          <p>Sur un an, hors fiscalité et charges de copropriété, identiques dans les deux cas.</p>
+          <div class="vs">
+            <div class="vs__row vs__row--us"><span>Avec CAPIBNB</span><div class="vs__bar"><span data-sim-bar="us"></span></div><strong data-sim-net-year>0 €</strong></div>
+            <div class="vs__row"><span>Loyer longue durée</span><div class="vs__bar"><span data-sim-bar="ld"></span></div><strong data-sim-ld-year>0 €</strong></div>
+          </div>
+          <div class="vs__ratio">{{> iconSpark}}<span>Soit <span data-sim-ratio>× 1,0</span> le loyer classique, et <span data-sim-gain>0 €</span> de plus par an.</span></div>
+        </div>
+
+        <div class="sim__detail" data-reveal>
+          <h3>Le détail du calcul</h3>
+          <table>
+            <tbody>
+              <tr><td>Chiffre d’affaires hors frais de ménage</td><td data-sim-gross>0 €</td></tr>
+              <tr><td>Commission CAPIBNB 22 % TTC</td><td>− <span data-sim-commission>0 €</span></td></tr>
+              <tr><td>Forfait consommables (12 mois)</td><td>− <span data-sim-conso>0 €</span></td></tr>
+              <tr class="total"><td>Net pour vous sur l’année</td><td data-sim-net-year>0 €</td></tr>
+            </tbody>
+          </table>
+          {{> simNote}}
+        </div>
+
+        <div class="sim__lead" data-reveal>
+          <h3>Recevoir l’étude détaillée de votre logement</h3>
+          <p>Dylan reprend votre simulation, l’ajuste à votre bien (surface, étage, équipements, saison de lancement) et vous rappelle sous 24 h. Sans engagement.</p>
+          <form class="form form--dark" data-form data-subject="Demande d’étude détaillée (simulateur)" action="/php/send.php" method="post">
+            <input type="hidden" name="sujet" value="Étude détaillée depuis le simulateur">
+            <input type="hidden" name="estimation" value="">
+            <div class="form__hp" aria-hidden="true"><label>Ne pas remplir<input type="text" name="site_web" tabindex="-1" autocomplete="off"></label></div>
+            <div class="form__row">
+              <div><label for="lead-nom">Votre nom</label><input id="lead-nom" type="text" name="nom" required autocomplete="name" placeholder="Prénom Nom"></div>
+              <div><label for="lead-tel">Téléphone</label><input id="lead-tel" type="tel" name="telephone" autocomplete="tel" placeholder="06 …"></div>
+            </div>
+            <div><label for="lead-email">E-mail</label><input id="lead-email" type="email" name="email" required autocomplete="email" placeholder="vous@exemple.fr"></div>
+            <div><label for="lead-adresse">Adresse ou quartier du logement</label><input id="lead-adresse" type="text" name="adresse" placeholder="Ex. rue des Filatiers, Carmes"></div>
+            <div class="form__consent"><input type="checkbox" id="lead-consent" name="consentement" required><label for="lead-consent">J’accepte que CAPIBNB me recontacte au sujet de ma demande. Aucune newsletter, aucune revente de données. <a href="/confidentialite/" style="text-decoration:underline">Confidentialité</a></label></div>
+            <div class="form__status" role="status" aria-live="polite"></div>
+            <button type="submit" class="btn btn--white btn--lg">Recevoir mon étude détaillée {{> arrowIcon}}</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ MÉTHODE ============ -->
+<section class="section section--sand" aria-labelledby="titre-methode">
+  <div class="container">
+    <div class="split split--top">
+      <div data-reveal>
+        <p class="eyebrow">Comment on calcule</p>
+        <h2 id="titre-methode" class="display display--lg">Une estimation <em>honnête</em>, pas un chiffre pour faire rêver.</h2>
+        <p class="lead">Beaucoup de simulateurs affichent le meilleur mois de la meilleure annonce. Le nôtre part des moyennes de marché toulousaines et les ajuste à votre logement. Il vaut mieux être agréablement surpris que déçu.</p>
+      </div>
+      <div class="prose" data-reveal>
+        <ul>
+          <li><strong>Prix par nuit</strong> : moyenne toulousaine 2026 par typologie (70 à 90 € pour un logement entier), ajustée par quartier (+15 à +18 % dans l’hypercentre, −10 à −15 % en périphérie) et par standing.</li>
+          <li><strong>Taux d’occupation</strong> : 67 % de moyenne à Toulouse (AirDNA), plus élevé pour les petites surfaces, plus faible pour les grandes.</li>
+          <li><strong>Saisonnalité</strong> : répartition mensuelle issue des données AirROI, avec des pics en octobre, août et avril.</li>
+          <li><strong>Vos coûts</strong> : commission de 22 % TTC sur le chiffre d’affaires hors ménage et forfait consommables selon la typologie. Rien d’autre.</li>
+          <li><strong>Longue durée</strong> : loyer de marché toulousain par typologie et quartier, moins deux semaines de vacance locative par an.</li>
+          <li><strong>Hors calcul</strong> : fiscalité, charges de copropriété, taxe foncière et assurance, identiques quel que soit le mode de location.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CE QUI FAIT LA DIFFÉRENCE ============ -->
+<section class="section" aria-labelledby="titre-diff">
+  <div class="container">
+    <div class="section-head section-head--center">
+      <p class="eyebrow">Au-delà du calcul</p>
+      <h2 id="titre-diff" class="display display--md">Entre deux logements identiques, <em>ce qui fait l’écart.</em></h2>
+    </div>
+    <div class="grid grid--3" data-reveal-group>
+      <article class="card"><div class="card__icon">{{> iconChart}}</div><h3>Le prix du jour</h3><p>Un logement au prix fixe perd les week-ends d’événements et reste vide les mardis de janvier. La tarification dynamique capte les deux. C’est souvent 15 à 20 % de revenus en plus.</p></article>
+      <article class="card"><div class="card__icon">{{> iconCamera}}</div><h3>La première impression</h3><p>Des photos professionnelles et un texte travaillé multiplient les clics et le taux de conversion de l’annonce. Elles autorisent aussi un prix par nuit plus élevé.</p></article>
+      <article class="card"><div class="card__icon">{{> iconStar}}</div><h3>Les avis</h3><p>Un logement 4,9 étoiles remonte dans les résultats et se réserve plus tôt. Les avis viennent du ménage, de la réactivité et des petites attentions. C’est tout notre métier.</p></article>
+    </div>
+  </div>
+</section>
+
+{{> cta}}
