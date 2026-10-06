@@ -5,7 +5,9 @@ Liste des affirmations présentes sur le nouveau site qui reposent sur la fiche 
 ## Offre commerciale
 
 - [ ] **Sans engagement de durée** — affirmé sur Tarifs (FAQ), CGV art. 8, CTA. La fiche indique « à confirmer ».
-- [ ] **Barème consommables** par typologie — le site affiche « dès 25 € / mois pour un studio ». Le simulateur utilise : studio/T1 25 €, T2 35 €, T3 45 €, T4+ 55 €, maison 70 € (`site-internet/assets/js/simulateur.js`, objet `TYPO`).
+- [x] **Forfait consommables** : le PDF « Prestation de Conciergerie » de Dylan indique 20 à 30 €. Le site affiche « 20 à 30 € / mois selon le logement » ; le simulateur utilise studio 20 €, T1 22 €, T2 25 €, T3 28 €, T4+/maison 30 € (`simulateur.js`, objet `TYPO`). **Reste à confirmer : la périodicité (par mois ?).**
+- [x] **Pas de frais d'inscription** et **petits travaux / rénovation** : confirmés par le PDF de Dylan (06/10/2026), repris sur Accueil, Services, Tarifs, CGV.
+- [ ] **« Réponses immédiates »** aux voyageurs : formulation du PDF, reprise prudemment en « réponse rapide 7j/7 ».
 - [ ] **Circuit de paiement** — le site dit « relevé mensuel + virement du net ». À confirmer (qui encaisse les plateformes ? délai de reversement ?).
 - [ ] **Relevé mensuel détaillé et récapitulatif annuel** — présentés comme inclus.
 - [ ] **Accompagnement au classement meublé de tourisme** — présenté comme inclus (le propriétaire paie l'organisme de classement).

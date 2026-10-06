@@ -31,6 +31,11 @@
         <a href="/simulateur/" class="btn btn--primary btn--lg" data-magnetic>Simuler mes revenus {{> arrowIcon}}</a>
         <a href="/services/" class="btn btn--ghost-light btn--lg">Découvrir nos services</a>
       </div>
+      <div class="hero__stats">
+        <div class="hero__stat"><strong>22 %</strong><span>de commission sur le prix de la nuitée, tout compris</span></div>
+        <div class="hero__stat"><strong>0 €</strong><span>de frais d’inscription, linge et boîte à clés offerts</span></div>
+        <div class="hero__stat"><strong>5/5</strong><span>Note Google des propriétaires</span></div>
+      </div>
     </div>
     <div class="hero__scene" aria-hidden="true">
       <div class="hero__canvas" data-hero-3d></div>
@@ -41,8 +46,6 @@
   </div>
   <div class="hero__scroll" aria-hidden="true">Découvrir</div>
 </section>
-
-{{> trustbar}}
 
 <!-- ============ PLAQUES DE RUE : LES QUARTIERS ============ -->
 <section class="section section--tight quartiers" aria-labelledby="titre-quartiers">
@@ -165,7 +168,7 @@
     <div class="section-head">
       <p class="eyebrow">Ce qu’on fait pour vous</p>
       <h2 id="titre-metiers" class="display display--lg">Cinq métiers, <em>un seul interlocuteur.</em></h2>
-      <p class="lead">Une location courte durée qui tourne bien, c’est cinq métiers qui s’enchaînent sans accroc. Chez CAPIBNB, tout passe par Dylan et son équipe. Voici ce que chaque étape change pour vous.</p>
+      <p class="lead">Une solution clé en main : vous ne vous occupez de rien du tout. Une location courte durée qui tourne bien, c’est cinq métiers qui s’enchaînent sans accroc, et chez CAPIBNB tout passe par Dylan et son équipe. Voici ce que chaque étape change pour vous.</p>
     </div>
     <div class="metiers metiers--scroll">
       <div class="metiers__sticky">
@@ -263,6 +266,24 @@
   </div>
 </section>
 
+<!-- ============ DÉROULEMENT DE LA COLLABORATION ============ -->
+<section class="section section--white" aria-labelledby="titre-collab">
+  <div class="container">
+    <div class="section-head">
+      <p class="eyebrow">Déroulement de la collaboration</p>
+      <h2 id="titre-collab" class="display display--lg">Du premier appel à la première réservation, <em>rien n’est laissé au hasard.</em></h2>
+      <p class="lead">Cinq étapes, toujours dans le même ordre, pour démarrer proprement. Et à chaque étape, le même interlocuteur.</p>
+    </div>
+    <ol class="steps steps--5" data-reveal-group>
+      <li class="step"><small>Étape 1</small><h3>Prise de contact</h3><p>Par téléphone ou par mail, on prend le temps d’écouter votre projet, de répondre à toutes vos questions et de vous présenter notre fonctionnement. Une estimation de revenus vous est transmise sur demande.</p></li>
+      <li class="step"><small>Étape 2</small><h3>Visite du logement</h3><p>Sur rendez-vous, Dylan vient prendre connaissance du logement et des équipements, et vous conseille sur les points techniques propres à la courte durée.</p></li>
+      <li class="step"><small>Étape 3</small><h3>Signature du contrat</h3><p>Le contrat de collaboration est établi en deux exemplaires, un pour vous, un pour nous. Contrairement à la plupart des conciergeries toulousaines, vous ne payez aucun frais d’inscription.</p></li>
+      <li class="step"><small>Étape 4</small><h3>Préparation du logement</h3><p>Une fois l’annonce en place, on revient au logement pour récupérer les jeux de clés, le nettoyer, le mettre en place et vérifier que tout fonctionne. L’aventure commence.</p></li>
+      <li class="step"><small>Étape 5</small><h3>Gestion et optimisation</h3><p>Une fois lancé, on s’occupe de tout pour que votre rentabilité soit maximale. On reste en contact, et on travaille main dans la main avec vous.</p></li>
+    </ol>
+  </div>
+</section>
+
 <!-- ============ TARIF ============ -->
 <section class="section" aria-labelledby="titre-tarif">
   <div class="container">
@@ -285,6 +306,22 @@
         </div>
         <p class="small muted" style="margin-top: 18px">Commissions TTC constatées sur le marché toulousain en 2026 (fourchette 23 à 28 % pour les acteurs locaux, 30 % et plus pour le premium).</p>
       </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ NOS PLUS ============ -->
+<section class="section section--dark section--tight" aria-labelledby="titre-plus">
+  <div class="container">
+    <div class="section-head">
+      <p class="eyebrow">Nos + qui font la différence</p>
+      <h2 id="titre-plus" class="display display--md">Quatre choses que d’autres facturent, <em>et qu’on offre.</em></h2>
+    </div>
+    <div class="grid grid--4" data-reveal-group>
+      <article class="card card--dark"><div class="card__icon">{{> iconKey}}</div><h3>Check-in et check-out autonomes</h3><p>Boîte à clés sécurisée, matériel et pose offerts. Vos voyageurs entrent et sortent seuls, à toute heure, sans rendez-vous.</p></article>
+      <article class="card card--dark"><div class="card__icon">{{> iconBed}}</div><h3>Linge de lit et de toilette</h3><p>Draps et serviettes mis à disposition, lavés et changés à chaque séjour. Vous n’achetez rien, vous ne lavez rien.</p></article>
+      <article class="card card--dark"><div class="card__icon">{{> iconFile}}</div><h3>Livret d’appartement personnalisé</h3><p>Fonctionnement du logement, consignes, bonnes adresses du quartier : rédigé pour votre bien, remis à chaque voyageur.</p></article>
+      <article class="card card--dark"><div class="card__icon">{{> iconSparkle}}</div><h3>Petits travaux et rénovation</h3><p>Une ampoule, un joint, une poignée, un coup de peinture entre deux saisons : on intervient, avec votre accord, sans attendre.</p></article>
     </div>
   </div>
 </section>

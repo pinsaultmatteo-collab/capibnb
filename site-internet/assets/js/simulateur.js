@@ -1,16 +1,16 @@
 /* CAPIBNB — simulateur de revenus Airbnb à Toulouse
    Modèle indicatif calé sur les données de marché Toulouse 2026 (AirDNA, AirROI)
-   et sur la grille CAPIBNB (commission 22 % TTC hors ménage, forfait consommables).
+   et sur la grille CAPIBNB (commission 22 % sur la nuitée hors ménage, forfait consommables 20 à 30 €/mois).
    Fonctionne pour le simulateur complet ([data-sim="full"]) et la version
    compacte de l'accueil ([data-sim="mini"]). */
 
 const TYPO = {
-  studio: { label: 'Studio', adr: 62, occ: 0.7, loyer: 530, conso: 25 },
-  t1: { label: 'T1', adr: 68, occ: 0.69, loyer: 590, conso: 25 },
-  t2: { label: 'T2', adr: 88, occ: 0.67, loyer: 770, conso: 35 },
-  t3: { label: 'T3', adr: 118, occ: 0.62, loyer: 1000, conso: 45 },
-  t4: { label: 'T4 et +', adr: 155, occ: 0.58, loyer: 1290, conso: 55 },
-  villa: { label: 'Maison / villa', adr: 198, occ: 0.55, loyer: 1650, conso: 70 },
+  studio: { label: 'Studio', adr: 62, occ: 0.7, loyer: 530, conso: 20 },
+  t1: { label: 'T1', adr: 68, occ: 0.69, loyer: 590, conso: 22 },
+  t2: { label: 'T2', adr: 88, occ: 0.67, loyer: 770, conso: 25 },
+  t3: { label: 'T3', adr: 118, occ: 0.62, loyer: 1000, conso: 28 },
+  t4: { label: 'T4 et +', adr: 155, occ: 0.58, loyer: 1290, conso: 30 },
+  villa: { label: 'Maison / villa', adr: 198, occ: 0.55, loyer: 1650, conso: 30 },
 };
 
 export const QUARTIERS = [

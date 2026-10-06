@@ -159,5 +159,7 @@ export const partials = {
   <li>${icon('check')}<span><strong>Relation voyageurs 7j/7</strong>, avant, pendant, après</span></li>
   <li>${icon('check')}<span><strong>Relevé mensuel</strong> et reversement de vos revenus</span></li>
   <li>${icon('check')}<span><strong>Conformité toulousaine</strong> : enregistrement, taxe de séjour</span></li>
+  <li>${icon('check')}<span><strong>Petits travaux et rénovation</strong> pilotés entre deux saisons, avec votre accord</span></li>
+  <li>${icon('check')}<span><strong>0 € de frais d’inscription</strong> à la signature du contrat</span></li>
 </ul>`,
 };
