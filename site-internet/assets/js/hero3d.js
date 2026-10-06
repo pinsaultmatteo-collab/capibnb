@@ -23,7 +23,7 @@ function init(container) {
   container.appendChild(renderer.domElement);
 
   const scene = new THREE.Scene();
-  scene.fog = new THREE.FogExp2(0x161d1d, 0.045);
+  scene.fog = new THREE.FogExp2(0x0a0a0a, 0.035);
 
   const camera = new THREE.PerspectiveCamera(30, 1, 0.1, 100);
   const camBase = new THREE.Vector3(6.9, 3.3, 8.9);
@@ -31,7 +31,7 @@ function init(container) {
   const lookAt = new THREE.Vector3(0, 2.4, 0);
 
   /* ---------- Lumières ---------- */
-  scene.add(new THREE.HemisphereLight(0xdfe7ea, 0x161d1d, 0.55));
+  scene.add(new THREE.HemisphereLight(0xe8e8e8, 0x0a0a0a, 0.6));
   const key = new THREE.DirectionalLight(0xffffff, 1.4);
   key.position.set(6, 9, 4);
   scene.add(key);
@@ -54,7 +54,7 @@ function init(container) {
   const W = 3.2,
     H = 4.4,
     D = 2.6;
-  const bodyMat = new THREE.MeshStandardMaterial({ color: 0x2c3838, roughness: 0.82, metalness: 0.08 });
+  const bodyMat = new THREE.MeshStandardMaterial({ color: 0x232323, roughness: 0.8, metalness: 0.1 });
   const body = new THREE.Mesh(new THREE.BoxGeometry(W, H, D), bodyMat);
   body.position.y = H / 2;
   building.add(body);
@@ -68,7 +68,7 @@ function init(container) {
   // corniche
   const cornice = new THREE.Mesh(
     new THREE.BoxGeometry(W + 0.24, 0.14, D + 0.24),
-    new THREE.MeshStandardMaterial({ color: 0x3a4646, roughness: 0.9 })
+    new THREE.MeshStandardMaterial({ color: 0x2e2e2e, roughness: 0.9 })
   );
   cornice.position.y = H + 0.07;
   building.add(cornice);
@@ -89,13 +89,13 @@ function init(container) {
   // porte + boîte à clés
   const door = new THREE.Mesh(
     new THREE.PlaneGeometry(0.62, 1.1),
-    new THREE.MeshStandardMaterial({ color: 0x1b2424, roughness: 0.6 })
+    new THREE.MeshStandardMaterial({ color: 0x0f0f0f, roughness: 0.6 })
   );
   door.position.set(0, 0.55, D / 2 + 0.005);
   building.add(door);
   const keybox = new THREE.Mesh(
     new THREE.BoxGeometry(0.14, 0.2, 0.08),
-    new THREE.MeshStandardMaterial({ color: 0x3a4646, roughness: 0.5, metalness: 0.4 })
+    new THREE.MeshStandardMaterial({ color: 0x333333, roughness: 0.5, metalness: 0.4 })
   );
   keybox.position.set(0.55, 1.05, D / 2 + 0.04);
   building.add(keybox);
@@ -104,17 +104,17 @@ function init(container) {
   building.add(keyLed);
 
   // perron
-  const stoop = new THREE.Mesh(new THREE.BoxGeometry(1.1, 0.12, 0.5), new THREE.MeshStandardMaterial({ color: 0x3a4646, roughness: 0.95 }));
+  const stoop = new THREE.Mesh(new THREE.BoxGeometry(1.1, 0.12, 0.5), new THREE.MeshStandardMaterial({ color: 0x2a2a2a, roughness: 0.95 }));
   stoop.position.set(0, 0.06, D / 2 + 0.25);
   building.add(stoop);
 
   /* ---------- Fenêtres ---------- */
   const windows = [];
-  const offColor = new THREE.Color(0x1a2323);
+  const offColor = new THREE.Color(0x141414);
   const onColor = new THREE.Color(0xffb0a8);
   const winGeo = new THREE.PlaneGeometry(0.5, 0.72);
   const glowGeo = new THREE.PlaneGeometry(1.5, 1.7);
-  const frameMat = new THREE.MeshStandardMaterial({ color: 0x4a5858, roughness: 0.9 });
+  const frameMat = new THREE.MeshStandardMaterial({ color: 0x3c3c3c, roughness: 0.9 });
   const frameGeo = new THREE.PlaneGeometry(0.62, 0.84);
 
   const addWindow = (x, y, z, rotY) => {
@@ -149,23 +149,16 @@ function init(container) {
   });
 
   /* ---------- Sol et ombre de contact ---------- */
-  const ground = new THREE.Mesh(
-    new THREE.CircleGeometry(7, 48),
-    new THREE.MeshStandardMaterial({ color: 0x151c1c, roughness: 1 })
-  );
-  ground.rotation.x = -Math.PI / 2;
-  ground.position.y = -0.001;
-  scene.add(ground);
   const shadow = new THREE.Mesh(
-    new THREE.PlaneGeometry(6, 5),
-    new THREE.MeshBasicMaterial({ map: glowTex, transparent: true, opacity: 0.55, color: 0x000000, depthWrite: false })
+    new THREE.PlaneGeometry(7, 6),
+    new THREE.MeshBasicMaterial({ map: glowTex, transparent: true, opacity: 0.7, color: 0x000000, depthWrite: false })
   );
   shadow.rotation.x = -Math.PI / 2;
   shadow.position.y = 0.002;
   scene.add(shadow);
 
   // dallage léger : anneaux concentriques
-  const ringMat = new THREE.LineBasicMaterial({ color: 0xffffff, transparent: true, opacity: 0.06 });
+  const ringMat = new THREE.LineBasicMaterial({ color: 0xffffff, transparent: true, opacity: 0.1 });
   [3.2, 4.4, 5.6].forEach((r) => {
     const pts = [];
     for (let i = 0; i <= 96; i++) {
@@ -400,7 +393,7 @@ function makeCardTexture(text) {
   c.height = 144;
   const ctx = c.getContext('2d');
   const r = 36;
-  ctx.fillStyle = 'rgba(22,29,29,0.92)';
+  ctx.fillStyle = 'rgba(10,10,10,0.92)';
   roundRect(ctx, 2, 2, 508, 140, r);
   ctx.fill();
   ctx.strokeStyle = 'rgba(255,255,255,0.18)';

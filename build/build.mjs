@@ -241,7 +241,7 @@ function layout({ meta, body }) {
 <meta name="description" content="${meta.description}">
 <link rel="canonical" href="${url}">
 <meta name="robots" content="${meta.noindex ? 'noindex,follow' : 'index,follow,max-image-preview:large'}">
-<meta name="theme-color" content="${meta.darkHero ? '#161d1d' : '#faf7f2'}">
+<meta name="theme-color" content="${meta.darkHero ? '#0a0a0a' : '#faf7f2'}">
 <meta property="og:locale" content="fr_FR">
 <meta property="og:type" content="${meta.ogType || 'website'}">
 <meta property="og:site_name" content="CAPIBNB">
