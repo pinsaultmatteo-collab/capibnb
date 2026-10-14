@@ -343,6 +343,27 @@
     });
   });
 
+  /* ---------- Bouton « Appeler » : clic tracé, numéro révélé sur ordinateur ---------- */
+  $$('[data-call]').forEach((a) => {
+    a.addEventListener('click', (e) => {
+      // événement de suivi (Google Tag Manager / GA4 / Matomo)
+      window.dataLayer = window.dataLayer || [];
+      window.dataLayer.push({ event: 'click_appeler', page: location.pathname });
+      if (typeof window.gtag === 'function') window.gtag('event', 'click_appeler', { page: location.pathname });
+      if (window._paq) window._paq.push(['trackEvent', 'Contact', 'Appeler', location.pathname]);
+      // sur ordinateur, le premier clic affiche le numéro ; le second lance l'appel
+      const mobile = window.matchMedia('(pointer: coarse)').matches;
+      if (!mobile && !a.classList.contains('is-revealed')) {
+        e.preventDefault();
+        const label = a.querySelector('span');
+        const num = a.getAttribute('href').replace('tel:+33', '0').replace(/(\d{2})(?=\d)/g, '$1 ');
+        if (label) label.textContent = num;
+        else a.textContent = num;
+        a.classList.add('is-revealed');
+      }
+    });
+  });
+
   /* ---------- Année courante ---------- */
   $$('[data-year]').forEach((el) => (el.textContent = new Date().getFullYear()));
 })();

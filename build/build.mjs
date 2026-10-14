@@ -30,6 +30,7 @@ export const SITE = {
   instagram: '#', // TODO : lien réel à récupérer auprès de Dylan
   facebook: '#',  // TODO : lien réel à récupérer auprès de Dylan
   google: '#',    // TODO : lien fiche Google Business
+  rdv: '/contact/', // lien du bouton « Prendre rendez-vous » (remplacer par un lien Calendly / Google Agenda si souhaité)
   airbnb: '#',    // TODO : profil hôte Airbnb
   booking: '#',   // TODO : profil Booking
 };
@@ -120,8 +121,8 @@ function header(meta) {
       <ul>${links}</ul>
     </nav>
     <div class="site-header__actions">
-      <a href="${SITE.phoneHref}" class="site-header__phone" aria-label="Appeler Dylan">${partials.icon('phone')}<span>06 19 48 59 05</span></a>
-      <a href="/contact/" class="btn btn--primary btn--sm" data-magnetic>Parler à Dylan</a>
+      <a href="${SITE.phoneHref}" class="btn btn--call btn--sm" data-call aria-label="Appeler CAPIBNB">${partials.icon('phone')}<span>Appeler</span></a>
+      <a href="${SITE.rdv}" class="btn btn--primary btn--sm" data-magnetic>Prendre rendez-vous</a>
       <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="menu-mobile" aria-label="Ouvrir le menu" data-nav-toggle>
         <span></span><span></span>
       </button>
@@ -136,8 +137,8 @@ function header(meta) {
         <li><a href="/contact/">Contact</a></li>
       </ul>
       <div class="menu-mobile__foot">
-        <a href="/simulateur/" class="btn btn--primary">Simuler mes revenus</a>
-        <a href="${SITE.phoneHref}" class="btn btn--ghost-light">06 19 48 59 05</a>
+        <a href="${SITE.rdv}" class="btn btn--primary">Prendre rendez-vous</a>
+        <a href="${SITE.phoneHref}" class="btn btn--ghost-light" data-call>${partials.icon('phone')}<span>Appeler</span></a>
       </div>
     </div>
   </div>

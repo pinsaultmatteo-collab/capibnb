@@ -145,6 +145,55 @@ export const partials = {
   </div>
 </section>`,
 
+
+  // Frise chronologique du déroulement de la collaboration (5 étapes du document de Dylan)
+  collabTimeline: `
+<div class="tl" data-inview>
+  <div class="tl__line" aria-hidden="true"><span></span></div>
+  <ol class="tl__items">
+    <li class="tl__item" style="--d: 0.25s">
+      <div class="tl__card">
+        <small>Étape 1</small>
+        <h3>Prise de contact</h3>
+        <p>Par téléphone ou par mail, on prend le temps d’écouter votre projet, de répondre à vos questions et de vous présenter notre fonctionnement. Estimation de revenus sur demande.</p>
+      </div>
+      <div class="tl__node"><span>01</span></div>
+    </li>
+    <li class="tl__item" style="--d: 0.67s">
+      <div class="tl__card">
+        <small>Étape 2</small>
+        <h3>Visite du logement</h3>
+        <p>Sur rendez-vous, Dylan vient prendre connaissance du logement et des équipements, et vous conseille sur les points techniques propres à la courte durée.</p>
+      </div>
+      <div class="tl__node"><span>02</span></div>
+    </li>
+    <li class="tl__item" style="--d: 1.09s">
+      <div class="tl__card">
+        <small>Étape 3</small>
+        <h3>Signature du contrat</h3>
+        <p>Contrat de collaboration en deux exemplaires, un pour vous, un pour nous. Contrairement à la plupart des conciergeries toulousaines, aucun frais d’inscription.</p>
+      </div>
+      <div class="tl__node"><span>03</span></div>
+    </li>
+    <li class="tl__item" style="--d: 1.51s">
+      <div class="tl__card">
+        <small>Étape 4</small>
+        <h3>Préparation du logement</h3>
+        <p>Annonce en place, on récupère les jeux de clés, on nettoie, on installe la boîte à clés et le livret, on vérifie que tout fonctionne. L’aventure commence.</p>
+      </div>
+      <div class="tl__node"><span>04</span></div>
+    </li>
+    <li class="tl__item" style="--d: 1.93s">
+      <div class="tl__card">
+        <small>Étape 5</small>
+        <h3>Gestion et optimisation</h3>
+        <p>On s’occupe de tout pour que votre rentabilité soit maximale, et on reste en contact : relevé mensuel, échanges réguliers, décisions prises main dans la main.</p>
+      </div>
+      <div class="tl__node"><span>05</span></div>
+    </li>
+  </ol>
+</div>`,
+
   // Petite mention "estimation" pour le simulateur
   simNote: `<p class="sim-note">${icon('info')} Estimation indicative fondée sur les données de marché Toulouse 2026 (AirDNA, AirROI) et l’expérience des logements gérés. Elle ne constitue pas un engagement de revenus : Dylan affine l’estimation après visite.</p>`,
 

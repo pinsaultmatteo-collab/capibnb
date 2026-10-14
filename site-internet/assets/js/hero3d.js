@@ -305,7 +305,7 @@ function init(container) {
 
     // réservations : une fenêtre s'allume régulièrement
     bookingTimer += dt;
-    if (intro >= 1 && bookingTimer > 0.85) {
+    if (intro >= 1 && bookingTimer > 2.6) {
       bookingTimer = 0;
       const w = lightNext();
       if (w) {
@@ -317,12 +317,12 @@ function init(container) {
         }
       } else if (allLitSince < 0) allLitSince = t;
     }
-    if (allLitSince > 0 && t - allLitSince > 4) {
+    if (allLitSince > 0 && t - allLitSince > 8) {
       allLitSince = -1;
       resetAll();
     }
     windows.forEach((w) => {
-      w.lit += (w.target - w.lit) * (w.target ? 0.08 : 0.03);
+      w.lit += (w.target - w.lit) * (w.target ? 0.05 : 0.02);
       w.mat.color.copy(offColor).lerp(onColor, w.lit);
       w.glow.material.opacity = 0.6 * w.lit;
     });
@@ -332,7 +332,7 @@ function init(container) {
     cards.forEach((c) => {
       if (c.t <= 0) return;
       c.t += dt;
-      const life = 2.6;
+      const life = 5.2;
       const p = c.t / life;
       if (p >= 1) {
         c.t = 0;
@@ -344,9 +344,9 @@ function init(container) {
       c.win.g.getWorldPosition(wp);
       const n = new THREE.Vector3(0, 0, 1).applyQuaternion(c.win.g.getWorldQuaternion(new THREE.Quaternion()));
       c.m.position.copy(wp).addScaledVector(n, 0.5 + p * 0.6);
-      c.m.position.y += p * 1.4;
+      c.m.position.y += p * 1.1;
       c.m.quaternion.copy(camera.quaternion);
-      c.m.material.opacity = p < 0.15 ? p / 0.15 : p > 0.7 ? 1 - (p - 0.7) / 0.3 : 1;
+      c.m.material.opacity = p < 0.12 ? p / 0.12 : p > 0.72 ? 1 - (p - 0.72) / 0.28 : 1;
       c.m.scale.setScalar(0.85 + 0.15 * Math.min(1, p / 0.2));
     });
 
