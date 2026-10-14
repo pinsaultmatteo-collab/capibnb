@@ -210,9 +210,9 @@ function jsonLd(meta) {
     },
     geo: { '@type': 'GeoCoordinates', latitude: 43.6005, longitude: 1.4441 },
     areaServed: [
-      { '@type': 'City', name: 'Toulouse' },
-      { '@type': 'AdministrativeArea', name: 'Toulouse Métropole' },
-    ],
+      'Toulouse', 'Blagnac', 'Seilh', 'Beauzelle', 'Aucamville', 'Fenouillet', 'Colomiers', 'Tournefeuille', 'Cugnaux',
+      'Portet-sur-Garonne', 'Balma', 'L’Union', 'Saint-Orens-de-Gameville', 'Labège', 'Ramonville-Saint-Agne', 'Castanet-Tolosan',
+    ].map((name) => ({ '@type': 'City', name })),
     openingHoursSpecification: {
       '@type': 'OpeningHoursSpecification',
       dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'],

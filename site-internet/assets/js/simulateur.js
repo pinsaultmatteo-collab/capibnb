@@ -23,7 +23,10 @@ export const QUARTIERS = [
   { id: 'minimes', label: 'Minimes · Barrière de Paris · Bonnefoy', adr: 0.94, occ: 0.98, loyer: 0.95 },
   { id: 'rangueil', label: 'Rangueil · Saint-Agne · Côte Pavée', adr: 0.95, occ: 0.98, loyer: 0.97 },
   { id: 'patte-oie', label: 'Patte d’Oie · Arènes · Purpan', adr: 0.96, occ: 0.99, loyer: 0.96 },
-  { id: 'blagnac', label: 'Blagnac · Aéroport · Colomiers', adr: 0.93, occ: 0.98, loyer: 0.93 },
+  { id: 'blagnac', label: 'Blagnac · Beauzelle · Aéroport', adr: 0.93, occ: 0.98, loyer: 0.93 },
+  { id: 'nord', label: 'Seilh · Aucamville · Fenouillet · L’Union', adr: 0.89, occ: 0.96, loyer: 0.9 },
+  { id: 'ouest', label: 'Colomiers · Tournefeuille · Cugnaux', adr: 0.9, occ: 0.96, loyer: 0.9 },
+  { id: 'sud-est', label: 'Saint-Orens · Balma · Labège · Castanet', adr: 0.9, occ: 0.97, loyer: 0.92 },
   { id: 'metropole', label: 'Autre commune de la métropole', adr: 0.86, occ: 0.93, loyer: 0.86 },
 ];
 

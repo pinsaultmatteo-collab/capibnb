@@ -190,16 +190,23 @@ function init(container) {
     travellers.push({ g: t, phase: (i / 3) * Math.PI * 2, speed: 0.22 + i * 0.03 });
   }
 
-  /* ---------- Cartes « Réservé » qui s'envolent ---------- */
+  /* ---------- Cartes « Réservé » : permanentes, elles flottent autour de l'immeuble ---------- */
   const cards = [];
-  for (let i = 0; i < 4; i++) {
+  const cardSpots = [
+    { a: 0.5, r: 2.4, y: 4.9, phase: 0.0, speed: 0.9 },
+    { a: 1.75, r: 3.0, y: 3.4, phase: 1.3, speed: 0.8 },
+    { a: 3.0, r: 2.7, y: 1.7, phase: 2.6, speed: 1.0 },
+    { a: 4.3, r: 3.0, y: 4.2, phase: 0.7, speed: 0.75 },
+    { a: 5.6, r: 2.3, y: 2.6, phase: 1.9, speed: 0.95 },
+  ];
+  cardSpots.forEach((spot, i) => {
     const m = new THREE.Mesh(
       new THREE.PlaneGeometry(1.5, 0.42),
       new THREE.MeshBasicMaterial({ map: cardTextures[i % cardTextures.length], transparent: true, opacity: 0, depthWrite: false })
     );
     scene.add(m);
-    cards.push({ m, t: -i * 1.4, win: null });
-  }
+    cards.push({ m, ...spot });
+  });
 
   /* ---------- Particules ---------- */
   const pCount = 140;
@@ -277,6 +284,11 @@ function init(container) {
       t.g.position.set(Math.cos(a) * orbitR, 0.12, Math.sin(a) * orbitR);
     });
     camera.lookAt(lookAt);
+    cards.forEach((c) => {
+      c.m.position.set(Math.cos(c.a) * c.r, c.y, Math.sin(c.a) * c.r);
+      c.m.quaternion.copy(camera.quaternion);
+      c.m.material.opacity = 1;
+    });
     renderer.render(scene, camera);
     return;
   }
@@ -308,14 +320,7 @@ function init(container) {
     if (intro >= 1 && bookingTimer > 2.6) {
       bookingTimer = 0;
       const w = lightNext();
-      if (w) {
-        const free = cards.find((c) => c.t <= 0 && !c.win) || null;
-        if (free) {
-          free.win = w;
-          free.t = 0.0001;
-          free.m.material.map = cardTextures[Math.floor(Math.random() * cardTextures.length)];
-        }
-      } else if (allLitSince < 0) allLitSince = t;
+      if (!w && allLitSince < 0) allLitSince = t;
     }
     if (allLitSince > 0 && t - allLitSince > 8) {
       allLitSince = -1;
@@ -328,26 +333,14 @@ function init(container) {
     });
     keyLed.material.color.setHSL(0, 1, 0.55 + 0.15 * Math.sin(t * 4));
 
-    // cartes
+    // cartes : flottement autour de l'immeuble, toujours visibles
     cards.forEach((c) => {
-      if (c.t <= 0) return;
-      c.t += dt;
-      const life = 5.2;
-      const p = c.t / life;
-      if (p >= 1) {
-        c.t = 0;
-        c.win = null;
-        c.m.material.opacity = 0;
-        return;
-      }
-      const wp = new THREE.Vector3();
-      c.win.g.getWorldPosition(wp);
-      const n = new THREE.Vector3(0, 0, 1).applyQuaternion(c.win.g.getWorldQuaternion(new THREE.Quaternion()));
-      c.m.position.copy(wp).addScaledVector(n, 0.5 + p * 0.6);
-      c.m.position.y += p * 1.1;
+      const bob = Math.sin(t * c.speed + c.phase) * 0.14;
+      const sway = Math.cos(t * c.speed * 0.6 + c.phase) * 0.08;
+      c.m.position.set(Math.cos(c.a + sway * 0.4) * c.r, c.y + bob, Math.sin(c.a + sway * 0.4) * c.r);
       c.m.quaternion.copy(camera.quaternion);
-      c.m.material.opacity = p < 0.12 ? p / 0.12 : p > 0.72 ? 1 - (p - 0.72) / 0.28 : 1;
-      c.m.scale.setScalar(0.85 + 0.15 * Math.min(1, p / 0.2));
+      c.m.material.opacity = Math.min(1, c.m.material.opacity + dt * 0.8 * intro);
+      c.m.scale.setScalar(1 + Math.sin(t * c.speed * 0.5 + c.phase) * 0.02);
     });
 
     // voyageurs
