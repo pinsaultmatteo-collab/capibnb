@@ -826,9 +826,12 @@ body.menu-open .site-header {
     radial-gradient(60% 50% at 78% 50%, rgba(255, 90, 95, 0.16), transparent 70%);
 }
 .hero__canvas {
+  /* le canvas déborde largement du cadre de la scène pour que les bulles ne soient jamais coupées ;
+     la caméra est reculée d'autant (voir hero3d.js) pour garder l'immeuble à la même taille */
   position: absolute;
-  inset: -8% -12%;
+  inset: -55% -60%;
   z-index: 0;
+  pointer-events: none;
 }
 .hero__canvas canvas {
   width: 100% !important;
@@ -1065,6 +1068,9 @@ body.menu-open .site-header {
   }
 }
 @media (max-width: 1024px) {
+  .hero__canvas {
+    inset: -35% -20%;
+  }
   .hero__inner {
     grid-template-columns: 1fr;
   }

@@ -197,7 +197,7 @@ function init(container) {
     { a: 1.75, r: 3.0, y: 3.4, phase: 1.3, speed: 0.8 },
     { a: 3.0, r: 2.7, y: 1.7, phase: 2.6, speed: 1.0 },
     { a: 4.3, r: 3.0, y: 4.2, phase: 0.7, speed: 0.75 },
-    { a: 5.6, r: 2.3, y: 2.6, phase: 1.9, speed: 0.95 },
+    { a: 4.9, r: 2.3, y: 5.5, phase: 1.9, speed: 0.95 },
   ];
   cardSpots.forEach((spot, i) => {
     const m = new THREE.Mesh(
@@ -245,10 +245,15 @@ function init(container) {
     const h = container.clientHeight || 1;
     renderer.setSize(w, h, false);
     camera.aspect = w / h;
-    // la caméra recule quand la boîte est étroite (portrait) et avance quand elle est très large
-    const a = camera.aspect;
+    // le cadrage se calcule sur la boîte visible (.hero__scene), pas sur le canvas qui déborde tout autour
+    const box = container.parentElement || container;
+    const bw = box.clientWidth || w;
+    const bh = box.clientHeight || h;
+    const a = bw / bh;
     const fit = a < 0.95 ? 0.95 / a : a > 1.6 ? 0.88 : 1;
-    camBase.set(6.9 * fit, 3.3 * fit, 8.9 * fit);
+    const k = h / bh; // canvas k fois plus haut que la boîte : on recule d'autant pour garder la même taille à l'écran
+    camBase.set(6.9 * fit * k, 3.3 * fit * k, 8.9 * fit * k);
+    scene.fog.density = 0.035 / k;
     camera.updateProjectionMatrix();
   };
   new ResizeObserver(resize).observe(container);
