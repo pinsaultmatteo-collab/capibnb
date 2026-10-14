@@ -55,9 +55,15 @@
         <p class="eyebrow">Du Capitole à Saint-Orens</p>
         <h2 id="titre-quartiers" class="display display--sm">Les quartiers et communes où nous gérons des logements.</h2>
       </div>
-      <p class="quartiers__note">Toulouse intra-muros et toute la métropole, de Seilh à Saint-Orens. Estimation pour un T2 standard, données de marché 2026 : cliquez sur une plaque pour lancer le simulateur.</p>
+      <div class="quartiers__side">
+        <p class="quartiers__note">Toulouse intra-muros et toute la métropole, de Seilh à Saint-Orens. Estimation pour un T2 standard, données de marché 2026 : cliquez sur une plaque pour lancer le simulateur.</p>
+        <div class="scroller__nav">
+          <button type="button" class="scroller__btn" data-scroll-prev aria-label="Plaques précédentes">{{> iconArrow}}</button>
+          <button type="button" class="scroller__btn" data-scroll-next aria-label="Plaques suivantes">{{> iconArrow}}</button>
+        </div>
+      </div>
     </div>
-    <div class="plaques" data-reveal-group>
+    <div class="plaques" data-scroller data-reveal-group>
       <a class="plaque" href="/simulateur/?typo=t2&quartier=capitole" data-tilt>
         <span class="plaque__fr">Capitole</span>
         <span class="plaque__oc">Capitòli</span>
@@ -484,6 +490,31 @@
       <figure class="g-1"><img src="/assets/img/logement-t2-lumineux-lg.webp" srcset="/assets/img/logement-t2-lumineux-sm.webp 900w, /assets/img/logement-t2-lumineux-lg.webp 1600w" sizes="(max-width: 760px) 92vw, 58vw" alt="Salon lumineux d’un T2 géré par CAPIBNB à Toulouse, canapé bleu et vue sur les toits" width="1600" height="1066" loading="lazy"><figcaption>T2 lumineux · vue sur les toits</figcaption></figure>
       <figure class="g-2"><img src="/assets/img/logement-salon-cosy-lg.webp" alt="Salon cosy d’un appartement géré par CAPIBNB, canapé en cuir et plantes" width="720" height="960" loading="lazy"><figcaption>Salon cosy · hypercentre</figcaption></figure>
       <figure class="g-3"><div class="gallery__quote">« Un logement propre, un linge impeccable et une arrivée sans friction : c’est ça qui fait les 5 étoiles, et les 5 étoiles qui font le prix. »</div></figure>
+    </div>
+  </div>
+</section>
+
+<!-- ============ ZONE D'INTERVENTION ============ -->
+<section class="section section--sand" aria-labelledby="titre-zone-home">
+  <div class="container">
+    <div class="split">
+      <div data-reveal>
+        <p class="eyebrow">Zone d’intervention</p>
+        <h2 id="titre-zone-home" class="display display--lg">Toulouse intra-muros <em>et toute sa périphérie.</em></h2>
+        <p class="lead">Du Capitole aux Minimes, de Saint-Cyprien à la Côte Pavée, et dans les communes de la métropole : Seilh, Blagnac, Colomiers, Tournefeuille, Balma, L’Union, Saint-Orens, Labège, Ramonville… Partout où un voyageur a une bonne raison de dormir, et où nous pouvons garantir le ménage et la réactivité.</p>
+        <ul class="service__list">
+          <li>{{> iconCheck}}Hypercentre : Capitole, Carmes, Esquirol, Saint-Étienne, Saint-Georges</li>
+          <li>{{> iconCheck}}Rive gauche : Saint-Cyprien, Patte d’Oie, Arènes</li>
+          <li>{{> iconCheck}}Nord : Chalets, Compans-Caffarelli, Minimes, Barrière de Paris</li>
+          <li>{{> iconCheck}}Sud et est : Saint-Michel, Busca, Rangueil, Côte Pavée, Montaudran</li>
+          <li>{{> iconCheck}}Périphérie : Seilh, Blagnac, Beauzelle, Aucamville, Colomiers, Tournefeuille, Cugnaux, L’Union, Balma, Saint-Orens, Labège, Ramonville, Castanet</li>
+        </ul>
+        <div class="btn-row">
+          <a href="/contact/" class="btn btn--dark">Mon logement est-il dans la zone ? {{> arrowIcon}}</a>
+          <a href="/simulateur/" class="btn btn--ghost">Estimer mes revenus</a>
+        </div>
+      </div>
+      {{> zoneMap}}
     </div>
   </div>
 </section>

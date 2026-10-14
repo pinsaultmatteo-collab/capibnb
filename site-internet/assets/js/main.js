@@ -364,6 +364,23 @@
     });
   });
 
+  /* ---------- Défileur horizontal avec flèches ([data-scroller]) ---------- */
+  $$('[data-scroller]').forEach((sc) => {
+    const scope = sc.closest('section') || document;
+    const prev = $('[data-scroll-prev]', scope);
+    const next = $('[data-scroll-next]', scope);
+    const step = () => Math.max(200, sc.clientWidth * 0.8);
+    const update = () => {
+      if (prev) prev.disabled = sc.scrollLeft <= 8;
+      if (next) next.disabled = sc.scrollLeft + sc.clientWidth >= sc.scrollWidth - 8;
+    };
+    prev && prev.addEventListener('click', () => sc.scrollBy({ left: -step(), behavior: reduceMotion ? 'auto' : 'smooth' }));
+    next && next.addEventListener('click', () => sc.scrollBy({ left: step(), behavior: reduceMotion ? 'auto' : 'smooth' }));
+    sc.addEventListener('scroll', update, { passive: true });
+    window.addEventListener('resize', update);
+    update();
+  });
+
   /* ---------- Année courante ---------- */
   $$('[data-year]').forEach((el) => (el.textContent = new Date().getFullYear()));
 })();

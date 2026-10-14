@@ -194,6 +194,51 @@ export const partials = {
   </ol>
 </div>`,
 
+  // Carte schématique de Toulouse et de la zone d'intervention (À propos + accueil)
+  zoneMap: `
+      <div class="tlsmap" data-reveal aria-label="Carte schématique de Toulouse et des quartiers couverts par CAPIBNB">
+        <svg viewBox="0 0 500 400" role="img">
+          <!-- Garonne -->
+          <path class="river" d="M 150 400 C 170 340, 160 300, 195 260 C 230 220, 215 170, 235 120 C 250 80, 300 50, 320 0"/>
+          <path class="river-line" d="M 150 400 C 170 340, 160 300, 195 260 C 230 220, 215 170, 235 120 C 250 80, 300 50, 320 0"/>
+          <!-- Canal du Midi -->
+          <path class="river-line" d="M 230 0 C 260 60, 330 110, 370 170 C 400 215, 395 270, 410 330" style="stroke: rgba(255,255,255,.35)"/>
+          <!-- boulevards / périphérique -->
+          <ellipse class="ring" cx="270" cy="200" rx="95" ry="80"/>
+          <ellipse class="ring" cx="270" cy="200" rx="210" ry="175" stroke-dasharray="3 7"/>
+          <!-- zone d'intervention -->
+          <ellipse class="zone" cx="260" cy="200" rx="255" ry="196"/>
+          <text class="label" x="262" y="128">Hypercentre</text>
+          <text class="label" x="40" y="140">Métropole</text>
+          <text class="label" x="185" y="330" transform="rotate(-60 185 330)">Garonne</text>
+          <!-- quartiers -->
+          <g class="q" style="--d:0s" transform="translate(275 190)"><circle class="halo" r="7"/><circle class="core" r="4.5"/><text x="9" y="-4">Capitole</text><text class="sub" x="9" y="8">cœur de ville</text></g>
+          <g class="q" style="--d:.4s" transform="translate(258 222)"><circle class="halo" r="7"/><circle class="core" r="4.5"/><text x="9" y="4">Carmes · Esquirol</text></g>
+          <g class="q" style="--d:.8s" transform="translate(200 215)"><circle class="halo" r="7"/><circle class="core" r="4.5"/><text x="-9" y="4" text-anchor="end">Saint-Cyprien</text></g>
+          <g class="q" style="--d:1.2s" transform="translate(290 140)"><circle class="halo" r="7"/><circle class="core" r="4.5"/><text x="9" y="4">Compans · Chalets</text></g>
+          <g class="q" style="--d:1.6s" transform="translate(300 85)"><circle class="halo" r="7"/><circle class="core" r="4.5"/><text x="9" y="4">Minimes</text></g>
+          <g class="q" style="--d:2s" transform="translate(300 300)"><circle class="halo" r="7"/><circle class="core" r="4.5"/><text x="9" y="4">Rangueil</text></g>
+          <g class="q" style="--d:.6s" transform="translate(268 258)"><circle class="halo" r="7"/><circle class="core" r="4.5"/><text x="-9" y="4" text-anchor="end">Saint-Michel</text></g>
+          <g class="q" style="--d:1s" transform="translate(360 215)"><circle class="halo" r="7"/><circle class="core" r="4.5"/><text x="9" y="4">Côte Pavée</text></g>
+          <g class="q" style="--d:1.4s" transform="translate(130 125)"><circle class="halo" r="7"/><circle class="core" r="4.5"/><text x="9" y="4">Blagnac</text><text class="sub" x="9" y="16">aéroport</text></g>
+          <g class="q" style="--d:2.6s" transform="translate(150 40)"><circle class="halo" r="7"/><circle class="core" r="4.5"/><text x="9" y="4">Seilh</text></g>
+          <g class="q" style="--d:3s" transform="translate(255 30)"><circle class="halo" r="7"/><circle class="core" r="4.5"/><text x="9" y="4">Aucamville</text></g>
+          <g class="q" style="--d:1.8s" transform="translate(70 215)"><circle class="halo" r="7"/><circle class="core" r="4.5"/><text x="9" y="4">Colomiers</text></g>
+          <g class="q" style="--d:2.8s" transform="translate(85 295)"><circle class="halo" r="7"/><circle class="core" r="4.5"/><text x="9" y="4">Tournefeuille</text></g>
+          <g class="q" style="--d:3.2s" transform="translate(150 355)"><circle class="halo" r="7"/><circle class="core" r="4.5"/><text x="9" y="4">Cugnaux</text></g>
+          <g class="q" style="--d:2.2s" transform="translate(415 165)"><circle class="halo" r="7"/><circle class="core" r="4.5"/><text x="-9" y="4" text-anchor="end">Balma</text></g>
+          <g class="q" style="--d:3.4s" transform="translate(395 90)"><circle class="halo" r="7"/><circle class="core" r="4.5"/><text x="9" y="4">L’Union</text></g>
+          <g class="q" style="--d:3.6s" transform="translate(455 255)"><circle class="halo" r="7"/><circle class="core" r="4.5"/><text x="-9" y="4" text-anchor="end">Saint-Orens</text></g>
+          <g class="q" style="--d:3.8s" transform="translate(440 330)"><circle class="halo" r="7"/><circle class="core" r="4.5"/><text x="-9" y="4" text-anchor="end">Labège</text></g>
+          <g class="q" style="--d:2.4s" transform="translate(340 355)"><circle class="halo" r="7"/><circle class="core" r="4.5"/><text x="9" y="4">Ramonville</text></g>
+          <!-- siège -->
+          <g transform="translate(262 230)">
+            <circle r="12" fill="none" stroke="#ff5a5f" stroke-width="1.5" opacity=".7"><animate attributeName="r" values="10;18;10" dur="2.6s" repeatCount="indefinite"/><animate attributeName="opacity" values=".7;0;.7" dur="2.6s" repeatCount="indefinite"/></circle>
+          </g>
+        </svg>
+        <div class="tlsmap__legend"><span><i></i>Quartiers où nous gérons des logements</span><span><i class="zone-i"></i>Zone d’intervention</span><span style="color:rgba(255,255,255,.55)">Carte schématique</span></div>
+      </div>`,
+
   // Petite mention "estimation" pour le simulateur
   simNote: `<p class="sim-note">${icon('info')} Estimation indicative fondée sur les données de marché Toulouse 2026 (AirDNA, AirROI) et l’expérience des logements gérés. Elle ne constitue pas un engagement de revenus : Dylan affine l’estimation après visite.</p>`,
 

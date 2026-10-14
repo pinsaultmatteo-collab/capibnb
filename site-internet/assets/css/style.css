@@ -1224,11 +1224,62 @@ body.menu-open .site-header {
   font-size: 0.9rem;
   color: var(--mist);
 }
-.plaques {
+.quartiers__side {
+  display: flex;
+  align-items: flex-end;
+  gap: 24px;
+}
+.scroller__nav {
+  display: flex;
+  gap: 8px;
+  flex: none;
+}
+.scroller__btn {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  border: 1.5px solid var(--ink);
   display: grid;
-  grid-template-columns: repeat(6, minmax(0, 1fr));
-  gap: 14px;
+  place-items: center;
+  color: var(--ink);
+  transition: background 0.3s, color 0.3s, transform 0.3s var(--ease-out), opacity 0.3s;
+}
+.scroller__btn .icon {
+  width: 20px;
+  height: 20px;
+}
+.scroller__btn[data-scroll-prev] .icon {
+  transform: rotate(180deg);
+}
+.scroller__btn:hover:not(:disabled) {
+  background: var(--ink);
+  color: #fff;
+  transform: translateY(-2px);
+}
+.scroller__btn:disabled {
+  opacity: 0.25;
+  cursor: default;
+}
+.plaques {
+  --gap: 14px;
+  --cols: 6;
+  display: flex;
+  gap: var(--gap);
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scroll-padding-inline: 4px;
+  scrollbar-width: none;
+  padding: 14px 4px 18px;
+  margin-inline: -4px;
   perspective: 1200px;
+  -webkit-overflow-scrolling: touch;
+}
+.plaques::-webkit-scrollbar {
+  display: none;
+}
+.plaques .plaque {
+  flex: 0 0 calc((100% - (var(--cols) - 1) * var(--gap)) / var(--cols));
+  scroll-snap-align: start;
 }
 .plaque {
   --rx: 0deg;
@@ -1315,22 +1366,20 @@ body.menu-open .site-header {
 }
 @media (max-width: 1100px) {
   .plaques {
-    grid-template-columns: repeat(4, minmax(0, 1fr));
+    --cols: 4;
   }
 }
 @media (max-width: 760px) {
+  .quartiers__side {
+    width: 100%;
+    justify-content: space-between;
+  }
   .plaques {
-    display: flex;
-    overflow-x: auto;
-    scroll-snap-type: x mandatory;
-    padding-bottom: 10px;
     margin-inline: calc(-1 * var(--gutter));
     padding-inline: var(--gutter);
-    -webkit-overflow-scrolling: touch;
   }
-  .plaque {
+  .plaques .plaque {
     flex: 0 0 200px;
-    scroll-snap-align: start;
   }
 }
 
