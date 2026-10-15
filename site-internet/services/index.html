@@ -93,6 +93,7 @@
           <path id="p-platform-guest" d="M 455 150 C 470 200, 470 250, 455 290"/>
           <path id="p-guest-cap" d="M 420 330 C 370 320, 340 290, 300 250"/>
           <path id="p-cap-owner" d="M 225 240 C 190 260, 170 300, 100 300"/>
+          <path id="p-guest-owner" d="M 428 362 C 360 420, 200 425, 108 268"/>
         </defs>
         <!-- liaisons -->
         <use href="#p-owner-cap" class="f-path"/><use href="#p-owner-cap" class="f-dash"/>
@@ -100,17 +101,19 @@
         <use href="#p-platform-guest" class="f-path"/><use href="#p-platform-guest" class="f-dash"/>
         <use href="#p-guest-cap" class="f-path"/><use href="#p-guest-cap" class="f-dash"/>
         <use href="#p-cap-owner" class="f-path"/><use href="#p-cap-owner" class="f-dash" style="animation-direction: reverse"/>
-        <!-- pièces qui reviennent au propriétaire -->
-        <circle class="f-coin" r="6" style="offset-path: path('M 225 240 C 190 260, 170 300, 100 300'); --d: 0s"/>
-        <circle class="f-coin" r="6" style="offset-path: path('M 225 240 C 190 260, 170 300, 100 300'); --d: 2s"/>
-        <circle class="f-coin" r="6" style="offset-path: path('M 225 240 C 190 260, 170 300, 100 300'); --d: 4s"/>
+        <!-- les voyageurs séjournent chez vous : lien direct voyageurs → propriétaire, et ce sont leurs nuitées qui deviennent vos revenus -->
+        <use href="#p-guest-owner" class="f-path"/><use href="#p-guest-owner" class="f-dash"/>
+        <circle class="f-coin" r="6" style="offset-path: path('M 428 362 C 360 420, 200 425, 108 268'); --d: 0s"/>
+        <circle class="f-coin" r="6" style="offset-path: path('M 428 362 C 360 420, 200 425, 108 268'); --d: 2s"/>
+        <circle class="f-coin" r="6" style="offset-path: path('M 428 362 C 360 420, 200 425, 108 268'); --d: 4s"/>
+        <text class="f-sub" x="268" y="428">Ils séjournent chez vous, leurs nuitées deviennent vos revenus</text>
         <!-- propriétaire -->
         <g>
           <circle class="f-node" cx="80" cy="220" r="50"/>
           <g class="f-icon" transform="translate(68 196) scale(1)"><path d="m2 11 10-8 10 8v9H2Z"/><path d="M9 20v-6h6v6"/></g>
           <text class="f-text" x="80" y="292">Vous</text>
           <text class="f-sub" x="80" y="308">Propriétaire</text>
-          <text class="f-sub" x="60" y="335">Revenus nets</text>
+          <text class="f-sub" x="80" y="330">Vos revenus nets</text>
         </g>
         <!-- CAPIBNB -->
         <g>
@@ -118,7 +121,7 @@
           <circle cx="262" cy="220" r="52" fill="none" stroke="#ff5a5f" stroke-opacity=".3" stroke-width="1.5"><animate attributeName="r" values="46;60;46" dur="3s" repeatCount="indefinite"/><animate attributeName="stroke-opacity" values=".4;0;.4" dur="3s" repeatCount="indefinite"/></circle>
           <text class="f-text" x="262" y="215" style="font-size:12px;letter-spacing:.08em">CAPI</text>
           <text class="f-text" x="262" y="231" style="font-size:12px;letter-spacing:.08em">BNB</text>
-          <text class="f-sub" x="262" y="285">Un interlocuteur</text>
+          <text class="f-sub" x="262" y="285">Un interlocuteur, relevé mensuel</text>
         </g>
         <!-- plateformes -->
         <g>
@@ -189,7 +192,7 @@
       <div class="tl__card">
         <small>Étape 5</small>
         <h3>Gestion et optimisation</h3>
-        <p>On s’occupe de tout pour que votre rentabilité soit maximale, et on reste en contact : relevé mensuel, échanges réguliers, décisions prises main dans la main.</p>
+        <p>On s’occupe de tout pour que votre rentabilité soit maximale, et on reste en contact : relevé mensuel, échanges réguliers, décisions prises main dans la main.</p>
       </div>
       <div class="tl__node"><span>05</span></div>
     </li>
@@ -204,7 +207,7 @@
     <div class="section-head" style="padding-top: var(--section)">
       <p class="eyebrow">Nos missions</p>
       <h2 id="titre-services" class="display display--lg">Cinq métiers, <em>un seul tarif.</em></h2>
-      <p class="lead">Une solution clé en main : vous ne vous occupez de rien du tout. Chaque brique ci-dessous est incluse dans la commission de 22 % sur le prix de la nuitée. Aucune n’est en option.</p>
+      <p class="lead">Une solution clé en main : vous ne vous occupez de rien du tout. Chaque brique ci-dessous est incluse dans la commission de 22 % sur le prix de la nuitée. Aucune n’est en option.</p>
     </div>
 
     <article class="service" data-reveal>
@@ -306,12 +309,12 @@
       <div>
         <p class="eyebrow">Intendance du logement</p>
         <h3 class="display display--sm">Un logement remis à neuf entre chaque séjour.</h3>
-        <p class="lead" style="font-size:1.05rem; margin-top:14px">C’est ce qui fait les 5 étoiles, et ce qui protège votre bien dans le temps. Le ménage est refacturé au voyageur : il ne vous coûte rien.</p>
+        <p class="lead" style="font-size:1.05rem; margin-top:14px">C’est ce qui fait les 5 étoiles, et ce qui protège votre bien dans le temps. Le ménage est refacturé au voyageur : il ne vous coûte rien.</p>
         <ul class="service__list">
           <li><svg class="icon " viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12 5 5L20 7"/></svg>Ménage complet selon un protocole hôtelier, contrôlé par photo</li>
           <li><svg class="icon " viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12 5 5L20 7"/></svg>Linge de lit et de toilette fourni, lavé et repassé par nos soins</li>
-          <li><svg class="icon " viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12 5 5L20 7"/></svg>Réassort des consommables : café, thé, savon, papier, produits d’entretien</li>
-          <li><svg class="icon " viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12 5 5L20 7"/></svg>Vérification des équipements à chaque passage : wifi, TV, électroménager, chauffage</li>
+          <li><svg class="icon " viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12 5 5L20 7"/></svg>Réassort des consommables : café, thé, savon, papier, produits d’entretien</li>
+          <li><svg class="icon " viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12 5 5L20 7"/></svg>Vérification des équipements à chaque passage : wifi, TV, électroménager, chauffage</li>
           <li><svg class="icon " viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12 5 5L20 7"/></svg>Intervention sur les petits problèmes, petits travaux et rénovation, avec votre accord</li>
         </ul>
       </div>
@@ -333,7 +336,7 @@
       <div>
         <p class="eyebrow">Administratif et conformité</p>
         <h3 class="display display--sm">Toulouse encadre. On s’occupe du dossier.</h3>
-        <p class="lead" style="font-size:1.05rem; margin-top:14px">Numéro d’enregistrement, taxe de séjour, changement d’usage, classement : la conformité est devenue un métier à part entière. Il est inclus.</p>
+        <p class="lead" style="font-size:1.05rem; margin-top:14px">Numéro d’enregistrement, taxe de séjour, changement d’usage, classement : la conformité est devenue un métier à part entière. Il est inclus.</p>
         <ul class="service__list">
           <li><svg class="icon " viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12 5 5L20 7"/></svg>Déclaration et numéro d’enregistrement national, affiché sur chaque annonce</li>
           <li><svg class="icon " viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12 5 5L20 7"/></svg>Taxe de séjour collectée ou déclarée selon la plateforme</li>
@@ -355,9 +358,9 @@
       <h2 id="titre-plus" class="display display--lg">Offerts, <em>pas en option.</em></h2>
     </div>
     <div class="grid grid--4" data-reveal-group>
-      <article class="card card--dark"><div class="card__icon"><svg class="icon " viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="8" cy="15" r="4"/><path d="m10.8 12.2 8.7-8.7M15 7l3 3M18 4l2 2"/></svg></div><h3>Check-in et check-out totalement autonomes</h3><p>Système d’entrée et de sortie autonome offert : boîte à clés sécurisée, matériel et pose compris, code renouvelé à chaque séjour.</p></article>
+      <article class="card card--dark"><div class="card__icon"><svg class="icon " viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="8" cy="15" r="4"/><path d="m10.8 12.2 8.7-8.7M15 7l3 3M18 4l2 2"/></svg></div><h3>Check-in et check-out totalement autonomes</h3><p>Système d’entrée et de sortie autonome offert : boîte à clés sécurisée, matériel et pose compris, code renouvelé à chaque séjour.</p></article>
       <article class="card card--dark"><div class="card__icon"><svg class="icon " viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 18V8M3 14h18v4M21 14v-3a2 2 0 0 0-2-2h-8v5"/><path d="M3 12h4a2 2 0 0 1 2 2"/></svg></div><h3>Linge de lit et de toilette</h3><p>Mis à votre disposition, lavé et changé à chaque séjour par notre blanchisserie.</p></article>
-      <article class="card card--dark"><div class="card__icon"><svg class="icon " viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 3h7l5 5v13H7Z"/><path d="M14 3v5h5M10 13h5M10 17h5"/></svg></div><h3>Livret d’appartement personnalisé</h3><p>Rédigé pour votre logement : fonctionnement, consignes, guide du quartier et de Toulouse.</p></article>
+      <article class="card card--dark"><div class="card__icon"><svg class="icon " viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 3h7l5 5v13H7Z"/><path d="M14 3v5h5M10 13h5M10 17h5"/></svg></div><h3>Livret d’appartement personnalisé</h3><p>Rédigé pour votre logement : fonctionnement, consignes, guide du quartier et de Toulouse.</p></article>
       <article class="card card--dark"><div class="card__icon"><svg class="icon " viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v4M12 17v4M3 12h4M17 12h4M6 6l2.5 2.5M15.5 15.5 18 18M6 18l2.5-2.5M15.5 8.5 18 6"/></svg></div><h3>Petits problèmes, travaux et rénovation</h3><p>On intervient sur les petites pannes et on peut piloter des travaux ou une rénovation entre deux saisons, avec votre accord.</p></article>
     </div>
   </div>
@@ -370,7 +373,7 @@
       <div data-reveal>
         <p class="eyebrow">Inclus dans les 22 %</p>
         <h2 id="titre-inclus" class="display display--lg">Ce que d’autres facturent en option, <em>on l’inclut.</em></h2>
-        <p class="lead">Pas de frais d’installation, pas de « pack photos », pas de supplément linge. Un seul chiffre à retenir, et un relevé mensuel qui le confirme.</p>
+        <p class="lead">Pas de frais d’installation, pas de « pack photos », pas de supplément linge. Un seul chiffre à retenir, et un relevé mensuel qui le confirme.</p>
         <div class="btn-row"><a href="/tarifs/" class="btn btn--dark">Voir la grille complète <svg class="icon " viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></div>
       </div>
       
@@ -382,7 +385,7 @@
   <li><svg class="icon " viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12 5 5L20 7"/></svg><span><strong>Livret d’accueil</strong> et guide de Toulouse</span></li>
   <li><svg class="icon " viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12 5 5L20 7"/></svg><span><strong>Relation voyageurs 7j/7</strong>, avant, pendant, après</span></li>
   <li><svg class="icon " viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12 5 5L20 7"/></svg><span><strong>Relevé mensuel</strong> et reversement de vos revenus</span></li>
-  <li><svg class="icon " viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12 5 5L20 7"/></svg><span><strong>Conformité toulousaine</strong> : enregistrement, taxe de séjour</span></li>
+  <li><svg class="icon " viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12 5 5L20 7"/></svg><span><strong>Conformité toulousaine</strong> : enregistrement, taxe de séjour</span></li>
   <li><svg class="icon " viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12 5 5L20 7"/></svg><span><strong>Petits travaux et rénovation</strong> pilotés entre deux saisons, avec votre accord</span></li>
   <li><svg class="icon " viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12 5 5L20 7"/></svg><span><strong>0 € de frais d’inscription</strong> à la signature du contrat</span></li>
 </ul>
@@ -398,13 +401,13 @@
       <h2 id="titre-faq" class="display display--md">Ce qu’on nous demande <em>avant de signer.</em></h2>
     </div>
     <div class="faq">
-      <div class="faq__item"><button class="faq__q" type="button">Mon logement est-il adapté à la courte durée ?<svg class="icon " viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg></button><div class="faq__a"><div><p>La plupart des logements toulousains bien situés le sont, du studio à la maison. Les critères qui comptent : l’emplacement (hypercentre, proximité métro ou tram), la luminosité, un couchage confortable et un wifi fiable. Dylan vous dit franchement après la visite si la courte durée a du sens pour vous, ou si la longue durée rapportera autant pour moins de rotation.</p></div></div></div>
-      <div class="faq__item"><button class="faq__q" type="button">Combien de temps avant la première réservation ?<svg class="icon " viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg></button><div class="faq__a"><div><p>Comptez une dizaine de jours entre la visite et la mise en ligne, le temps des photos, de la rédaction et de l’installation de la boîte à clés. À Toulouse, le délai moyen de réservation est de 36 jours : les premières demandes arrivent en général dans les jours qui suivent la publication, pour des séjours dans le mois.</p></div></div></div>
-      <div class="faq__item"><button class="faq__q" type="button">Puis-je utiliser mon logement de temps en temps ?<svg class="icon " viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg></button><div class="faq__a"><div><p>Oui. Vous bloquez les dates que vous souhaitez dans le calendrier, pour vous, votre famille ou vos amis. Nous ajustons les prix autour. Le simulateur vous montre d’ailleurs l’impact de ces semaines sur vos revenus.</p></div></div></div>
-      <div class="faq__item"><button class="faq__q" type="button">Y a-t-il des frais d’inscription ou de lancement ?<svg class="icon " viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg></button><div class="faq__a"><div><p>Non. Contrairement à la plupart des conciergeries toulousaines, vous ne payez aucun frais d’inscription à la signature du contrat. Les photos, la rédaction de l’annonce, la boîte à clés et le livret sont compris. Les seules lignes sur votre relevé sont la commission de 22 % et le forfait consommables de 20 à 30 € par mois.</p></div></div></div>
-      <div class="faq__item"><button class="faq__q" type="button">Qui paie le ménage ?<svg class="icon " viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg></button><div class="faq__a"><div><p>Le voyageur, via les frais de ménage ajoutés à chaque réservation. Notre commission de 22 % s’applique sur le chiffre d’affaires hors ces frais. Le ménage est donc neutre pour vous, et il est réalisé selon notre protocole, avec photo de contrôle.</p></div></div></div>
-      <div class="faq__item"><button class="faq__q" type="button">Que se passe-t-il en cas de dégât ?<svg class="icon " viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg></button><div class="faq__a"><div><p>Le contrôle photo à chaque départ nous permet de constater et de documenter immédiatement. Nous activons la garantie hôte de la plateforme (AirCover chez Airbnb) ou la caution, et nous coordonnons la réparation. Vous êtes informé, vous n’avez rien à gérer.</p></div></div></div>
-      <div class="faq__item"><button class="faq__q" type="button">Gérez-vous les logements hors de Toulouse ?<svg class="icon " viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg></button><div class="faq__a"><div><p>Oui : nous intervenons à Toulouse intra-muros et dans toute la périphérie, où Dylan gère déjà des logements : Seilh, Blagnac, Colomiers, Tournefeuille, Balma, L’Union, Saint-Orens, Labège, Ramonville, Castanet… La seule condition est de pouvoir garantir la réactivité et la qualité du ménage. Pour un bien plus éloigné, parlons-en, nous vous orienterons honnêtement.</p></div></div></div>
+      <div class="faq__item"><button class="faq__q" type="button">Mon logement est-il adapté à la courte durée ?<svg class="icon " viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg></button><div class="faq__a"><div><p>La plupart des logements toulousains bien situés le sont, du studio à la maison. Les critères qui comptent : l’emplacement (hypercentre, proximité métro ou tram), la luminosité, un couchage confortable et un wifi fiable. Dylan vous dit franchement après la visite si la courte durée a du sens pour vous, ou si la longue durée rapportera autant pour moins de rotation.</p></div></div></div>
+      <div class="faq__item"><button class="faq__q" type="button">Combien de temps avant la première réservation ?<svg class="icon " viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg></button><div class="faq__a"><div><p>Comptez une dizaine de jours entre la visite et la mise en ligne, le temps des photos, de la rédaction et de l’installation de la boîte à clés. À Toulouse, le délai moyen de réservation est de 36 jours : les premières demandes arrivent en général dans les jours qui suivent la publication, pour des séjours dans le mois.</p></div></div></div>
+      <div class="faq__item"><button class="faq__q" type="button">Puis-je utiliser mon logement de temps en temps ?<svg class="icon " viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg></button><div class="faq__a"><div><p>Oui. Vous bloquez les dates que vous souhaitez dans le calendrier, pour vous, votre famille ou vos amis. Nous ajustons les prix autour. Le simulateur vous montre d’ailleurs l’impact de ces semaines sur vos revenus.</p></div></div></div>
+      <div class="faq__item"><button class="faq__q" type="button">Y a-t-il des frais d’inscription ou de lancement ?<svg class="icon " viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg></button><div class="faq__a"><div><p>Non. Contrairement à la plupart des conciergeries toulousaines, vous ne payez aucun frais d’inscription à la signature du contrat. Les photos, la rédaction de l’annonce, la boîte à clés et le livret sont compris. Les seules lignes sur votre relevé sont la commission de 22 % et le forfait consommables de 25 à 35 € par mois.</p></div></div></div>
+      <div class="faq__item"><button class="faq__q" type="button">Qui paie le ménage ?<svg class="icon " viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg></button><div class="faq__a"><div><p>Le voyageur, via les frais de ménage ajoutés à chaque réservation. Notre commission de 22 % s’applique sur le chiffre d’affaires hors ces frais. Le ménage est donc neutre pour vous, et il est réalisé selon notre protocole, avec photo de contrôle.</p></div></div></div>
+      <div class="faq__item"><button class="faq__q" type="button">Que se passe-t-il en cas de dégât ?<svg class="icon " viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg></button><div class="faq__a"><div><p>Le contrôle photo à chaque départ nous permet de constater et de documenter immédiatement. Nous activons la garantie hôte de la plateforme (AirCover chez Airbnb) ou la caution, et nous coordonnons la réparation. Vous êtes informé, vous n’avez rien à gérer.</p></div></div></div>
+      <div class="faq__item"><button class="faq__q" type="button">Gérez-vous les logements hors de Toulouse ?<svg class="icon " viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg></button><div class="faq__a"><div><p>Oui : nous intervenons à Toulouse intra-muros et dans toute la périphérie, où Dylan gère déjà des logements : Seilh, Blagnac, Colomiers, Tournefeuille, Balma, L’Union, Saint-Orens, Labège, Ramonville, Castanet… La seule condition est de pouvoir garantir la réactivité et la qualité du ménage. Pour un bien plus éloigné, parlons-en, nous vous orienterons honnêtement.</p></div></div></div>
     </div>
   </div>
 </section>
@@ -413,9 +416,9 @@
 <section class="cta-final" id="parlons-en">
   <div class="container cta-final__inner">
     <div class="cta-final__text" data-reveal>
-      <p class="eyebrow eyebrow--light">On en parle ?</p>
+      <p class="eyebrow eyebrow--light">On en parle ?</p>
       <h2 class="display display--md">Parlons de <em>votre bien</em>, autour d’un café ou au téléphone.</h2>
-      <p class="lead lead--light">Dylan vous rappelle sous 24 h avec une première estimation de revenus et une réponse franche : courte durée ou pas, selon votre logement et votre situation.</p>
+      <p class="lead lead--light">Dylan vous rappelle sous 24 h avec une première estimation de revenus et une réponse franche : courte durée ou pas, selon votre logement et votre situation.</p>
       <div class="btn-row">
         <a href="/simulateur/" class="btn btn--primary btn--lg" data-magnetic>Simuler mes revenus <svg class="icon " viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
         <a href="/contact/" class="btn btn--ghost-light btn--lg">Être rappelé</a>

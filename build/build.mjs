@@ -227,6 +227,14 @@ function jsonLd(meta) {
     .join('\n');
 }
 
+// Typographie française dans les nœuds texte : espace insécable avant ? ! ; : » et après «
+function frenchSpacing(html) {
+  return html.replace(/>([^<]+)</g, (m, t) => {
+    if (!/[?!;:»«]/.test(t)) return m;
+    return '>' + t.replace(/ ([?!;:»])/g, '\u00a0$1').replace(/« /g, '«\u00a0') + '<';
+  });
+}
+
 function layout({ meta, body }) {
   const url = canonical(meta.slug);
   const title = meta.title.includes('CAPIBNB') ? meta.title : `${meta.title} · CAPIBNB`;
@@ -282,7 +290,7 @@ function build() {
     const src = readFileSync(join(PAGES_DIR, file), 'utf8');
     const page = parsePage(src, file);
     const ctx = { SITE, meta: page.meta };
-    page.body = expandPartials(page.body, ctx);
+    page.body = frenchSpacing(expandPartials(page.body, ctx));
     const html = layout(page);
     const dir = page.meta.slug ? join(OUT, page.meta.slug) : OUT;
     mkdirSync(dir, { recursive: true });

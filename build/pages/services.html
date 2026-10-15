@@ -38,6 +38,7 @@
           <path id="p-platform-guest" d="M 455 150 C 470 200, 470 250, 455 290"/>
           <path id="p-guest-cap" d="M 420 330 C 370 320, 340 290, 300 250"/>
           <path id="p-cap-owner" d="M 225 240 C 190 260, 170 300, 100 300"/>
+          <path id="p-guest-owner" d="M 428 362 C 360 420, 200 425, 108 268"/>
         </defs>
         <!-- liaisons -->
         <use href="#p-owner-cap" class="f-path"/><use href="#p-owner-cap" class="f-dash"/>
@@ -45,17 +46,19 @@
         <use href="#p-platform-guest" class="f-path"/><use href="#p-platform-guest" class="f-dash"/>
         <use href="#p-guest-cap" class="f-path"/><use href="#p-guest-cap" class="f-dash"/>
         <use href="#p-cap-owner" class="f-path"/><use href="#p-cap-owner" class="f-dash" style="animation-direction: reverse"/>
-        <!-- pièces qui reviennent au propriétaire -->
-        <circle class="f-coin" r="6" style="offset-path: path('M 225 240 C 190 260, 170 300, 100 300'); --d: 0s"/>
-        <circle class="f-coin" r="6" style="offset-path: path('M 225 240 C 190 260, 170 300, 100 300'); --d: 2s"/>
-        <circle class="f-coin" r="6" style="offset-path: path('M 225 240 C 190 260, 170 300, 100 300'); --d: 4s"/>
+        <!-- les voyageurs séjournent chez vous : lien direct voyageurs → propriétaire, et ce sont leurs nuitées qui deviennent vos revenus -->
+        <use href="#p-guest-owner" class="f-path"/><use href="#p-guest-owner" class="f-dash"/>
+        <circle class="f-coin" r="6" style="offset-path: path('M 428 362 C 360 420, 200 425, 108 268'); --d: 0s"/>
+        <circle class="f-coin" r="6" style="offset-path: path('M 428 362 C 360 420, 200 425, 108 268'); --d: 2s"/>
+        <circle class="f-coin" r="6" style="offset-path: path('M 428 362 C 360 420, 200 425, 108 268'); --d: 4s"/>
+        <text class="f-sub" x="268" y="428">Ils séjournent chez vous, leurs nuitées deviennent vos revenus</text>
         <!-- propriétaire -->
         <g>
           <circle class="f-node" cx="80" cy="220" r="50"/>
           <g class="f-icon" transform="translate(68 196) scale(1)"><path d="m2 11 10-8 10 8v9H2Z"/><path d="M9 20v-6h6v6"/></g>
           <text class="f-text" x="80" y="292">Vous</text>
           <text class="f-sub" x="80" y="308">Propriétaire</text>
-          <text class="f-sub" x="60" y="335">Revenus nets</text>
+          <text class="f-sub" x="80" y="330">Vos revenus nets</text>
         </g>
         <!-- CAPIBNB -->
         <g>
@@ -63,7 +66,7 @@
           <circle cx="262" cy="220" r="52" fill="none" stroke="#ff5a5f" stroke-opacity=".3" stroke-width="1.5"><animate attributeName="r" values="46;60;46" dur="3s" repeatCount="indefinite"/><animate attributeName="stroke-opacity" values=".4;0;.4" dur="3s" repeatCount="indefinite"/></circle>
           <text class="f-text" x="262" y="215" style="font-size:12px;letter-spacing:.08em">CAPI</text>
           <text class="f-text" x="262" y="231" style="font-size:12px;letter-spacing:.08em">BNB</text>
-          <text class="f-sub" x="262" y="285">Un interlocuteur</text>
+          <text class="f-sub" x="262" y="285">Un interlocuteur, relevé mensuel</text>
         </g>
         <!-- plateformes -->
         <g>
@@ -289,7 +292,7 @@
       <div class="faq__item"><button class="faq__q" type="button">Mon logement est-il adapté à la courte durée ?{{> iconPlus}}</button><div class="faq__a"><div><p>La plupart des logements toulousains bien situés le sont, du studio à la maison. Les critères qui comptent : l’emplacement (hypercentre, proximité métro ou tram), la luminosité, un couchage confortable et un wifi fiable. Dylan vous dit franchement après la visite si la courte durée a du sens pour vous, ou si la longue durée rapportera autant pour moins de rotation.</p></div></div></div>
       <div class="faq__item"><button class="faq__q" type="button">Combien de temps avant la première réservation ?{{> iconPlus}}</button><div class="faq__a"><div><p>Comptez une dizaine de jours entre la visite et la mise en ligne, le temps des photos, de la rédaction et de l’installation de la boîte à clés. À Toulouse, le délai moyen de réservation est de 36 jours : les premières demandes arrivent en général dans les jours qui suivent la publication, pour des séjours dans le mois.</p></div></div></div>
       <div class="faq__item"><button class="faq__q" type="button">Puis-je utiliser mon logement de temps en temps ?{{> iconPlus}}</button><div class="faq__a"><div><p>Oui. Vous bloquez les dates que vous souhaitez dans le calendrier, pour vous, votre famille ou vos amis. Nous ajustons les prix autour. Le simulateur vous montre d’ailleurs l’impact de ces semaines sur vos revenus.</p></div></div></div>
-      <div class="faq__item"><button class="faq__q" type="button">Y a-t-il des frais d’inscription ou de lancement ?{{> iconPlus}}</button><div class="faq__a"><div><p>Non. Contrairement à la plupart des conciergeries toulousaines, vous ne payez aucun frais d’inscription à la signature du contrat. Les photos, la rédaction de l’annonce, la boîte à clés et le livret sont compris. Les seules lignes sur votre relevé sont la commission de 22 % et le forfait consommables de 20 à 30 € par mois.</p></div></div></div>
+      <div class="faq__item"><button class="faq__q" type="button">Y a-t-il des frais d’inscription ou de lancement ?{{> iconPlus}}</button><div class="faq__a"><div><p>Non. Contrairement à la plupart des conciergeries toulousaines, vous ne payez aucun frais d’inscription à la signature du contrat. Les photos, la rédaction de l’annonce, la boîte à clés et le livret sont compris. Les seules lignes sur votre relevé sont la commission de 22 % et le forfait consommables de 25 à 35 € par mois.</p></div></div></div>
       <div class="faq__item"><button class="faq__q" type="button">Qui paie le ménage ?{{> iconPlus}}</button><div class="faq__a"><div><p>Le voyageur, via les frais de ménage ajoutés à chaque réservation. Notre commission de 22 % s’applique sur le chiffre d’affaires hors ces frais. Le ménage est donc neutre pour vous, et il est réalisé selon notre protocole, avec photo de contrôle.</p></div></div></div>
       <div class="faq__item"><button class="faq__q" type="button">Que se passe-t-il en cas de dégât ?{{> iconPlus}}</button><div class="faq__a"><div><p>Le contrôle photo à chaque départ nous permet de constater et de documenter immédiatement. Nous activons la garantie hôte de la plateforme (AirCover chez Airbnb) ou la caution, et nous coordonnons la réparation. Vous êtes informé, vous n’avez rien à gérer.</p></div></div></div>
       <div class="faq__item"><button class="faq__q" type="button">Gérez-vous les logements hors de Toulouse ?{{> iconPlus}}</button><div class="faq__a"><div><p>Oui : nous intervenons à Toulouse intra-muros et dans toute la périphérie, où Dylan gère déjà des logements : Seilh, Blagnac, Colomiers, Tournefeuille, Balma, L’Union, Saint-Orens, Labège, Ramonville, Castanet… La seule condition est de pouvoir garantir la réactivité et la qualité du ménage. Pour un bien plus éloigné, parlons-en, nous vous orienterons honnêtement.</p></div></div></div>

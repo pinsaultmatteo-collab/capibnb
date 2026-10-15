@@ -199,10 +199,11 @@ export const partials = {
       <div class="tlsmap" data-reveal aria-label="Carte schématique de Toulouse et des quartiers couverts par CAPIBNB">
         <svg viewBox="0 0 500 400" role="img">
           <!-- Garonne -->
-          <path class="river" d="M 150 400 C 170 340, 160 300, 195 260 C 230 220, 215 170, 235 120 C 250 80, 300 50, 320 0"/>
-          <path class="river-line" d="M 150 400 C 170 340, 160 300, 195 260 C 230 220, 215 170, 235 120 C 250 80, 300 50, 320 0"/>
-          <!-- Canal du Midi -->
-          <path class="river-line" d="M 230 0 C 260 60, 330 110, 370 170 C 400 215, 395 270, 410 330" style="stroke: rgba(255,255,255,.35)"/>
+          <!-- La Garonne arrive du sud (Portet), longe le centre par l'ouest (Saint-Cyprien rive gauche, Capitole rive droite) et repart au nord-ouest vers Blagnac -->
+          <path class="river" d="M 205 400 C 215 330, 230 280, 232 230 C 234 190, 225 160, 200 125 C 175 90, 110 50, 70 0"/>
+          <path class="river-line" d="M 205 400 C 215 330, 230 280, 232 230 C 234 190, 225 160, 200 125 C 175 90, 110 50, 70 0"/>
+          <!-- Canal du Midi : part de la Garonne aux Ponts-Jumeaux, contourne le centre par le nord-est (Matabiau) et file au sud-est vers Ramonville -->
+          <path class="river-line" d="M 206 128 C 240 95, 300 92, 340 128 C 382 165, 386 240, 350 298 C 336 322, 322 345, 322 378" style="stroke: rgba(255,255,255,.35)"/>
           <!-- boulevards / périphérique -->
           <ellipse class="ring" cx="270" cy="200" rx="95" ry="80"/>
           <ellipse class="ring" cx="270" cy="200" rx="210" ry="175" stroke-dasharray="3 7"/>
@@ -210,7 +211,8 @@ export const partials = {
           <ellipse class="zone" cx="260" cy="200" rx="255" ry="196"/>
           <text class="label" x="262" y="128">Hypercentre</text>
           <text class="label" x="40" y="140">Métropole</text>
-          <text class="label" x="185" y="330" transform="rotate(-60 185 330)">Garonne</text>
+          <text class="label" x="222" y="335" transform="rotate(-84 222 335)">Garonne</text>
+          <text class="label" x="368" y="200" transform="rotate(70 368 200)">Canal du Midi</text>
           <!-- quartiers -->
           <g class="q" style="--d:0s" transform="translate(275 190)"><circle class="halo" r="7"/><circle class="core" r="4.5"/><text x="9" y="-4">Capitole</text><text class="sub" x="9" y="8">cœur de ville</text></g>
           <g class="q" style="--d:.4s" transform="translate(258 222)"><circle class="halo" r="7"/><circle class="core" r="4.5"/><text x="9" y="4">Carmes · Esquirol</text></g>

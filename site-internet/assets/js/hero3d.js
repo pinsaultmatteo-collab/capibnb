@@ -139,7 +139,7 @@ function init(container) {
     bar.position.z = 0.016;
     g.add(bar);
     building.add(g);
-    windows.push({ g, mat, glow, lit: 0, target: 0 });
+    windows.push({ g, mat, glow, lit: 1, target: 1, twinkle: Math.random() * Math.PI * 2 });
   };
   const floors = [1.35, 2.45, 3.55];
   floors.forEach((y, fi) => {
@@ -320,21 +320,11 @@ function init(container) {
     camera.position.y = camBase.y + Math.sin(t * 0.4) * 0.12 - mouse.y * 0.5;
     camera.lookAt(lookAt);
 
-    // réservations : une fenêtre s'allume régulièrement
-    bookingTimer += dt;
-    if (intro >= 1 && bookingTimer > 2.6) {
-      bookingTimer = 0;
-      const w = lightNext();
-      if (!w && allLitSince < 0) allLitSince = t;
-    }
-    if (allLitSince > 0 && t - allLitSince > 8) {
-      allLitSince = -1;
-      resetAll();
-    }
+    // fenêtres : toutes allumées, avec un léger scintillement de vie
     windows.forEach((w) => {
-      w.lit += (w.target - w.lit) * (w.target ? 0.05 : 0.02);
-      w.mat.color.copy(offColor).lerp(onColor, w.lit);
-      w.glow.material.opacity = 0.6 * w.lit;
+      const k = 0.9 + 0.1 * Math.sin(t * 1.7 + w.twinkle) * Math.sin(t * 0.6 + w.twinkle * 2);
+      w.mat.color.copy(offColor).lerp(onColor, k);
+      w.glow.material.opacity = 0.6 * k;
     });
     keyLed.material.color.setHSL(0, 1, 0.55 + 0.15 * Math.sin(t * 4));
 

@@ -488,9 +488,22 @@
       <p class="eyebrow">Des logements qu’on aime montrer</p>
       <h2 id="titre-galerie" class="display display--lg">Vos voyageurs arrivent dans un logement <em>qui donne envie de revenir.</em></h2>
     </div>
+    <!-- Chaque <figure class="slider"> est un appartement : mettre autant de <img> que de photos dans .slider__track.
+         Les 3 premiers emplacements forment la mosaïque (grand, haut, citation) ; les appartements suivants s'affichent par trois. -->
     <div class="gallery" data-reveal-group>
-      <figure class="g-1"><img src="/assets/img/logement-t2-lumineux-lg.webp" srcset="/assets/img/logement-t2-lumineux-sm.webp 900w, /assets/img/logement-t2-lumineux-lg.webp 1600w" sizes="(max-width: 760px) 92vw, 58vw" alt="Salon lumineux d’un T2 géré par CAPIBNB à Toulouse, canapé bleu et vue sur les toits" width="1600" height="1066" loading="lazy"><figcaption>T2 lumineux · vue sur les toits</figcaption></figure>
-      <figure class="g-2"><img src="/assets/img/logement-salon-cosy-lg.webp" alt="Salon cosy d’un appartement géré par CAPIBNB, canapé en cuir et plantes" width="720" height="960" loading="lazy"><figcaption>Salon cosy · hypercentre</figcaption></figure>
+      <figure class="g-1 slider" data-slider>
+        <div class="slider__track">
+          <img src="/assets/img/logement-t2-lumineux-lg.webp" srcset="/assets/img/logement-t2-lumineux-sm.webp 900w, /assets/img/logement-t2-lumineux-lg.webp 1600w" sizes="(max-width: 760px) 92vw, 58vw" alt="Salon lumineux d’un T2 géré par CAPIBNB à Toulouse, canapé bleu et vue sur les toits" width="1600" height="1066" loading="lazy">
+          <img src="/assets/img/logement-studio-carmes-lg.webp" srcset="/assets/img/logement-studio-carmes-sm.webp 600w, /assets/img/logement-studio-carmes-lg.webp 890w" sizes="(max-width: 760px) 92vw, 58vw" alt="Studio sous les toits, canapé gris et tapis rouge" width="890" height="593" loading="lazy">
+        </div>
+        <figcaption>T2 lumineux · vue sur les toits <span class="slider__count">1/2</span></figcaption>
+      </figure>
+      <figure class="g-2 slider" data-slider>
+        <div class="slider__track">
+          <img src="/assets/img/logement-salon-cosy-lg.webp" alt="Salon cosy d’un appartement géré par CAPIBNB, canapé en cuir et plantes" width="720" height="960" loading="lazy">
+        </div>
+        <figcaption>Salon cosy · hypercentre <span class="slider__count">1/1</span></figcaption>
+      </figure>
       <figure class="g-3"><div class="gallery__quote">« Un logement propre, un linge impeccable et une arrivée sans friction : c’est ça qui fait les 5 étoiles, et les 5 étoiles qui font le prix. »</div></figure>
     </div>
   </div>

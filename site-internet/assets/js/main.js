@@ -381,6 +381,68 @@
     update();
   });
 
+  /* ---------- Slider photo ([data-slider]) : flèches, points, balayage, clavier ---------- */
+  $$('[data-slider]').forEach((sl) => {
+    const track = $('.slider__track', sl);
+    const slides = track ? Array.from(track.children) : [];
+    const n = slides.length;
+    const count = $('.slider__count', sl);
+    if (n < 2) {
+      sl.classList.add('is-single');
+      return;
+    }
+    const ic = (rot) =>
+      `<svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>`;
+    const prev = document.createElement('button');
+    prev.type = 'button';
+    prev.className = 'slider__arrow slider__arrow--prev';
+    prev.setAttribute('aria-label', 'Photo précédente');
+    prev.innerHTML = ic();
+    const next = document.createElement('button');
+    next.type = 'button';
+    next.className = 'slider__arrow slider__arrow--next';
+    next.setAttribute('aria-label', 'Photo suivante');
+    next.innerHTML = ic();
+    const dots = document.createElement('div');
+    dots.className = 'slider__dots';
+    slides.forEach((_, i) => {
+      const d = document.createElement('button');
+      d.type = 'button';
+      d.setAttribute('aria-label', `Photo ${i + 1} sur ${n}`);
+      d.addEventListener('click', () => go(i));
+      dots.appendChild(d);
+    });
+    sl.append(prev, next, dots);
+    let i = 0;
+    const go = (k) => {
+      i = (k + n) % n;
+      track.style.transform = `translateX(-${i * 100}%)`;
+      Array.from(dots.children).forEach((d, j) => d.classList.toggle('is-active', j === i));
+      if (count) count.textContent = `${i + 1}/${n}`;
+    };
+    prev.addEventListener('click', () => go(i - 1));
+    next.addEventListener('click', () => go(i + 1));
+    sl.tabIndex = 0;
+    sl.addEventListener('keydown', (e) => {
+      if (e.key === 'ArrowLeft') go(i - 1);
+      if (e.key === 'ArrowRight') go(i + 1);
+    });
+    // balayage au doigt / à la souris
+    let x0 = null;
+    sl.addEventListener('pointerdown', (e) => {
+      if (e.target.closest('button')) return;
+      x0 = e.clientX;
+    });
+    sl.addEventListener('pointerup', (e) => {
+      if (x0 === null) return;
+      const dx = e.clientX - x0;
+      x0 = null;
+      if (Math.abs(dx) > 40) go(dx < 0 ? i + 1 : i - 1);
+    });
+    sl.addEventListener('pointercancel', () => (x0 = null));
+    go(0);
+  });
+
   /* ---------- Année courante ---------- */
   $$('[data-year]').forEach((el) => (el.textContent = new Date().getFullYear()));
 })();

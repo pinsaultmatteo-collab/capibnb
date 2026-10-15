@@ -5,7 +5,9 @@ Liste des affirmations présentes sur le nouveau site qui reposent sur la fiche 
 ## Offre commerciale
 
 - [ ] **Sans engagement de durée** — affirmé sur Tarifs (FAQ), CGV art. 8, CTA. La fiche indique « à confirmer ».
-- [x] **Forfait consommables** : le PDF « Prestation de Conciergerie » de Dylan indique 20 à 30 €. Le site affiche « 20 à 30 € / mois selon le logement » ; le simulateur utilise studio 20 €, T1 22 €, T2 25 €, T3 28 €, T4+/maison 30 € (`simulateur.js`, objet `TYPO`). **Reste à confirmer : la périodicité (par mois ?).**
+- [x] **Forfait consommables** : 25 à 35 € par mois (corrigé par Dylan le 14/10/2026 ; le PDF indiquait 20 à 30 €). Le simulateur utilise studio 25 €, T1 27 €, T2 30 €, T3 32 €, T4+/maison 35 € (`simulateur.js`, objet `TYPO`).
+- [ ] **Exemple chiffré T2 Carmes** (page Tarifs, articles de blog) : chiffres indicatifs à remplacer par la simulation réelle que Dylan doit envoyer (en attente au 15/10/2026).
+- [ ] **Carte Google Maps** affichée directement sur la page Contact (demande de Dylan) : Google dépose des cookies sans consentement préalable ; à couvrir par un bandeau de consentement si vous activez un outil de mesure d'audience.
 - [x] **Pas de frais d'inscription** et **petits travaux / rénovation** : confirmés par le PDF de Dylan (06/10/2026), repris sur Accueil, Services, Tarifs, CGV.
 - [ ] **« Réponses immédiates »** aux voyageurs : formulation du PDF, reprise prudemment en « réponse rapide 7j/7 ».
 - [ ] **Circuit de paiement** — le site dit « relevé mensuel + virement du net ». À confirmer (qui encaisse les plateformes ? délai de reversement ?).

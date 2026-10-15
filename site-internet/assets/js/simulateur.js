@@ -1,17 +1,17 @@
 /* CAPIBNB — simulateur de revenus Airbnb à Toulouse
    Modèle indicatif, volontairement prudent, calé sur les données de marché Toulouse 2026 (AirDNA, AirROI)
    et recalibré le 14/10/2026 avec Mattéo : un studio ≈ 1 300 à 1 400 € bruts par mois avant commission.
-   et sur la grille CAPIBNB (commission 22 % sur la nuitée hors ménage, forfait consommables 20 à 30 €/mois).
+   et sur la grille CAPIBNB (commission 22 % sur la nuitée hors ménage, forfait consommables 25 à 35 €/mois).
    Fonctionne pour le simulateur complet ([data-sim="full"]) et la version
    compacte de l'accueil ([data-sim="mini"]). */
 
 const TYPO = {
-  studio: { label: 'Studio', adr: 58, occ: 0.65, loyer: 530, conso: 20 },
-  t1: { label: 'T1', adr: 64, occ: 0.64, loyer: 590, conso: 22 },
-  t2: { label: 'T2', adr: 82, occ: 0.62, loyer: 770, conso: 25 },
-  t3: { label: 'T3', adr: 110, occ: 0.58, loyer: 1000, conso: 28 },
-  t4: { label: 'T4 et +', adr: 145, occ: 0.54, loyer: 1290, conso: 30 },
-  villa: { label: 'Maison / villa', adr: 185, occ: 0.51, loyer: 1650, conso: 30 },
+  studio: { label: 'Studio', adr: 58, occ: 0.65, loyer: 530, conso: 25 },
+  t1: { label: 'T1', adr: 64, occ: 0.64, loyer: 590, conso: 27 },
+  t2: { label: 'T2', adr: 82, occ: 0.62, loyer: 770, conso: 30 },
+  t3: { label: 'T3', adr: 110, occ: 0.58, loyer: 1000, conso: 32 },
+  t4: { label: 'T4 et +', adr: 145, occ: 0.54, loyer: 1290, conso: 35 },
+  villa: { label: 'Maison / villa', adr: 185, occ: 0.51, loyer: 1650, conso: 35 },
 };
 
 export const QUARTIERS = [
