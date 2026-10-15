@@ -48,7 +48,7 @@
 </section>
 
 <!-- ============ PLAQUES DE RUE : LES QUARTIERS ============ -->
-<section class="section section--tight quartiers" aria-labelledby="titre-quartiers">
+<section class="section section--tight quartiers mobile-center" aria-labelledby="titre-quartiers">
   <div class="container">
     <div class="quartiers__head" data-reveal>
       <div>
@@ -154,6 +154,10 @@
         <span class="plaque__oc">L’Union</span>
         <span class="plaque__data"><strong>≈ 73 €</strong> la nuit · <strong>60 %</strong> d’occupation</span>
       </a>
+    </div>
+    <div class="scroller__nav scroller__nav--below">
+      <button type="button" class="scroller__btn" data-scroll-prev aria-label="Plaques précédentes">{{> iconArrow}}</button>
+      <button type="button" class="scroller__btn" data-scroll-next aria-label="Plaques suivantes">{{> iconArrow}}</button>
     </div>
   </div>
 </section>
@@ -290,7 +294,7 @@
   </div>
   <div class="turnover__progress" aria-hidden="true"><span></span></div>
   <div class="turnover__pin">
-    <div class="turnover__track">
+    <div class="turnover__track" data-scroller data-scroll-step="item">
       <article class="turnover__step"><span class="turnover__time">11:00</span>{{> iconKey}}<div><h3>Départ des voyageurs</h3><p>Le code de la boîte à clés est désactivé. Message de remerciement envoyé, demande d’avis programmée.</p></div></article>
       <article class="turnover__step"><span class="turnover__time">11:10</span>{{> iconCamera}}<div><h3>Contrôle du logement</h3><p>Tour complet du logement : oublis, casse éventuelle, état général. Tout est noté et photographié.</p></div></article>
       <article class="turnover__step"><span class="turnover__time">11:30</span>{{> iconSparkle}}<div><h3>Ménage complet</h3><p>Protocole hôtelier : cuisine, salle de bain, sols, vitres, poussière. Le logement est remis à neuf, pas juste « propre ».</p></div></article>
@@ -300,6 +304,12 @@
       <article class="turnover__step"><span class="turnover__time">14:00</span>{{> iconChat}}<div><h3>Nouveau code, nouvelles instructions</h3><p>Le code de la boîte à clés est régénéré, les consignes d’arrivée et le livret d’accueil partent au voyageur suivant.</p></div></article>
       <article class="turnover__step turnover__step--end"><span class="turnover__time">16:00</span>{{> iconHome}}<div><h3>Arrivée autonome</h3><p>Le voyageur entre seul, découvre un logement impeccable, et vous… vous n’avez rien eu à faire.</p></div></article>
     </div>
+  </div>
+  <div class="scroll-ind">
+    <button type="button" class="scroller__btn scroller__btn--sm" data-scroll-prev aria-label="Étape précédente">{{> iconArrow}}</button>
+    <div class="scroll-ind__dots" data-scroll-dots></div>
+    <span class="scroll-ind__count" data-scroll-count aria-live="polite">1 / 8</span>
+    <button type="button" class="scroller__btn scroller__btn--sm" data-scroll-next aria-label="Étape suivante">{{> iconArrow}}</button>
   </div>
 </section>
 
@@ -443,7 +453,7 @@
 </section>
 
 <!-- ============ RÉGLEMENTATION ============ -->
-<section class="section section--dark section--photo" aria-labelledby="titre-reg">
+<section class="section section--dark section--photo mobile-center" aria-labelledby="titre-reg">
   <div class="section__bg" aria-hidden="true"><img src="/assets/img/toulouse-capitole-lg.webp" srcset="/assets/img/toulouse-capitole-sm.webp 960w, /assets/img/toulouse-capitole-lg.webp 1920w" sizes="100vw" alt="" width="1920" height="1080" loading="lazy" decoding="async"></div>
   <div class="container">
     <div class="split split--top" style="margin-bottom: clamp(40px, 6vw, 64px)">
@@ -510,7 +520,7 @@
 </section>
 
 <!-- ============ ZONE D'INTERVENTION ============ -->
-<section class="section section--sand" aria-labelledby="titre-zone-home">
+<section class="section section--sand mobile-center" aria-labelledby="titre-zone-home">
   <div class="container">
     <div class="split">
       <div data-reveal>

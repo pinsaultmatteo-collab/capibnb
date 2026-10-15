@@ -108,7 +108,7 @@
 </section>
 
 <!-- ============ PLAQUES DE RUE : LES QUARTIERS ============ -->
-<section class="section section--tight quartiers" aria-labelledby="titre-quartiers">
+<section class="section section--tight quartiers mobile-center" aria-labelledby="titre-quartiers">
   <div class="container">
     <div class="quartiers__head" data-reveal>
       <div>
@@ -214,6 +214,10 @@
         <span class="plaque__oc">L’Union</span>
         <span class="plaque__data"><strong>≈ 73 €</strong> la nuit · <strong>60 %</strong> d’occupation</span>
       </a>
+    </div>
+    <div class="scroller__nav scroller__nav--below">
+      <button type="button" class="scroller__btn" data-scroll-prev aria-label="Plaques précédentes"><svg class="icon " viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
+      <button type="button" class="scroller__btn" data-scroll-next aria-label="Plaques suivantes"><svg class="icon " viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
     </div>
   </div>
 </section>
@@ -354,7 +358,7 @@
   </div>
   <div class="turnover__progress" aria-hidden="true"><span></span></div>
   <div class="turnover__pin">
-    <div class="turnover__track">
+    <div class="turnover__track" data-scroller data-scroll-step="item">
       <article class="turnover__step"><span class="turnover__time">11:00</span><svg class="icon " viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="8" cy="15" r="4"/><path d="m10.8 12.2 8.7-8.7M15 7l3 3M18 4l2 2"/></svg><div><h3>Départ des voyageurs</h3><p>Le code de la boîte à clés est désactivé. Message de remerciement envoyé, demande d’avis programmée.</p></div></article>
       <article class="turnover__step"><span class="turnover__time">11:10</span><svg class="icon " viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 8h3l2-3h6l2 3h3v11H4Z"/><circle cx="12" cy="13" r="3.5"/></svg><div><h3>Contrôle du logement</h3><p>Tour complet du logement : oublis, casse éventuelle, état général. Tout est noté et photographié.</p></div></article>
       <article class="turnover__step"><span class="turnover__time">11:30</span><svg class="icon " viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v4M12 17v4M3 12h4M17 12h4M6 6l2.5 2.5M15.5 15.5 18 18M6 18l2.5-2.5M15.5 8.5 18 6"/></svg><div><h3>Ménage complet</h3><p>Protocole hôtelier : cuisine, salle de bain, sols, vitres, poussière. Le logement est remis à neuf, pas juste « propre ».</p></div></article>
@@ -364,6 +368,12 @@
       <article class="turnover__step"><span class="turnover__time">14:00</span><svg class="icon " viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 5h16v11H9l-5 4Z"/><path d="M8 9h8M8 12h5"/></svg><div><h3>Nouveau code, nouvelles instructions</h3><p>Le code de la boîte à clés est régénéré, les consignes d’arrivée et le livret d’accueil partent au voyageur suivant.</p></div></article>
       <article class="turnover__step turnover__step--end"><span class="turnover__time">16:00</span><svg class="icon " viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m3 11 9-7 9 7v9a1 1 0 0 1-1 1h-5v-6h-6v6H4a1 1 0 0 1-1-1Z"/></svg><div><h3>Arrivée autonome</h3><p>Le voyageur entre seul, découvre un logement impeccable, et vous… vous n’avez rien eu à faire.</p></div></article>
     </div>
+  </div>
+  <div class="scroll-ind">
+    <button type="button" class="scroller__btn scroller__btn--sm" data-scroll-prev aria-label="Étape précédente"><svg class="icon " viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
+    <div class="scroll-ind__dots" data-scroll-dots></div>
+    <span class="scroll-ind__count" data-scroll-count aria-live="polite">1 / 8</span>
+    <button type="button" class="scroller__btn scroller__btn--sm" data-scroll-next aria-label="Étape suivante"><svg class="icon " viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
   </div>
 </section>
 
@@ -574,7 +584,7 @@
 </section>
 
 <!-- ============ RÉGLEMENTATION ============ -->
-<section class="section section--dark section--photo" aria-labelledby="titre-reg">
+<section class="section section--dark section--photo mobile-center" aria-labelledby="titre-reg">
   <div class="section__bg" aria-hidden="true"><img src="/assets/img/toulouse-capitole-lg.webp" srcset="/assets/img/toulouse-capitole-sm.webp 960w, /assets/img/toulouse-capitole-lg.webp 1920w" sizes="100vw" alt="" width="1920" height="1080" loading="lazy" decoding="async"></div>
   <div class="container">
     <div class="split split--top" style="margin-bottom: clamp(40px, 6vw, 64px)">
@@ -641,7 +651,7 @@
 </section>
 
 <!-- ============ ZONE D'INTERVENTION ============ -->
-<section class="section section--sand" aria-labelledby="titre-zone-home">
+<section class="section section--sand mobile-center" aria-labelledby="titre-zone-home">
   <div class="container">
     <div class="split">
       <div data-reveal>
@@ -710,7 +720,7 @@
 </section>
 
 
-<section class="cta-final" id="parlons-en">
+<section class="cta-final mobile-center" id="parlons-en">
   <div class="container cta-final__inner">
     <div class="cta-final__text" data-reveal>
       <p class="eyebrow eyebrow--light">On en parle ?</p>

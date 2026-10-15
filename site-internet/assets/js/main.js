@@ -364,18 +364,54 @@
     });
   });
 
-  /* ---------- Défileur horizontal avec flèches ([data-scroller]) ---------- */
+  /* ---------- Défileur horizontal ([data-scroller]) : flèches (plusieurs paires possibles), points, compteur ---------- */
   $$('[data-scroller]').forEach((sc) => {
     const scope = sc.closest('section') || document;
-    const prev = $('[data-scroll-prev]', scope);
-    const next = $('[data-scroll-next]', scope);
+    const prevs = $$('[data-scroll-prev]', scope);
+    const nexts = $$('[data-scroll-next]', scope);
+    const dotsBox = $('[data-scroll-dots]', scope);
+    const countEl = $('[data-scroll-count]', scope);
+    const items = Array.from(sc.children);
+    const byItem = sc.dataset.scrollStep === 'item';
+    const behavior = reduceMotion ? 'auto' : 'smooth';
+    const left0 = () => (items[0] ? items[0].offsetLeft : 0);
+    const current = () => {
+      let best = 0;
+      let bd = Infinity;
+      items.forEach((it, i) => {
+        const d = Math.abs(it.offsetLeft - left0() - sc.scrollLeft);
+        if (d < bd) {
+          bd = d;
+          best = i;
+        }
+      });
+      return best;
+    };
+    const goTo = (i) => {
+      i = Math.max(0, Math.min(items.length - 1, i));
+      sc.scrollTo({ left: items[i].offsetLeft - left0(), behavior });
+    };
+    if (dotsBox) {
+      items.forEach((_, i) => {
+        const d = document.createElement('button');
+        d.type = 'button';
+        d.setAttribute('aria-label', `Aller à la carte ${i + 1}`);
+        d.addEventListener('click', () => goTo(i));
+        dotsBox.appendChild(d);
+      });
+    }
     const step = () => Math.max(200, sc.clientWidth * 0.8);
     const update = () => {
-      if (prev) prev.disabled = sc.scrollLeft <= 8;
-      if (next) next.disabled = sc.scrollLeft + sc.clientWidth >= sc.scrollWidth - 8;
+      const atStart = sc.scrollLeft <= 8;
+      const atEnd = sc.scrollLeft + sc.clientWidth >= sc.scrollWidth - 8;
+      prevs.forEach((b) => (b.disabled = atStart));
+      nexts.forEach((b) => (b.disabled = atEnd));
+      const c = current();
+      if (dotsBox) Array.from(dotsBox.children).forEach((d, j) => d.classList.toggle('is-active', j === c));
+      if (countEl) countEl.textContent = `${c + 1} / ${items.length}`;
     };
-    prev && prev.addEventListener('click', () => sc.scrollBy({ left: -step(), behavior: reduceMotion ? 'auto' : 'smooth' }));
-    next && next.addEventListener('click', () => sc.scrollBy({ left: step(), behavior: reduceMotion ? 'auto' : 'smooth' }));
+    prevs.forEach((b) => b.addEventListener('click', () => (byItem ? goTo(current() - 1) : sc.scrollBy({ left: -step(), behavior }))));
+    nexts.forEach((b) => b.addEventListener('click', () => (byItem ? goTo(current() + 1) : sc.scrollBy({ left: step(), behavior }))));
     sc.addEventListener('scroll', update, { passive: true });
     window.addEventListener('resize', update);
     update();

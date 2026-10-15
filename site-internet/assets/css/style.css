@@ -1106,12 +1106,48 @@ body.menu-open .site-header {
   }
   .hero__inner {
     grid-template-columns: 1fr;
+    gap: 20px;
+    justify-items: center;
+    text-align: center;
+  }
+  .hero__content {
+    display: contents;
+  }
+  .hero__badge {
+    order: 1;
+    margin-bottom: 4px;
+  }
+  .hero__title {
+    order: 2;
+    max-width: 720px;
+    margin-bottom: 0;
   }
   .hero__scene {
+    order: 3;
     height: 440px;
     min-height: 0;
-    order: -1;
-    margin-top: -20px;
+    width: 100%;
+    margin-top: 0;
+  }
+  .hero__lead {
+    order: 4;
+    max-width: 58ch;
+    margin-top: 8px;
+  }
+  .hero .btn-row {
+    order: 5;
+    justify-content: center;
+    margin-top: 24px;
+  }
+  .hero__stats {
+    order: 6;
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 12px;
+    width: 100%;
+    max-width: 720px;
+    text-align: center;
+    margin-top: 32px;
   }
   .hero__floating--1 {
     left: 0;
@@ -1136,9 +1172,11 @@ body.menu-open .site-header {
   .hero__floating--3 {
     display: none;
   }
-  .hero__stats {
-    flex-wrap: wrap;
-    gap: 20px 32px;
+  .hero__stat strong {
+    font-size: 1.5rem;
+  }
+  .hero__stat span {
+    font-size: 0.72rem;
   }
 }
 
@@ -1293,6 +1331,56 @@ body.menu-open .site-header {
   opacity: 0.25;
   cursor: default;
 }
+.scroller__btn--sm {
+  width: 40px;
+  height: 40px;
+}
+.section--dark .scroller__btn {
+  border-color: rgba(255, 255, 255, 0.45);
+  color: #fff;
+}
+.section--dark .scroller__btn:hover:not(:disabled) {
+  background: var(--coral);
+  border-color: var(--coral);
+}
+.scroller__nav--below {
+  display: none;
+}
+/* indicateur de position d'un défileur (mobile) */
+.scroll-ind {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  margin-top: 18px;
+  padding-inline: var(--gutter);
+  position: relative;
+  z-index: 1;
+}
+.scroll-ind__dots {
+  display: flex;
+  gap: 6px;
+}
+.scroll-ind__dots button {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.35);
+  transition: background 0.3s, transform 0.3s;
+}
+.scroll-ind__dots button.is-active {
+  background: var(--coral);
+  transform: scale(1.4);
+}
+.scroll-ind__count {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 0.9rem;
+  color: rgba(255, 255, 255, 0.8);
+  font-variant-numeric: tabular-nums;
+  min-width: 44px;
+  text-align: center;
+}
 .plaques {
   --gap: 14px;
   --cols: 6;
@@ -1403,9 +1491,24 @@ body.menu-open .site-header {
   }
 }
 @media (max-width: 760px) {
+  .quartiers__head {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 14px;
+  }
   .quartiers__side {
     width: 100%;
-    justify-content: space-between;
+    flex-direction: column;
+    align-items: center;
+  }
+  .quartiers__side .scroller__nav {
+    display: none;
+  }
+  .scroller__nav--below {
+    display: flex;
+    justify-content: center;
+    margin-top: 6px;
   }
   .plaques {
     margin-inline: calc(-1 * var(--gutter));
@@ -1946,12 +2049,28 @@ body.menu-open .site-header {
   .turnover__track {
     overflow-x: auto;
     scroll-snap-type: x mandatory;
+    scroll-padding-inline: var(--gutter);
+    padding-top: 14px;
     padding-bottom: 12px;
+    scrollbar-width: none;
     -webkit-overflow-scrolling: touch;
+  }
+  .turnover__track::-webkit-scrollbar {
+    display: none;
   }
   .turnover__step {
     scroll-snap-align: start;
     min-height: 260px;
+  }
+  .turnover__step:hover,
+  .turnover__step:active {
+    transform: none;
+  }
+  .turnover__progress {
+    display: none;
+  }
+  .scroll-ind {
+    display: flex;
   }
 }
 
@@ -4525,6 +4644,30 @@ input[type='range']::-moz-range-thumb {
 .gallery figure:hover figcaption {
   transform: translateY(-4px);
   background: var(--coral);
+}
+
+/* ---------- Centrage mobile des blocs éditoriaux (.mobile-center) ---------- */
+@media (max-width: 760px) {
+  .mobile-center .split > div,
+  .mobile-center .section-head,
+  .mobile-center .cta-final__text,
+  .mobile-center .quartiers__head {
+    text-align: center;
+  }
+  .mobile-center .lead,
+  .mobile-center .quartiers__note {
+    margin-inline: auto;
+  }
+  .mobile-center .btn-row {
+    justify-content: center;
+  }
+  .mobile-center .service__list {
+    display: inline-grid;
+    text-align: left;
+  }
+  .mobile-center .cta-final__card {
+    margin-inline: auto;
+  }
 }
 
 /* ---------- Animations d'apparition ---------- */

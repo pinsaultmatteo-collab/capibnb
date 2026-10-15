@@ -123,7 +123,7 @@ export const partials = {
 
   // CTA final commun
   cta: ({ SITE }) => `
-<section class="cta-final" id="parlons-en">
+<section class="cta-final mobile-center" id="parlons-en">
   <div class="container cta-final__inner">
     <div class="cta-final__text" data-reveal>
       <p class="eyebrow eyebrow--light">On en parle ?</p>
