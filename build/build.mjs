@@ -129,16 +129,21 @@ function header(meta) {
     </div>
   </div>
   <div class="menu-mobile" id="menu-mobile" data-menu-mobile>
-    <div class="menu-mobile__inner container">
+    <div class="menu-mobile__inner">
+      <p class="menu-mobile__eyebrow">Conciergerie Airbnb &amp; Booking · Toulouse</p>
       <ul class="menu-mobile__links">
-        <li><a href="/">Accueil</a></li>
-        ${NAV.map((n) => `<li><a href="${n.href}">${n.label}</a></li>`).join('')}
-        <li><a href="/voyageurs/">Voyageurs</a></li>
-        <li><a href="/contact/">Contact</a></li>
+        <li><a href="/"${!meta.slug ? ' aria-current="page"' : ''}>Accueil</a></li>
+        ${NAV.map((n) => `<li><a href="${n.href}"${isActive(n.href, meta.slug) ? ' aria-current="page"' : ''}>${n.label}</a></li>`).join('')}
+        <li><a href="/voyageurs/"${isActive('/voyageurs/', meta.slug) ? ' aria-current="page"' : ''}>Voyageurs</a></li>
+        <li><a href="/contact/"${isActive('/contact/', meta.slug) ? ' aria-current="page"' : ''}>Contact</a></li>
       </ul>
       <div class="menu-mobile__foot">
-        <a href="${SITE.rdv}" class="btn btn--primary">Prendre rendez-vous</a>
-        <a href="${SITE.phoneHref}" class="btn btn--ghost-light" data-call>${partials.icon('phone')}<span>Appeler</span></a>
+        <a href="${SITE.rdv}" class="btn btn--primary">Prendre rendez-vous ${partials.icon('arrow')}</a>
+        <a href="${SITE.phoneHref}" class="btn btn--ghost-light" data-call>${partials.icon('phone')}<span>Appeler Dylan</span></a>
+        <address class="menu-mobile__contact">
+          <a href="mailto:${SITE.email}">${SITE.email}</a>
+          <span>${SITE.address}</span>
+        </address>
       </div>
     </div>
   </div>
@@ -290,7 +295,10 @@ function build() {
     const src = readFileSync(join(PAGES_DIR, file), 'utf8');
     const page = parsePage(src, file);
     const ctx = { SITE, meta: page.meta };
-    page.body = frenchSpacing(expandPartials(page.body, ctx));
+    page.body = frenchSpacing(expandPartials(page.body, ctx))
+      // tableaux : défilement horizontal sur petit écran, sans faire déborder la page
+      .replace(/<table>/g, '<div class="table-scroll"><table>')
+      .replace(/<\/table>/g, '</table></div>');
     const html = layout(page);
     const dir = page.meta.slug ? join(OUT, page.meta.slug) : OUT;
     mkdirSync(dir, { recursive: true });
