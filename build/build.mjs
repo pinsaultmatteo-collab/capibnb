@@ -184,7 +184,10 @@ function footer() {
     </div>
     <div class="footer__bottom">
       <p>© ${year} ${SITE.legalName} · SASU au capital de 500 € · SIREN ${SITE.siren} · Toulouse</p>
-      <p class="footer__credit">Site conçu par <a href="https://pmc-marketing.fr" rel="noopener" target="_blank">PMC Marketing</a></p>
+      <a class="footer__agency" href="https://pmc-marketing.fr" rel="noopener" target="_blank" aria-label="Site conçu par PMC Marketing, agence digitale et IA à Toulouse">
+        <span>Site conçu par</span>
+        <img src="/assets/img/pmc-marketing.png" alt="PMC Marketing" width="900" height="376" loading="lazy" decoding="async">
+      </a>
     </div>
   </div>
 </footer>`;
