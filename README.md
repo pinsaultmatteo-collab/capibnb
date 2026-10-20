@@ -59,6 +59,8 @@ Les deux mails partent de contact@conciergeriecapibnb.fr. Pièges à robots : ch
   Sans `SMTP_USER` / `SMTP_PASS`, la fonction répond « Envoi non configuré » et le visiteur se voit proposer un lien `mailto:`.
 - **Sur Hostinger** : `/api/contact/` est redirigé vers `php/send.php` par le `.htaccess`, qui envoie avec `mail()` depuis contact@conciergeriecapibnb.fr.
 - **En local** (`node build/serve.mjs`) : sans identifiants SMTP, mode test, aucun mail réel n'est envoyé.
+- **Diagnostic sans envoi** : https://conciergeriecapibnb.fr/api/contact/?diagnostic=1 vérifie la connexion et l'identification SMTP (résultat `verification` : `ok`, `non_configure`, `identifiants_refuses`, `connexion_impossible`). Une vérification par minute au plus.
+- **Tester un mot de passe en local, sans envoi** : `node build/test-smtp.mjs` (saisie masquée).
 
 ## Mesure d'audience (Google Analytics 4)
 

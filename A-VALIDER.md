@@ -29,8 +29,9 @@ Liste des affirmations présentes sur le nouveau site qui reposent sur la fiche 
 
 ## Formulaires (mail récapitulatif)
 
-- [ ] **Vercel** : renseigner `SMTP_USER` et `SMTP_PASS` (boîte contact@conciergeriecapibnb.fr) dans Settings → Environment Variables, redéployer, puis faire un envoi test depuis /contact/. Vérifier que le mail n'arrive pas en indésirables.
-- [ ] Confirmer où est hébergée la boîte contact@conciergeriecapibnb.fr (Hostinger par défaut : `smtp.hostinger.com`, port 465) ; sinon adapter `SMTP_HOST` / `SMTP_PORT`.
+- [x] **Vercel** : `SMTP_USER` et `SMTP_PASS` renseignés, connexion SMTP Hostinger validée par le diagnostic le 20/10/2026.
+- [ ] Envoi test depuis /contact/ : récapitulatif reçu sur contact@ et accusé de réception reçu par le prospect, hors indésirables.
+- [x] Boîte contact@ hébergée chez Hostinger (MX, SPF, DKIM et DMARC en place).
 - [x] Accusé de réception automatique au prospect : activé (20/10/2026). Faire relire le texte à Dylan (promesse « sous 24 h », visite gratuite et sans engagement, mise en ligne sous une dizaine de jours).
 
 ## Liens et comptes à renseigner (`build/build.mjs`, objet `SITE`)

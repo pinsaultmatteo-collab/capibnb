@@ -77,9 +77,13 @@ function smtpErrorKind(err) {
   return 'erreur_smtp';
 }
 
+// Résultat du diagnostic gardé 60 s : évite qu'un appel en boucle multiplie les connexions à la boîte mail
+let lastDiag = null;
+
 export default async function handler(req, res) {
   // Diagnostic sans envoi : GET /api/contact/?diagnostic=1 vérifie la connexion et l'identification SMTP
   if (req.method === 'GET' && /[?&]diagnostic=1\b/.test(req.url || '')) {
+    if (lastDiag && Date.now() - lastDiag.at < 60000) return send(res, 200, { ...lastDiag.out, cache: true });
     const { user, pass, host, port } = smtpConfig();
     const raw = String(process.env.SMTP_PASS ?? '');
     const out = {
@@ -102,6 +106,7 @@ export default async function handler(req, res) {
       out.verification = smtpErrorKind(err);
       out.detail = { code: err.code || null, reponse_serveur: err.responseCode || null, message: String(err.message || '').slice(0, 160) };
     }
+    lastDiag = { at: Date.now(), out };
     return send(res, 200, out);
   }
 
