@@ -62,6 +62,6 @@ Les deux mails partent de contact@conciergeriecapibnb.fr. Pièges à robots : ch
 
 ## Déploiement Vercel (aperçu)
 
-`vercel.json` à la racine configure tout : build `node build/build.mjs`, dossier de sortie `site-internet`, redirections 301, en-têtes, `404.html`. Laisser le champ « Root Directory » vide dans les réglages du projet Vercel. Chaque push sur `main` redéploie.
+`vercel.json` à la racine configure tout : build `node build/build.mjs`, dossier de sortie `site-internet`, fonction des formulaires en région Paris (`cdg1`), redirections (dont capibnb.vercel.app vers le domaine, pour éviter un doublon dans Google), en-têtes, `404.html`. Laisser le champ « Root Directory » vide dans les réglages du projet Vercel. Chaque push sur `main` redéploie.
 
 Les formulaires passent par la fonction `api/contact.js` (voir la section Formulaires) : penser à renseigner les variables SMTP dans Vercel.

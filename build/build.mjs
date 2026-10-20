@@ -225,9 +225,13 @@ function jsonLd(meta) {
       opens: '08:00',
       closes: '21:00',
     },
-    sameAs: [],
+    sameAs: [SITE.instagram, SITE.facebook, SITE.google, SITE.airbnb, SITE.booking].filter((u) => /^https?:/.test(u)),
   };
-  const list = [base, ...(meta.jsonld || [])];
+  if (!base.sameAs.length) delete base.sameAs; // rempli automatiquement dès que les liens réseaux sont renseignés
+  const extra = (meta.jsonld || []).map((o) =>
+    o['@type'] === 'BlogPosting' && !o.image ? { ...o, image: SITE.url + (meta.ogImage || SITE.ogImage) } : o
+  );
+  const list = [base, ...extra];
   return list
     .map((o) => `<script type="application/ld+json">${JSON.stringify(o)}</script>`)
     .join('\n');
@@ -269,7 +273,7 @@ function layout({ meta, body }) {
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <link rel="manifest" href="/site.webmanifest">
-<link rel="preload" href="/assets/fonts/fraunces.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/assets/fonts/archivo.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/assets/fonts/manrope.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="/assets/css/style.css">
 <script>document.documentElement.classList.replace('no-js','js')</script>
@@ -334,7 +338,7 @@ ${urls
   writeFileSync(join(OUT, 'sitemap.xml'), sitemap);
   writeFileSync(
     join(OUT, 'robots.txt'),
-    `User-agent: *\nAllow: /\nDisallow: /php/\n\nSitemap: ${SITE.url}/sitemap.xml\n`
+    `User-agent: *\nAllow: /\nDisallow: /php/\nDisallow: /api/\n\nSitemap: ${SITE.url}/sitemap.xml\n`
   );
   console.log(`\n${files.length} pages générées dans site-internet/`);
 }

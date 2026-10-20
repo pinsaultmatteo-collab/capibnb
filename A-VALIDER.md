@@ -48,7 +48,7 @@ Liste des affirmations présentes sur le nouveau site qui reposent sur la fiche 
 ## Juridique
 
 - [ ] CGV : version de travail à relire par Dylan et son conseil (médiateur de la consommation à désigner).
-- [ ] Mentions légales : hébergeur Hostinger indiqué ; vérifier l'offre exacte.
+- [x] Mentions légales : hébergeur du site Vercel Inc. (depuis la mise en ligne du 20/10/2026), domaine et messagerie Hostinger.
 - [ ] Informations réglementaires et fiscales : à jour en octobre 2026 selon la fiche ; à faire relire si doute (DPE, loi Le Meur, micro-BIC).
 
 ## Mise en ligne (20/10/2026)
@@ -61,4 +61,5 @@ Liste des affirmations présentes sur le nouveau site qui reposent sur la fiche 
 
 - [ ] Tester `php/send.php` sur Hostinger (fonction `mail()` activée, SPF du domaine).
 - [x] Anciennes adresses WordPress redirigées sur Vercel (`/?page_id=1381`, `1438`, `1455`, `/estimation`, `/wp-admin`, `/wp-content`), vérifié en ligne le 20/10/2026.
-- [ ] Soumettre `sitemap.xml` dans la Search Console.
+- [ ] Search Console : valider le domaine (TXT `google-site-verification` ajouté chez Hostinger), puis soumettre `sitemap.xml`.
+- [ ] Fiche Google Business : lien vers https://conciergeriecapibnb.fr et adresse identique au site.

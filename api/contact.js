@@ -6,7 +6,7 @@
 //   SMTP_PASS   mot de passe de cette boîte
 //   SMTP_HOST   serveur SMTP (défaut : smtp.hostinger.com)
 //   SMTP_PORT   port (défaut : 465, SSL)
-//   MAIL_TO     destinataire du récapitulatif (défaut : contact@conciergeriecapibnb.fr)
+//   MAIL_TO     destinataire(s) du récapitulatif, séparés par une virgule (défaut : contact@conciergeriecapibnb.fr)
 //   MAIL_ACK=0  pour ne pas envoyer d'accusé de réception au prospect (envoyé par défaut)
 //   MAIL_DRY_RUN=1  pour tester sans envoyer (les mails sont renvoyés dans la réponse)
 
@@ -99,7 +99,7 @@ export default async function handler(req, res) {
       ackInfo = await t.sendMail({
         from: `"Dylan · CAPIBNB" <${from}>`,
         to: ack.to,
-        replyTo: to,
+        replyTo: to.split(',')[0].trim(),
         subject: ack.subject,
         text: ack.text,
         html: ack.html,

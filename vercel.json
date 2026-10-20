@@ -3,9 +3,23 @@
   "buildCommand": "node build/build.mjs",
   "outputDirectory": "site-internet",
   "framework": null,
+  "regions": [
+    "cdg1"
+  ],
   "cleanUrls": true,
   "trailingSlash": true,
   "redirects": [
+    {
+      "source": "/:path*",
+      "has": [
+        {
+          "type": "host",
+          "value": "capibnb.vercel.app"
+        }
+      ],
+      "destination": "https://conciergeriecapibnb.fr/:path*",
+      "permanent": true
+    },
     {
       "source": "/",
       "has": [
