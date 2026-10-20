@@ -7,5 +7,8 @@
   "scripts": {
     "build": "node build/build.mjs",
     "dev": "node build/serve.mjs"
+  },
+  "dependencies": {
+    "nodemailer": "^10.1.7"
   }
 }

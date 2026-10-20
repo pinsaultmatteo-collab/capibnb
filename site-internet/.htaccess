@@ -6,6 +6,9 @@ RewriteCond %{HTTPS} off [OR]
 RewriteCond %{HTTP_HOST} ^www\. [NC]
 RewriteRule ^ https://conciergeriecapibnb.fr%{REQUEST_URI} [L,R=301]
 
+# Formulaires : sur Hostinger, /api/contact est traité par le script PHP
+RewriteRule ^api/contact/?$ php/send.php [L]
+
 # Redirections 301 depuis l'ancien site WordPress (?page_id=)
 RewriteCond %{QUERY_STRING} (^|&)page_id=1381($|&)
 RewriteRule ^$ /simulateur/? [L,R=301]

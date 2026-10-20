@@ -16,7 +16,8 @@ Site statique (HTML/CSS/JS), sans CMS, prêt à déposer sur l'hébergement Host
   - `assets/js/hero3d.js` — scène 3D de l'accueil (Three.js)
   - `assets/js/simulateur.js` — modèle et affichage du simulateur de revenus (hypothèses dans `TYPO`, `QUARTIERS`, `STANDING`, `SEASON`)
   - `assets/js/reglementation.js` — assistant « Mon logement est-il en règle ? »
-  - `php/send.php` — réception des formulaires (fonction `mail()` Hostinger)
+  - `php/send.php` — réception des formulaires sur Hostinger (fonction `mail()`), même récapitulatif que la version Vercel
+- `api/contact.js` + `api/_recap.js` — réception des formulaires sur Vercel (fonction serverless, envoi SMTP avec nodemailer)
   - `.htaccess` — HTTPS, redirections 301 depuis l'ancien WordPress, cache, en-têtes
 - `charte-graphique/` — kit logo CAPIBNB 2026 (SVG, PNG, favicons). **Source unique du logo** : le build lit les SVG pour le header, le footer et les pictos (parties noires passées en `currentColor`, donc blanches sur fond sombre), et copie les favicons et le manifeste à la racine du site. Pour changer le logo, remplacer les fichiers du kit puis relancer le build.
 - `A-VALIDER.md` — liste des affirmations à confirmer avec Dylan avant mise en ligne
@@ -40,8 +41,22 @@ node build/serve.mjs      # prévisualisation sur http://localhost:8791
 - Créer l'adresse technique `site@conciergeriecapibnb.fr` (expéditeur des formulaires) ou modifier `$FROM` dans `php/send.php`.
 - Tester un envoi de formulaire, vérifier les 301 (`/?page_id=1381` → `/simulateur/`), soumettre `sitemap.xml` à la Search Console.
 
+## Formulaires : mail récapitulatif à contact@conciergeriecapibnb.fr
+
+Les deux formulaires (Contact et étude détaillée du simulateur) envoient vers `/api/contact/`. Chaque demande produit un mail récapitulatif (nom, e-mail, téléphone, type de demande, logement, adresse, message, estimation du simulateur, page d'origine), avec « Répondre » qui écrit directement au prospect. Pièges à robots : champ caché et envoi trop rapide (moins de 2,5 s). Un événement `form_envoye` est poussé dans le dataLayer pour le suivi des conversions.
+
+- **Sur Vercel** : la fonction `api/contact.js` envoie par SMTP. À configurer une fois dans Vercel → Settings → Environment Variables, puis redéployer :
+  - `SMTP_USER` = `contact@conciergeriecapibnb.fr`
+  - `SMTP_PASS` = mot de passe de cette boîte mail
+  - `SMTP_HOST` = `smtp.hostinger.com` (valeur par défaut, à changer si la boîte est ailleurs)
+  - `SMTP_PORT` = `465` (par défaut)
+  - `MAIL_TO` = destinataire, par défaut `contact@conciergeriecapibnb.fr`
+  Sans `SMTP_USER` / `SMTP_PASS`, la fonction répond « Envoi non configuré » et le visiteur se voit proposer un lien `mailto:`.
+- **Sur Hostinger** : `/api/contact/` est redirigé vers `php/send.php` par le `.htaccess`, qui envoie avec `mail()` depuis contact@conciergeriecapibnb.fr.
+- **En local** (`node build/serve.mjs`) : sans identifiants SMTP, mode test, aucun mail réel n'est envoyé.
+
 ## Déploiement Vercel (aperçu)
 
 `vercel.json` à la racine configure tout : build `node build/build.mjs`, dossier de sortie `site-internet`, redirections 301, en-têtes, `404.html`. Laisser le champ « Root Directory » vide dans les réglages du projet Vercel. Chaque push sur `main` redéploie.
 
-Limite : Vercel n'exécute pas PHP, donc `php/send.php` ne fonctionne pas sur l'aperçu Vercel. Les formulaires basculent automatiquement sur un lien `mailto:` vers contact@conciergeriecapibnb.fr. En production chez Hostinger, l'envoi PHP fonctionne normalement.
+Les formulaires passent par la fonction `api/contact.js` (voir la section Formulaires) : penser à renseigner les variables SMTP dans Vercel.

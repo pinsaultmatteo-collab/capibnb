@@ -284,7 +284,8 @@
   /* ---------- Barres de comparaison : déclenchement à la vue ---------- */
   $$('.compare, .vs').forEach((el) => revealIO.observe(el));
 
-  /* ---------- Formulaires : envoi via php/send.php, repli mailto ---------- */
+  /* ---------- Formulaires : envoi à /api/contact (Vercel ou PHP Hostinger), repli mailto ---------- */
+  const pageLoadedAt = Date.now();
   $$('form[data-form]').forEach((form) => {
     const status = $('.form__status', form);
     form.addEventListener('submit', async (e) => {
@@ -293,17 +294,28 @@
       const btn = form.querySelector('[type="submit"]');
       const data = new FormData(form);
       data.append('page', location.pathname);
+      data.append('_t', String(Date.now() - pageLoadedAt));
       btn.disabled = true;
       const old = btn.innerHTML;
       btn.textContent = 'Envoi…';
       try {
-        const res = await fetch(form.getAttribute('action') || '/php/send.php', { method: 'POST', body: data });
-        if (!res.ok) throw new Error('HTTP ' + res.status);
-        const json = await res.json().catch(() => ({ ok: true }));
-        if (!json.ok) throw new Error(json.error || 'Erreur');
+        const res = await fetch(form.getAttribute('action') || '/api/contact/', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8' },
+          body: new URLSearchParams(data),
+        });
+        const json = await res.json().catch(() => ({}));
+        if (res.status === 422 && json.error) {
+          status.className = 'form__status is-err';
+          status.textContent = json.error;
+          return;
+        }
+        if (!res.ok || !json.ok) throw new Error(json.error || 'HTTP ' + res.status);
         status.className = 'form__status is-ok';
-        status.textContent = 'Merci ! Votre message est bien parti. Dylan vous répond sous 24 h.';
+        status.textContent = 'Merci ! Votre demande est bien partie. Dylan vous répond sous 24 h.';
         form.reset();
+        window.dataLayer = window.dataLayer || [];
+        window.dataLayer.push({ event: 'form_envoye', formulaire: form.dataset.subject || 'contact', page: location.pathname });
       } catch (err) {
         // repli : ouvre le client mail avec le contenu
         const lines = [];

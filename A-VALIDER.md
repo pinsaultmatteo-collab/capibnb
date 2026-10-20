@@ -27,12 +27,18 @@ Liste des affirmations présentes sur le nouveau site qui reposent sur la fiche 
 - [ ] **Hypothèses du simulateur** (prix/nuit, occupation, loyers par typologie et quartier) — à comparer avec les chiffres réels des logements gérés par Dylan. Tout est centralisé dans `simulateur.js` (`TYPO`, `QUARTIERS`, `STANDING`, `SEASON`).
 - [ ] **Chiffres à ajouter dès réception** : nombre de logements gérés, taux d'occupation réel, note moyenne Airbnb, statut Superhost, voyageurs accueillis.
 
+## Formulaires (mail récapitulatif)
+
+- [ ] **Vercel** : renseigner `SMTP_USER` et `SMTP_PASS` (boîte contact@conciergeriecapibnb.fr) dans Settings → Environment Variables, redéployer, puis faire un envoi test depuis /contact/. Vérifier que le mail n'arrive pas en indésirables.
+- [ ] Confirmer où est hébergée la boîte contact@conciergeriecapibnb.fr (Hostinger par défaut : `smtp.hostinger.com`, port 465) ; sinon adapter `SMTP_HOST` / `SMTP_PORT`.
+- [ ] Optionnel : accusé de réception automatique envoyé au prospect (non activé).
+
 ## Liens et comptes à renseigner (`build/build.mjs`, objet `SITE`)
 
 - [ ] Instagram, Facebook (actuellement `#`)
 - [ ] Fiche Google Business (lien avis)
 - [ ] Profil hôte Airbnb, profil Booking (boutons de la page Voyageurs)
-- [ ] Adresse e-mail technique d'envoi des formulaires : `site@conciergeriecapibnb.fr` à créer chez Hostinger (voir `site-internet/php/send.php`, variable `$FROM`)
+- [x] Expéditeur des formulaires : contact@conciergeriecapibnb.fr lui-même (plus besoin d'adresse technique).
 
 ## Photos
 
