@@ -30,7 +30,7 @@ Liste des affirmations présentes sur le nouveau site qui reposent sur la fiche 
 ## Formulaires (mail récapitulatif)
 
 - [x] **Vercel** : `SMTP_USER` et `SMTP_PASS` renseignés, connexion SMTP Hostinger validée par le diagnostic le 20/10/2026.
-- [ ] Envoi test depuis /contact/ : récapitulatif reçu sur contact@ et accusé de réception reçu par le prospect, hors indésirables.
+- [x] Envoi test depuis /contact/ validé par Mattéo le 20/10/2026 : récapitulatif et accusé de réception reçus, événement generate_lead visible dans GA4.
 - [x] Boîte contact@ hébergée chez Hostinger (MX, SPF, DKIM et DMARC en place).
 - [x] Accusé de réception automatique au prospect : activé (20/10/2026). Faire relire le texte à Dylan (promesse « sous 24 h », visite gratuite et sans engagement, mise en ligne sous une dizaine de jours).
 
@@ -68,7 +68,7 @@ Liste des affirmations présentes sur le nouveau site qui reposent sur la fiche 
 
 ## Technique (Mattéo)
 
-- [ ] Tester `php/send.php` sur Hostinger (fonction `mail()` activée, SPF du domaine).
+- [ ] (Seulement si le site quitte Vercel pour Hostinger) tester `php/send.php` (fonction `mail()`).
 - [x] Anciennes adresses WordPress redirigées sur Vercel (`/?page_id=1381`, `1438`, `1455`, `/estimation`, `/wp-admin`, `/wp-content`), vérifié en ligne le 20/10/2026.
 - [ ] Search Console : valider le domaine (TXT `google-site-verification` ajouté chez Hostinger), puis soumettre `sitemap.xml`.
 - [ ] Fiche Google Business : lien vers https://conciergeriecapibnb.fr et adresse identique au site.
