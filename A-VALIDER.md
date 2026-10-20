@@ -51,6 +51,14 @@ Liste des affirmations présentes sur le nouveau site qui reposent sur la fiche 
 - [x] Mentions légales : hébergeur du site Vercel Inc. (depuis la mise en ligne du 20/10/2026), domaine et messagerie Hostinger.
 - [ ] Informations réglementaires et fiscales : à jour en octobre 2026 selon la fiche ; à faire relire si doute (DPE, loi Le Meur, micro-BIC).
 
+## Mesure d'audience GA4 (G-02L6WB0EZT)
+
+- [x] Balise GA4 + mode consentement Google : rien n'est envoyé avant « Accepter » dans le bandeau ; « Gérer les cookies » dans le footer.
+- [ ] Dans GA4 (Administration, Événements) : marquer `generate_lead` et `click_phone` comme **événements clés** (conversions). Ils apparaissent dans la liste après leur premier déclenchement.
+- [ ] Dans GA4 (Définitions personnalisées) : créer les dimensions personnalisées d'événement `link_location`, `phone_action`, `form_name`, `request_type`, `property_type`, `simulator`, `area` pour les lire dans les rapports.
+- [ ] Dans GA4 (Paramètres des données, Conservation) : passer la conservation à 14 mois ; laisser Google Signals désactivé.
+- [ ] Carte Google Maps de la page Contact : chargée sans consentement à la demande de Dylan ; pour une conformité CNIL stricte, la conditionner au consentement ou la remplacer par une carte OpenStreetMap.
+
 ## Mise en ligne (20/10/2026)
 
 - [x] Domaine conciergeriecapibnb.fr pointé vers Vercel (A @ 216.150.1.1, CNAME www vers Vercel), adresse sans www principale, www redirigé en 308, certificat HTTPS Let's Encrypt actif.

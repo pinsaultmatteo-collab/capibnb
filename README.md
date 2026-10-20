@@ -60,6 +60,19 @@ Les deux mails partent de contact@conciergeriecapibnb.fr. Pièges à robots : ch
 - **Sur Hostinger** : `/api/contact/` est redirigé vers `php/send.php` par le `.htaccess`, qui envoie avec `mail()` depuis contact@conciergeriecapibnb.fr.
 - **En local** (`node build/serve.mjs`) : sans identifiants SMTP, mode test, aucun mail réel n'est envoyé.
 
+## Mesure d'audience (Google Analytics 4)
+
+ID de mesure dans `SITE.ga4` (`build/build.mjs`). Mode consentement Google en version « de base » : la balise `gtag.js` n'est chargée qu'après « Accepter » dans le bandeau (choix gardé 6 mois, lien « Gérer les cookies » dans le footer). Événements envoyés en plus des mesures améliorées (pages vues, défilements, clics sortants, formulaires) :
+
+| Événement | Quand | Paramètres |
+| --- | --- | --- |
+| `generate_lead` | formulaire Contact ou étude du simulateur envoyé avec succès | `form_name`, `lead_source`, `request_type`, `property_type` |
+| `click_phone` | clic sur un numéro ou un bouton « Appeler » | `link_location` (header, menu_mobile, footer, page_contact…), `phone_action` (affichage_numero, appel) |
+| `click_email` | clic sur une adresse e-mail | `link_location` |
+| `simulator_use` | première modification du simulateur sur la page | `simulator`, `property_type`, `area` |
+
+Aucune donnée personnelle saisie n'est envoyée à Google.
+
 ## Déploiement Vercel (aperçu)
 
 `vercel.json` à la racine configure tout : build `node build/build.mjs`, dossier de sortie `site-internet`, fonction des formulaires en région Paris (`cdg1`), redirections (dont capibnb.vercel.app vers le domaine, pour éviter un doublon dans Google), en-têtes, `404.html`. Laisser le champ « Root Directory » vide dans les réglages du projet Vercel. Chaque push sur `main` redéploie.

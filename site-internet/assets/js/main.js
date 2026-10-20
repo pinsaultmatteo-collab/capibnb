@@ -313,9 +313,13 @@
         if (!res.ok || !json.ok) throw new Error(json.error || 'HTTP ' + res.status);
         status.className = 'form__status is-ok';
         status.textContent = 'Merci ! Votre demande est bien partie. Dylan vous répond sous 24 h.';
+        track('generate_lead', {
+          form_name: location.pathname.startsWith('/simulateur') ? 'simulateur' : 'contact',
+          lead_source: 'site',
+          request_type: data.get('sujet') || undefined,
+          property_type: data.get('typologie') || undefined,
+        });
         form.reset();
-        window.dataLayer = window.dataLayer || [];
-        window.dataLayer.push({ event: 'form_envoye', formulaire: form.dataset.subject || 'contact', page: location.pathname });
       } catch (err) {
         // repli : ouvre le client mail avec le contenu
         const lines = [];
@@ -355,14 +359,118 @@
     });
   });
 
-  /* ---------- Bouton « Appeler » : clic tracé, numéro révélé sur ordinateur ---------- */
+  /* ---------- Consentement cookies (Google Analytics 4) ---------- */
+  const CONSENT_KEY = 'capibnb-consent';
+  const SIX_MONTHS = 15768e6;
+  const readConsent = () => {
+    try {
+      const c = JSON.parse(localStorage.getItem(CONSENT_KEY));
+      return c && Date.now() - c.t < SIX_MONTHS ? c.v : null;
+    } catch {
+      return null;
+    }
+  };
+  const saveConsent = (v) => {
+    try {
+      localStorage.setItem(CONSENT_KEY, JSON.stringify({ v, t: Date.now() }));
+    } catch {}
+  };
+  const loadGA = () => {
+    if (!window.CAPI_GA4 || document.querySelector('script[src*="googletagmanager.com/gtag/js"]')) return;
+    const s = document.createElement('script');
+    s.async = true;
+    s.src = 'https://www.googletagmanager.com/gtag/js?id=' + window.CAPI_GA4;
+    document.head.appendChild(s);
+  };
+  const clearGaCookies = () => {
+    const host = location.hostname.replace(/^www\./, '');
+    document.cookie.split(';').forEach((c) => {
+      const name = c.split('=')[0].trim();
+      if (!/^_ga/.test(name)) return;
+      [host, '.' + host, ''].forEach((d) => {
+        document.cookie = `${name}=; expires=Thu, 01 Jan 1970 00:00:00 GMT; path=/${d ? '; domain=' + d : ''}`;
+      });
+    });
+  };
+  const consentBox = $('[data-consent]');
+  const showConsent = () => {
+    if (!consentBox) return;
+    consentBox.hidden = false;
+    void consentBox.offsetWidth; // force le rendu avant l'animation d'entrée
+    consentBox.classList.add('is-visible');
+  };
+  const hideConsent = () => {
+    if (!consentBox) return;
+    consentBox.classList.remove('is-visible');
+    setTimeout(() => (consentBox.hidden = true), 400);
+  };
+  if (consentBox) {
+    $$('[data-consent-choice]', consentBox).forEach((b) =>
+      b.addEventListener('click', () => {
+        const v = b.dataset.consentChoice;
+        saveConsent(v);
+        if (typeof window.gtag === 'function') window.gtag('consent', 'update', { analytics_storage: v });
+        if (v === 'granted') loadGA();
+        else clearGaCookies();
+        hideConsent();
+      })
+    );
+    if (!readConsent()) setTimeout(showConsent, 1200);
+  }
+  $$('a[href="#gerer-cookies"]').forEach((a) =>
+    a.addEventListener('click', (e) => {
+      e.preventDefault();
+      showConsent();
+    })
+  );
+
+  /* ---------- Mesure d'audience : événements GA4 (envoyés seulement après consentement) ---------- */
+  function track(name, params = {}) {
+    if (typeof window.gtag !== 'function') return;
+    Object.keys(params).forEach((k) => params[k] === undefined && delete params[k]);
+    window.gtag('event', name, params);
+  }
+  const zoneOf = (el) =>
+    el.closest('.site-header') ? 'header'
+    : el.closest('.menu-mobile') ? 'menu_mobile'
+    : el.closest('.site-footer') ? 'footer'
+    : el.closest('.cta-final') ? 'cta_bas_de_page'
+    : el.closest('.form__status') ? 'formulaire_secours'
+    : el.closest('.contact') ? 'page_contact'
+    : (el.closest('section[id], section[aria-labelledby]')?.getAttribute('aria-labelledby') || 'page');
+  // Clics sur un numéro de téléphone (capture : avant que le bouton « Appeler » ne révèle le numéro)
+  document.addEventListener(
+    'click',
+    (e) => {
+      const a = e.target.closest('a[href^="tel:"]');
+      if (a) {
+        const reveal = a.matches('[data-call]') && !a.classList.contains('is-revealed') && !window.matchMedia('(pointer: coarse)').matches;
+        track('click_phone', { link_location: zoneOf(a), phone_action: reveal ? 'affichage_numero' : 'appel' });
+        return;
+      }
+      const m = e.target.closest('a[href^="mailto:"]');
+      if (m) track('click_email', { link_location: zoneOf(m) });
+    },
+    true
+  );
+  // Première utilisation du simulateur sur la page
+  $$('[data-sim]').forEach((root) => {
+    let done = false;
+    root.addEventListener('change', () => {
+      if (done) return;
+      done = true;
+      track('simulator_use', {
+        simulator: root.dataset.sim === 'full' ? 'complet' : 'compact',
+        property_type: root.querySelector('[name="typo"]:checked')?.value,
+        area: root.querySelector('[name="quartier"]')?.value,
+      });
+    });
+  });
+
+  /* ---------- Bouton « Appeler » : numéro révélé sur ordinateur ---------- */
   $$('[data-call]').forEach((a) => {
     a.addEventListener('click', (e) => {
-      // événement de suivi (Google Tag Manager / GA4 / Matomo)
-      window.dataLayer = window.dataLayer || [];
-      window.dataLayer.push({ event: 'click_appeler', page: location.pathname });
-      if (typeof window.gtag === 'function') window.gtag('event', 'click_appeler', { page: location.pathname });
-      if (window._paq) window._paq.push(['trackEvent', 'Contact', 'Appeler', location.pathname]);
+      // (le clic est mesuré par l'écouteur global click_phone plus bas)
       // sur ordinateur, le premier clic affiche le numéro ; le second lance l'appel
       const mobile = window.matchMedia('(pointer: coarse)').matches;
       if (!mobile && !a.classList.contains('is-revealed')) {

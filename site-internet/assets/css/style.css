@@ -4766,6 +4766,62 @@ input[type='range']::-moz-range-thumb {
   background: var(--coral);
 }
 
+/* ---------- Bandeau de consentement cookies ---------- */
+.consent {
+  position: fixed;
+  left: 20px;
+  bottom: 20px;
+  z-index: 300;
+  width: min(420px, calc(100vw - 40px));
+  background: var(--white);
+  color: var(--ink);
+  border: 1px solid var(--line-warm);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-lg);
+  padding: 22px 22px 18px;
+  opacity: 0;
+  transform: translateY(16px);
+  transition: opacity 0.4s var(--ease-out), transform 0.4s var(--ease-out);
+}
+.consent.is-visible {
+  opacity: 1;
+  transform: none;
+}
+.consent__title {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 1.1rem;
+  letter-spacing: -0.02em;
+  margin-bottom: 8px;
+}
+.consent__text {
+  font-size: 0.86rem;
+  line-height: 1.5;
+  color: var(--ink-4);
+}
+.consent__text a {
+  color: var(--coral-2);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+.consent__actions {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  margin-top: 16px;
+}
+.consent__actions .btn {
+  width: 100%;
+}
+@media (max-width: 640px) {
+  .consent {
+    left: 12px;
+    right: 12px;
+    bottom: 12px;
+    width: auto;
+  }
+}
+
 /* ---------- Tableaux défilants ---------- */
 .table-scroll {
   overflow-x: auto;

@@ -24,6 +24,13 @@
 <link rel="preload" href="/assets/fonts/manrope.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="/assets/css/style.css">
 <script>document.documentElement.classList.replace('no-js','js')</script>
+<script>
+(function(){var id='G-02L6WB0EZT';window.CAPI_GA4=id;window.dataLayer=window.dataLayer||[];window.gtag=function(){dataLayer.push(arguments);};
+var ok=false;try{var c=JSON.parse(localStorage.getItem('capibnb-consent'));ok=!!c&&c.v==='granted'&&Date.now()-c.t<15768e6;}catch(e){}
+gtag('consent','default',{analytics_storage:ok?'granted':'denied',ad_storage:'denied',ad_user_data:'denied',ad_personalization:'denied'});
+gtag('js',new Date());gtag('config',id);
+if(ok){var s=document.createElement('script');s.async=true;s.src='https://www.googletagmanager.com/gtag/js?id='+id;document.head.appendChild(s);}})();
+</script>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"LocalBusiness","@id":"https://conciergeriecapibnb.fr/#business","name":"CAPIBNB","alternateName":"Conciergerie CAPIBNB","description":"Conciergerie Airbnb et Booking à Toulouse : gestion complète de votre location courte durée pour 22 % TTC tout compris.","url":"https://conciergeriecapibnb.fr","telephone":"+33 6 19 48 59 05","email":"contact@conciergeriecapibnb.fr","image":"https://conciergeriecapibnb.fr/assets/img/og-capibnb.jpg","logo":"https://conciergeriecapibnb.fr/icon-512.png","priceRange":"22 % TTC du chiffre d’affaires","founder":{"@type":"Person","name":"Dylan Carvalho","jobTitle":"Président"},"address":{"@type":"PostalAddress","streetAddress":"23 rue des Changes","postalCode":"31000","addressLocality":"Toulouse","addressCountry":"FR"},"geo":{"@type":"GeoCoordinates","latitude":43.6005,"longitude":1.4441},"areaServed":[{"@type":"City","name":"Toulouse"},{"@type":"City","name":"Blagnac"},{"@type":"City","name":"Seilh"},{"@type":"City","name":"Beauzelle"},{"@type":"City","name":"Aucamville"},{"@type":"City","name":"Fenouillet"},{"@type":"City","name":"Colomiers"},{"@type":"City","name":"Tournefeuille"},{"@type":"City","name":"Cugnaux"},{"@type":"City","name":"Portet-sur-Garonne"},{"@type":"City","name":"Balma"},{"@type":"City","name":"L’Union"},{"@type":"City","name":"Saint-Orens-de-Gameville"},{"@type":"City","name":"Labège"},{"@type":"City","name":"Ramonville-Saint-Agne"},{"@type":"City","name":"Castanet-Tolosan"}],"openingHoursSpecification":{"@type":"OpeningHoursSpecification","dayOfWeek":["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"],"opens":"08:00","closes":"21:00"}}</script>
 </head>
 <body class="">
@@ -96,7 +103,9 @@
 
     <h2>Cookies et services tiers</h2>
     <ul>
-      <li><strong>Aucun cookie de mesure d’audience ni de publicité</strong> n’est déposé par ce site.</li>
+      <li><strong>Mesure d’audience (Google Analytics 4)</strong> : uniquement si vous cliquez sur « Accepter » dans le bandeau. Google Analytics dépose alors les cookies <code>_ga</code> et <code>_ga_02L6WB0EZT</code> (durée maximale 13 mois) pour compter les visites, les pages vues et quelques actions (envoi d’un formulaire, clic sur le téléphone ou l’e-mail, utilisation du simulateur). Aucune donnée saisie dans les formulaires (nom, e-mail, téléphone, message) n’est transmise à Google. Destinataire : Google Ireland Ltd et Google LLC, qui adhère au cadre de protection des données UE–États-Unis. Base légale : votre consentement.</li>
+      <li><strong>Votre choix</strong> (accepter ou refuser) est mémorisé 6 mois dans votre navigateur. Vous pouvez le modifier à tout moment avec le lien « <a href="#gerer-cookies">Gérer les cookies</a> » en bas de chaque page ; un refus supprime les cookies de mesure déjà déposés.</li>
+      <li><strong>Aucun cookie publicitaire</strong> n’est déposé par ce site.</li>
       <li><strong>Polices de caractères</strong> : hébergées sur notre propre serveur, aucune requête vers Google Fonts.</li>
       <li><strong>Carte Google Maps</strong> (page Contact) : la carte est fournie par Google, qui peut déposer des cookies selon <a href="https://policies.google.com/privacy?hl=fr" rel="noopener" target="_blank">sa politique de confidentialité</a>.</li>
       <li><strong>Préférences locales</strong> : le site peut mémoriser dans votre navigateur (stockage local) des préférences d’affichage sans identification personnelle.</li>
@@ -143,7 +152,7 @@
       </div>
       <div class="footer__col">
         <h3 class="footer__title">Légal</h3>
-        <ul><li><a href="/mentions-legales/">Mentions légales</a></li><li><a href="/confidentialite/">Confidentialité</a></li><li><a href="/cgv/">CGV</a></li></ul>
+        <ul><li><a href="/mentions-legales/">Mentions légales</a></li><li><a href="/confidentialite/">Confidentialité</a></li><li><a href="/cgv/">CGV</a></li><li><a href="#gerer-cookies">Gérer les cookies</a></li></ul>
       </div>
     </div>
     <div class="footer__bottom">
@@ -155,6 +164,14 @@
     </div>
   </div>
 </footer>
+<div class="consent" data-consent hidden role="dialog" aria-labelledby="consent-title" aria-describedby="consent-text">
+  <p class="consent__title" id="consent-title">Un cookie pour améliorer le site ?</p>
+  <p class="consent__text" id="consent-text">Avec votre accord, nous mesurons la fréquentation du site avec Google Analytics. Aucune publicité, aucune revente de données. Vous pouvez changer d’avis à tout moment via « Gérer les cookies », en bas de page. <a href="/confidentialite/">En savoir plus</a></p>
+  <div class="consent__actions">
+    <button type="button" class="btn btn--ghost btn--sm" data-consent-choice="denied">Refuser</button>
+    <button type="button" class="btn btn--dark btn--sm" data-consent-choice="granted">Accepter</button>
+  </div>
+</div>
 <script src="/assets/js/vendor/gsap.min.js" defer></script>
 <script src="/assets/js/vendor/ScrollTrigger.min.js" defer></script>
 <script src="/assets/js/main.js" defer></script>
