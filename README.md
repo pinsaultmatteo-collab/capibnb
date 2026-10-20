@@ -62,7 +62,7 @@ Les deux mails partent de contact@conciergeriecapibnb.fr. Pièges à robots : ch
 
 ## Mesure d'audience (Google Analytics 4)
 
-ID de mesure dans `SITE.ga4` (`build/build.mjs`). Mode consentement Google en version « de base » : la balise `gtag.js` n'est chargée qu'après « Accepter » dans le bandeau (choix gardé 6 mois, lien « Gérer les cookies » dans le footer). Événements envoyés en plus des mesures améliorées (pages vues, défilements, clics sortants, formulaires) :
+ID de mesure dans `SITE.ga4` (`build/build.mjs`). Bandeau de consentement **désactivé** (`SITE.consentBanner = false`) : `gtag.js` se charge pour tous les visiteurs, sauf ceux qui ont désactivé la mesure depuis la page confidentialité (choix gardé 6 mois). Avec `consentBanner: true`, le bandeau revient et GA4 n'est chargé qu'après « Accepter ». Événements envoyés en plus des mesures améliorées (pages vues, défilements, clics sortants, formulaires) :
 
 | Événement | Quand | Paramètres |
 | --- | --- | --- |

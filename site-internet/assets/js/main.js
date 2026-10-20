@@ -423,6 +423,25 @@
       showConsent();
     })
   );
+  // Bouton de la page confidentialité : désactiver / réactiver la mesure d'audience sur ce navigateur
+  $$('[data-ga-optout]').forEach((b) => {
+    const label = $('[data-ga-optout-state]');
+    const render = () => {
+      const off = readConsent() === 'denied';
+      b.textContent = off ? 'Réactiver la mesure d’audience' : 'Désactiver la mesure d’audience';
+      if (label) label.textContent = off ? 'désactivée sur ce navigateur' : 'active sur ce navigateur';
+    };
+    b.addEventListener('click', () => {
+      const off = readConsent() === 'denied';
+      const v = off ? 'granted' : 'denied';
+      saveConsent(v);
+      if (typeof window.gtag === 'function') window.gtag('consent', 'update', { analytics_storage: v });
+      if (v === 'granted') loadGA();
+      else clearGaCookies();
+      render();
+    });
+    render();
+  });
 
   /* ---------- Mesure d'audience : événements GA4 (envoyés seulement après consentement) ---------- */
   function track(name, params = {}) {

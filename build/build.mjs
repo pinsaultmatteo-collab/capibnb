@@ -30,7 +30,8 @@ export const SITE = {
   instagram: '#', // TODO : lien réel à récupérer auprès de Dylan
   facebook: '#',  // TODO : lien réel à récupérer auprès de Dylan
   google: '#',    // TODO : lien fiche Google Business
-  ga4: 'G-02L6WB0EZT', // Google Analytics 4 (chargé uniquement après consentement)
+  ga4: 'G-02L6WB0EZT', // Google Analytics 4
+  consentBanner: false, // true = GA4 attend « Accepter » dans un bandeau (désactivé le 20/10/2026 à la demande de Mattéo)
   rdv: '/contact/', // lien du bouton « Prendre rendez-vous » (remplacer par un lien Calendly / Google Agenda si souhaité)
   airbnb: '#',    // TODO : profil hôte Airbnb
   booking: '#',   // TODO : profil Booking
@@ -72,7 +73,6 @@ const FOOTER_COLS = [
       ['/mentions-legales/', 'Mentions légales'],
       ['/confidentialite/', 'Confidentialité'],
       ['/cgv/', 'CGV'],
-      ['#gerer-cookies', 'Gérer les cookies'],
     ],
   },
 ];
@@ -247,12 +247,17 @@ function frenchSpacing(html) {
   });
 }
 
-// Google Analytics 4 + mode consentement : rien n'est envoyé à Google tant que le visiteur n'a pas accepté.
+// Google Analytics 4 + mode consentement.
+// - requireConsent = true : rien n'est envoyé tant que le visiteur n'a pas accepté dans le bandeau.
+// - requireConsent = false : GA4 se charge pour tous, sauf si le visiteur l'a désactivé (page confidentialité).
 // Le choix est lu dans le stockage local (clé capibnb-consent, valable 6 mois).
-function gaHead(id) {
+function gaHead(id, requireConsent) {
+  const rule = requireConsent
+    ? "ok=!!c&&c.v==='granted'&&Date.now()-c.t<15768e6;"
+    : "ok=!(c&&c.v==='denied'&&Date.now()-c.t<15768e6);";
   return `<script>
 (function(){var id='${id}';window.CAPI_GA4=id;window.dataLayer=window.dataLayer||[];window.gtag=function(){dataLayer.push(arguments);};
-var ok=false;try{var c=JSON.parse(localStorage.getItem('capibnb-consent'));ok=!!c&&c.v==='granted'&&Date.now()-c.t<15768e6;}catch(e){}
+var ok=${requireConsent ? 'false' : 'true'};try{var c=JSON.parse(localStorage.getItem('capibnb-consent'));${rule}}catch(e){}
 gtag('consent','default',{analytics_storage:ok?'granted':'denied',ad_storage:'denied',ad_user_data:'denied',ad_personalization:'denied'});
 gtag('js',new Date());gtag('config',id);
 if(ok){var s=document.createElement('script');s.async=true;s.src='https://www.googletagmanager.com/gtag/js?id='+id;document.head.appendChild(s);}})();
@@ -302,7 +307,7 @@ function layout({ meta, body }) {
 <link rel="preload" href="/assets/fonts/manrope.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="/assets/css/style.css">
 <script>document.documentElement.classList.replace('no-js','js')</script>
-${SITE.ga4 ? gaHead(SITE.ga4) : ''}
+${SITE.ga4 ? gaHead(SITE.ga4, SITE.consentBanner) : ''}
 ${jsonLd(meta)}
 </head>
 <body class="${meta.bodyClass || ''}">
@@ -311,7 +316,7 @@ ${header(meta)}
 ${body}
 </main>
 ${footer()}
-${SITE.ga4 ? consentBanner() : ''}
+${SITE.ga4 && SITE.consentBanner ? consentBanner() : ''}
 <script src="/assets/js/vendor/gsap.min.js" defer></script>
 <script src="/assets/js/vendor/ScrollTrigger.min.js" defer></script>
 <script src="/assets/js/main.js" defer></script>

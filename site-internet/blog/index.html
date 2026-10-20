@@ -26,7 +26,7 @@
 <script>document.documentElement.classList.replace('no-js','js')</script>
 <script>
 (function(){var id='G-02L6WB0EZT';window.CAPI_GA4=id;window.dataLayer=window.dataLayer||[];window.gtag=function(){dataLayer.push(arguments);};
-var ok=false;try{var c=JSON.parse(localStorage.getItem('capibnb-consent'));ok=!!c&&c.v==='granted'&&Date.now()-c.t<15768e6;}catch(e){}
+var ok=true;try{var c=JSON.parse(localStorage.getItem('capibnb-consent'));ok=!(c&&c.v==='denied'&&Date.now()-c.t<15768e6);}catch(e){}
 gtag('consent','default',{analytics_storage:ok?'granted':'denied',ad_storage:'denied',ad_user_data:'denied',ad_personalization:'denied'});
 gtag('js',new Date());gtag('config',id);
 if(ok){var s=document.createElement('script');s.async=true;s.src='https://www.googletagmanager.com/gtag/js?id='+id;document.head.appendChild(s);}})();
@@ -206,7 +206,7 @@ if(ok){var s=document.createElement('script');s.async=true;s.src='https://www.go
       </div>
       <div class="footer__col">
         <h3 class="footer__title">Légal</h3>
-        <ul><li><a href="/mentions-legales/">Mentions légales</a></li><li><a href="/confidentialite/">Confidentialité</a></li><li><a href="/cgv/">CGV</a></li><li><a href="#gerer-cookies">Gérer les cookies</a></li></ul>
+        <ul><li><a href="/mentions-legales/">Mentions légales</a></li><li><a href="/confidentialite/">Confidentialité</a></li><li><a href="/cgv/">CGV</a></li></ul>
       </div>
     </div>
     <div class="footer__bottom">
@@ -218,14 +218,7 @@ if(ok){var s=document.createElement('script');s.async=true;s.src='https://www.go
     </div>
   </div>
 </footer>
-<div class="consent" data-consent hidden role="dialog" aria-labelledby="consent-title" aria-describedby="consent-text">
-  <p class="consent__title" id="consent-title">Un cookie pour améliorer le site ?</p>
-  <p class="consent__text" id="consent-text">Avec votre accord, nous mesurons la fréquentation du site avec Google Analytics. Aucune publicité, aucune revente de données. Vous pouvez changer d’avis à tout moment via « Gérer les cookies », en bas de page. <a href="/confidentialite/">En savoir plus</a></p>
-  <div class="consent__actions">
-    <button type="button" class="btn btn--ghost btn--sm" data-consent-choice="denied">Refuser</button>
-    <button type="button" class="btn btn--dark btn--sm" data-consent-choice="granted">Accepter</button>
-  </div>
-</div>
+
 <script src="/assets/js/vendor/gsap.min.js" defer></script>
 <script src="/assets/js/vendor/ScrollTrigger.min.js" defer></script>
 <script src="/assets/js/main.js" defer></script>

@@ -53,7 +53,7 @@ Liste des affirmations présentes sur le nouveau site qui reposent sur la fiche 
 
 ## Mesure d'audience GA4 (G-02L6WB0EZT)
 
-- [x] Balise GA4 + mode consentement Google : rien n'est envoyé avant « Accepter » dans le bandeau ; « Gérer les cookies » dans le footer.
+- [x] Balise GA4 chargée pour tous les visiteurs. **Bandeau de consentement désactivé le 20/10/2026 par décision de Mattéo, qui a conscience du risque CNIL** (Google Analytics n'est pas exempté de consentement). Opposition possible depuis la page confidentialité. Pour réactiver le bandeau : `consentBanner: true` dans l'objet `SITE` de `build/build.mjs`, puis rebuild (le texte de la page confidentialité sera alors à remettre au format « uniquement après acceptation »).
 - [ ] Dans GA4 (Administration, Événements) : marquer `generate_lead` et `click_phone` comme **événements clés** (conversions). Ils apparaissent dans la liste après leur premier déclenchement.
 - [ ] Dans GA4 (Définitions personnalisées) : créer les dimensions personnalisées d'événement `link_location`, `phone_action`, `form_name`, `request_type`, `property_type`, `simulator`, `area` pour les lire dans les rapports.
 - [ ] Dans GA4 (Paramètres des données, Conservation) : passer la conservation à 14 mois ; laisser Google Signals désactivé.
