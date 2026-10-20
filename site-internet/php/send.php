@@ -104,15 +104,80 @@ $html = '<!doctype html><html lang="fr"><head><meta charset="utf-8"><meta name="
     . '.<br>Le prospect a accepté d’être recontacté. Répondre à ce mail lui écrit directement.</td></tr>'
     . '</table></td></tr></table></body></html>';
 
-// Mail multipart texte + HTML
-$boundary = 'capibnb_' . bin2hex(random_bytes(8));
-$headers  = "From: =?UTF-8?B?" . base64_encode('Site CAPIBNB') . "?= <$FROM>\r\n";
-$headers .= 'Reply-To: =?UTF-8?B?' . base64_encode($nom) . "?= <$email>\r\n";
-$headers .= "MIME-Version: 1.0\r\nContent-Type: multipart/alternative; boundary=\"$boundary\"\r\n";
-$body  = "--$boundary\r\nContent-Type: text/plain; charset=UTF-8\r\nContent-Transfer-Encoding: base64\r\n\r\n" . chunk_split(base64_encode($text)) . "\r\n";
-$body .= "--$boundary\r\nContent-Type: text/html; charset=UTF-8\r\nContent-Transfer-Encoding: base64\r\n\r\n" . chunk_split(base64_encode($html)) . "\r\n";
-$body .= "--$boundary--";
+// Envoi d'un mail multipart texte + HTML
+function send_mail(string $to, string $fromName, string $from, string $replyTo, string $subject, string $text, string $html): bool {
+    $boundary = 'capibnb_' . bin2hex(random_bytes(8));
+    $headers  = 'From: =?UTF-8?B?' . base64_encode($fromName) . "?= <$from>\r\n";
+    $headers .= "Reply-To: $replyTo\r\n";
+    $headers .= "MIME-Version: 1.0\r\nContent-Type: multipart/alternative; boundary=\"$boundary\"\r\n";
+    $body  = "--$boundary\r\nContent-Type: text/plain; charset=UTF-8\r\nContent-Transfer-Encoding: base64\r\n\r\n" . chunk_split(base64_encode($text)) . "\r\n";
+    $body .= "--$boundary\r\nContent-Type: text/html; charset=UTF-8\r\nContent-Transfer-Encoding: base64\r\n\r\n" . chunk_split(base64_encode($html)) . "\r\n";
+    $body .= "--$boundary--";
+    return @mail($to, '=?UTF-8?B?' . base64_encode($subject) . '?=', $body, $headers, '-f' . $from);
+}
 
-$ok = @mail($TO, '=?UTF-8?B?' . base64_encode($subject) . '?=', $body, $headers, '-f' . $FROM);
-if (!$ok) reply(502, ['ok' => false, 'error' => 'Envoi impossible']);
+// 1) Récapitulatif pour CAPIBNB : indispensable
+$replyProspect = '=?UTF-8?B?' . base64_encode($nom) . "?= <$email>";
+if (!send_mail($TO, 'Site CAPIBNB', $FROM, $replyProspect, $subject, $text, $html)) {
+    reply(502, ['ok' => false, 'error' => 'Envoi impossible']);
+}
+
+// 2) Accusé de réception au prospect (même contenu que api/_recap.js → buildAck).
+//    Aucun texte libre du formulaire n'est recopié : seulement le nom et un type de demande connu.
+$known = ['Propriétaire, je veux une estimation', 'Propriétaire, j’ai une question', 'Propriétaire, j’hésite entre courte et longue durée',
+          'Voyageur', 'Autre', 'Étude détaillée depuis le simulateur'];
+$ackSujet = in_array($sujet, $known, true) ? $sujet : '';
+$fromSim  = $ackSujet === 'Étude détaillée depuis le simulateur';
+$voyageur = $ackSujet === 'Voyageur';
+$ackNom   = mb_substr($nom, 0, 80);
+$intro = $fromSim
+    ? 'Merci pour votre demande d’étude détaillée. Dylan reprend votre simulation et l’ajuste à votre logement (surface, étage, équipements, saison de lancement), puis vous recontacte personnellement sous 24 h.'
+    : ($voyageur
+        ? 'Merci pour votre message. Il est bien arrivé chez CAPIBNB : nous vous répondons rapidement, 7 jours sur 7.'
+        : 'Merci pour votre demande. Elle est bien arrivée chez CAPIBNB : Dylan vous recontacte personnellement sous 24 h, par téléphone ou par e-mail.');
+$steps = $voyageur ? [] : [
+    ['Un premier échange', 'Quinze minutes pour parler de votre logement, de votre situation et de vos attentes.'],
+    ['La visite du logement', 'Gratuite et sans engagement. Dylan évalue le potentiel et vous remet une estimation chiffrée.'],
+    ['La mise en ligne', 'Si on y va ensemble, votre annonce est publiée sous une dizaine de jours. Aucun frais d’inscription.'],
+];
+$ackSubject = 'CAPIBNB · Nous avons bien reçu votre demande';
+
+$ackText = "Bonjour $ackNom,\n\n$intro\n";
+if ($ackSujet !== '') $ackText .= "\nVotre demande : $ackSujet\n";
+if ($steps) {
+    $ackText .= "\nEt ensuite ?\n";
+    foreach ($steps as $i => [$st, $sx]) $ackText .= ($i + 1) . ". $st : $sx\n";
+}
+$ackText .= "\nUne question d’ici là ? Répondez simplement à ce mail ou appelez le 06 19 48 59 05.\n\nÀ très vite,\nDylan Carvalho\n"
+    . "Fondateur de CAPIBNB, conciergerie Airbnb & Booking à Toulouse\n23 rue des Changes, 31000 Toulouse · 06 19 48 59 05\n\n"
+    . "Vous recevez ce message car vous avez rempli un formulaire sur conciergeriecapibnb.fr. Aucune newsletter, aucune revente de vos données.";
+
+$stepsHtml = '';
+foreach ($steps as $i => [$st, $sx]) {
+    $stepsHtml .= '<tr><td style="width:40px;vertical-align:top;padding:10px 0"><div style="width:30px;height:30px;border-radius:50%;background:#fff1f0;color:#e8484e;font-weight:700;font-size:13px;line-height:30px;text-align:center">0' . ($i + 1) . '</div></td>'
+        . '<td style="vertical-align:top;padding:10px 0;font-size:14px;line-height:1.5"><strong>' . e($st) . '</strong><br><span style="color:#5f5f5f">' . e($sx) . '</span></td></tr>';
+}
+$ackHtml = '<!doctype html><html lang="fr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width"><title>' . e($ackSubject) . '</title></head>'
+    . '<body style="margin:0;padding:0;background:#f2ece4;font-family:Helvetica,Arial,sans-serif;color:#0a0a0a">'
+    . '<table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background:#f2ece4;padding:24px 12px"><tr><td align="center">'
+    . '<table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="max-width:600px;background:#ffffff;border-radius:18px;overflow:hidden">'
+    . '<tr><td style="background:#0a0a0a;padding:22px 28px"><span style="font-size:20px;font-weight:800;letter-spacing:1px;color:#ffffff">CAPI</span><span style="font-size:20px;font-weight:800;letter-spacing:1px;color:#ff5a5f">BNB</span>'
+    . '<div style="margin-top:6px;font-size:12px;letter-spacing:2px;text-transform:uppercase;color:#ff8a8d">Conciergerie Airbnb &amp; Booking · Toulouse</div></td></tr>'
+    . '<tr><td style="padding:30px 28px 6px;font-size:15px;line-height:1.6"><div style="font-size:24px;font-weight:700;line-height:1.25;margin-bottom:14px">Bonjour ' . e($ackNom) . ',</div>'
+    . '<p style="margin:0 0 14px">' . e($intro) . '</p>'
+    . ($ackSujet !== '' ? '<p style="margin:0 0 14px;color:#5f5f5f;font-size:13px">Votre demande : <strong style="color:#0a0a0a">' . e($ackSujet) . '</strong></p>' : '')
+    . '</td></tr>'
+    . ($steps ? '<tr><td style="padding:6px 28px 6px"><div style="font-size:12px;letter-spacing:2px;text-transform:uppercase;color:#e8484e;font-weight:700;margin:6px 0 4px">Et ensuite ?</div><table role="presentation" width="100%" cellpadding="0" cellspacing="0">' . $stepsHtml . '</table></td></tr>' : '')
+    . '<tr><td style="padding:16px 28px 8px;font-size:15px;line-height:1.6"><p style="margin:0 0 16px">Une question d’ici là ? Répondez simplement à ce mail ou appelez le <a href="tel:+33619485905" style="color:#e8484e;text-decoration:none;font-weight:700;white-space:nowrap">06&nbsp;19&nbsp;48&nbsp;59&nbsp;05</a>.</p>'
+    . $btn('tel:+33619485905', 'Appeler Dylan', '#ff5a5f')
+    . ($fromSim || $voyageur ? '' : $btn('https://conciergeriecapibnb.fr/simulateur/', 'Estimer mes revenus', '#0a0a0a'))
+    . '</td></tr>'
+    . '<tr><td style="padding:18px 28px 24px;font-size:14px;line-height:1.55">À très vite,<br><strong>Dylan Carvalho</strong><br><span style="color:#5f5f5f">Fondateur de CAPIBNB · 23 rue des Changes, 31000 Toulouse</span></td></tr>'
+    . '<tr><td style="padding:14px 28px 22px;border-top:1px solid #e9e2d8;font-size:11px;color:#8a8a8a;line-height:1.6">Vous recevez ce message car vous avez rempli un formulaire sur <a href="https://conciergeriecapibnb.fr" style="color:#8a8a8a">conciergeriecapibnb.fr</a>. Aucune newsletter, aucune revente de vos données.</td></tr>'
+    . '</table></td></tr></table></body></html>';
+
+// En bonus : un échec de l'accusé de réception ne fait pas échouer la demande
+$ackTo = '=?UTF-8?B?' . base64_encode($ackNom) . "?= <$email>";
+send_mail($ackTo, 'Dylan · CAPIBNB', $FROM, $TO, $ackSubject, $ackText, $ackHtml);
+
 reply(200, ['ok' => true]);

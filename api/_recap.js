@@ -123,3 +123,113 @@ export function buildRecap(d, now = new Date()) {
 
   return { subject, text, html, replyTo: nom ? `"${nom.replace(/"/g, '')}" <${email}>` : email };
 }
+
+// ---------------------------------------------------------------------------
+// Accusé de réception envoyé au prospect.
+// Volontairement, il ne recopie aucun texte libre du formulaire (message, adresse,
+// estimation) : seuls le nom et un type de demande connu sont repris, pour que le
+// formulaire ne puisse pas servir à envoyer un contenu arbitraire à un tiers.
+// ---------------------------------------------------------------------------
+const PHONE = '06 19 48 59 05';
+const PHONE_HREF = 'tel:+33619485905';
+const SITE = 'https://conciergeriecapibnb.fr';
+const KNOWN_SUBJECTS = [
+  'Propriétaire, je veux une estimation',
+  'Propriétaire, j’ai une question',
+  'Propriétaire, j’hésite entre courte et longue durée',
+  'Voyageur',
+  'Autre',
+  'Étude détaillée depuis le simulateur',
+];
+
+export function buildAck(d) {
+  const nom = oneLine(d.nom, 80);
+  const sujetRaw = oneLine(d.sujet, 160);
+  const sujet = KNOWN_SUBJECTS.includes(sujetRaw) ? sujetRaw : '';
+  const fromSim = sujet === 'Étude détaillée depuis le simulateur';
+  const voyageur = sujet === 'Voyageur';
+
+  const subject = 'CAPIBNB · Nous avons bien reçu votre demande';
+  const intro = fromSim
+    ? 'Merci pour votre demande d’étude détaillée. Dylan reprend votre simulation et l’ajuste à votre logement (surface, étage, équipements, saison de lancement), puis vous recontacte personnellement sous 24 h.'
+    : voyageur
+      ? 'Merci pour votre message. Il est bien arrivé chez CAPIBNB : nous vous répondons rapidement, 7 jours sur 7.'
+      : 'Merci pour votre demande. Elle est bien arrivée chez CAPIBNB : Dylan vous recontacte personnellement sous 24 h, par téléphone ou par e-mail.';
+  const steps = voyageur
+    ? []
+    : [
+        ['Un premier échange', 'Quinze minutes pour parler de votre logement, de votre situation et de vos attentes.'],
+        ['La visite du logement', 'Gratuite et sans engagement. Dylan évalue le potentiel et vous remet une estimation chiffrée.'],
+        ['La mise en ligne', 'Si on y va ensemble, votre annonce est publiée sous une dizaine de jours. Aucun frais d’inscription.'],
+      ];
+
+  const text = [
+    `Bonjour ${nom},`,
+    ``,
+    intro,
+    ...(sujet ? [``, `Votre demande : ${sujet}`] : []),
+    ...(steps.length ? [``, `Et ensuite ?`, ...steps.map(([t, x], i) => `${i + 1}. ${t} : ${x}`)] : []),
+    ``,
+    `Une question d’ici là ? Répondez simplement à ce mail ou appelez le ${PHONE}.`,
+    ``,
+    `À très vite,`,
+    `Dylan Carvalho`,
+    `Fondateur de CAPIBNB, conciergerie Airbnb & Booking à Toulouse`,
+    `23 rue des Changes, 31000 Toulouse · ${PHONE}`,
+    ``,
+    `Vous recevez ce message car vous avez rempli un formulaire sur conciergeriecapibnb.fr. Aucune newsletter, aucune revente de vos données.`,
+  ].join('\n');
+
+  const btn = (href, txt, bg) =>
+    `<a href="${esc(href)}" style="display:inline-block;margin:0 8px 8px 0;padding:12px 20px;border-radius:999px;background:${bg};color:#ffffff;font-weight:700;font-size:14px;text-decoration:none">${txt}</a>`;
+  const stepsHtml = steps
+    .map(
+      ([t, x], i) => `<tr>
+        <td style="width:40px;vertical-align:top;padding:10px 0"><div style="width:30px;height:30px;border-radius:50%;background:#fff1f0;color:#e8484e;font-weight:700;font-size:13px;line-height:30px;text-align:center">0${i + 1}</div></td>
+        <td style="vertical-align:top;padding:10px 0;font-size:14px;line-height:1.5"><strong>${esc(t)}</strong><br><span style="color:#5f5f5f">${esc(x)}</span></td>
+      </tr>`
+    )
+    .join('');
+
+  const html = `<!doctype html>
+<html lang="fr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width"><title>${esc(subject)}</title></head>
+<body style="margin:0;padding:0;background:#f2ece4;font-family:Helvetica,Arial,sans-serif;color:#0a0a0a">
+  <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background:#f2ece4;padding:24px 12px">
+    <tr><td align="center">
+      <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="max-width:600px;background:#ffffff;border-radius:18px;overflow:hidden">
+        <tr><td style="background:#0a0a0a;padding:22px 28px">
+          <span style="font-size:20px;font-weight:800;letter-spacing:1px;color:#ffffff">CAPI</span><span style="font-size:20px;font-weight:800;letter-spacing:1px;color:#ff5a5f">BNB</span>
+          <div style="margin-top:6px;font-size:12px;letter-spacing:2px;text-transform:uppercase;color:#ff8a8d">Conciergerie Airbnb &amp; Booking · Toulouse</div>
+        </td></tr>
+        <tr><td style="padding:30px 28px 6px;font-size:15px;line-height:1.6">
+          <div style="font-size:24px;font-weight:700;line-height:1.25;margin-bottom:14px">Bonjour ${esc(nom)},</div>
+          <p style="margin:0 0 14px">${esc(intro)}</p>
+          ${sujet ? `<p style="margin:0 0 14px;color:#5f5f5f;font-size:13px">Votre demande : <strong style="color:#0a0a0a">${esc(sujet)}</strong></p>` : ''}
+        </td></tr>
+        ${
+          steps.length
+            ? `<tr><td style="padding:6px 28px 6px">
+          <div style="font-size:12px;letter-spacing:2px;text-transform:uppercase;color:#e8484e;font-weight:700;margin:6px 0 4px">Et ensuite ?</div>
+          <table role="presentation" width="100%" cellpadding="0" cellspacing="0">${stepsHtml}</table>
+        </td></tr>`
+            : ''
+        }
+        <tr><td style="padding:16px 28px 8px;font-size:15px;line-height:1.6">
+          <p style="margin:0 0 16px">Une question d’ici là ? Répondez simplement à ce mail ou appelez le <a href="${PHONE_HREF}" style="color:#e8484e;text-decoration:none;font-weight:700;white-space:nowrap">${PHONE.replace(/ /g, '&nbsp;')}</a>.</p>
+          ${btn(PHONE_HREF, 'Appeler Dylan', '#ff5a5f')}${fromSim || voyageur ? '' : btn(SITE + '/simulateur/', 'Estimer mes revenus', '#0a0a0a')}
+        </td></tr>
+        <tr><td style="padding:18px 28px 24px;font-size:14px;line-height:1.55">
+          À très vite,<br>
+          <strong>Dylan Carvalho</strong><br>
+          <span style="color:#5f5f5f">Fondateur de CAPIBNB · 23 rue des Changes, 31000 Toulouse</span>
+        </td></tr>
+        <tr><td style="padding:14px 28px 22px;border-top:1px solid #e9e2d8;font-size:11px;color:#8a8a8a;line-height:1.6">
+          Vous recevez ce message car vous avez rempli un formulaire sur <a href="${SITE}" style="color:#8a8a8a">conciergeriecapibnb.fr</a>. Aucune newsletter, aucune revente de vos données.
+        </td></tr>
+      </table>
+    </td></tr>
+  </table>
+</body></html>`;
+
+  return { subject, text, html, to: nom ? `"${nom.replace(/"/g, '')}" <${oneLine(d.email, 200)}>` : oneLine(d.email, 200) };
+}

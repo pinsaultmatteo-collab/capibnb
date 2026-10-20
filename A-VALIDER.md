@@ -31,7 +31,7 @@ Liste des affirmations présentes sur le nouveau site qui reposent sur la fiche 
 
 - [ ] **Vercel** : renseigner `SMTP_USER` et `SMTP_PASS` (boîte contact@conciergeriecapibnb.fr) dans Settings → Environment Variables, redéployer, puis faire un envoi test depuis /contact/. Vérifier que le mail n'arrive pas en indésirables.
 - [ ] Confirmer où est hébergée la boîte contact@conciergeriecapibnb.fr (Hostinger par défaut : `smtp.hostinger.com`, port 465) ; sinon adapter `SMTP_HOST` / `SMTP_PORT`.
-- [ ] Optionnel : accusé de réception automatique envoyé au prospect (non activé).
+- [x] Accusé de réception automatique au prospect : activé (20/10/2026). Faire relire le texte à Dylan (promesse « sous 24 h », visite gratuite et sans engagement, mise en ligne sous une dizaine de jours).
 
 ## Liens et comptes à renseigner (`build/build.mjs`, objet `SITE`)
 

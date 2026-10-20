@@ -7,10 +7,11 @@
 //   SMTP_HOST   serveur SMTP (défaut : smtp.hostinger.com)
 //   SMTP_PORT   port (défaut : 465, SSL)
 //   MAIL_TO     destinataire du récapitulatif (défaut : contact@conciergeriecapibnb.fr)
-//   MAIL_DRY_RUN=1  pour tester sans envoyer (le mail est renvoyé dans la réponse)
+//   MAIL_ACK=0  pour ne pas envoyer d'accusé de réception au prospect (envoyé par défaut)
+//   MAIL_DRY_RUN=1  pour tester sans envoyer (les mails sont renvoyés dans la réponse)
 
 import nodemailer from 'nodemailer';
-import { buildRecap, validate, isSpam, MAIL_TO_DEFAULT } from './_recap.js';
+import { buildRecap, buildAck, validate, isSpam, MAIL_TO_DEFAULT } from './_recap.js';
 
 function send(res, status, body) {
   res.statusCode = status;
@@ -71,19 +72,50 @@ export default async function handler(req, res) {
 
   const mail = buildRecap(data);
   const from = process.env.MAIL_FROM || process.env.SMTP_USER || MAIL_TO_DEFAULT;
+  const to = process.env.MAIL_TO || MAIL_TO_DEFAULT;
+  const dry = process.env.MAIL_DRY_RUN === '1';
+
+  // 1) Récapitulatif pour CAPIBNB : indispensable, son échec fait échouer la requête
+  let recapInfo;
   try {
-    const info = await t.sendMail({
+    recapInfo = await t.sendMail({
       from: `"Site CAPIBNB" <${from}>`,
-      to: process.env.MAIL_TO || MAIL_TO_DEFAULT,
+      to,
       replyTo: mail.replyTo,
       subject: mail.subject,
       text: mail.text,
       html: mail.html,
     });
-    if (process.env.MAIL_DRY_RUN === '1') return send(res, 200, { ok: true, dryRun: true, mail: JSON.parse(info.message) });
-    return send(res, 200, { ok: true });
   } catch (err) {
-    console.error('[contact] échec SMTP :', err && err.message);
+    console.error('[contact] échec SMTP (récapitulatif) :', err && err.message);
     return send(res, 502, { ok: false, error: 'Envoi impossible' });
   }
+
+  // 2) Accusé de réception au prospect : en bonus, un échec ne bloque pas la demande
+  let ackInfo = null;
+  if (process.env.MAIL_ACK !== '0') {
+    const ack = buildAck(data);
+    try {
+      ackInfo = await t.sendMail({
+        from: `"Dylan · CAPIBNB" <${from}>`,
+        to: ack.to,
+        replyTo: to,
+        subject: ack.subject,
+        text: ack.text,
+        html: ack.html,
+      });
+    } catch (err) {
+      console.error('[contact] échec SMTP (accusé de réception) :', err && err.message);
+    }
+  }
+
+  if (dry) {
+    return send(res, 200, {
+      ok: true,
+      dryRun: true,
+      mail: JSON.parse(recapInfo.message),
+      ack: ackInfo ? JSON.parse(ackInfo.message) : null,
+    });
+  }
+  return send(res, 200, { ok: true });
 }

@@ -43,7 +43,12 @@ node build/serve.mjs      # prévisualisation sur http://localhost:8791
 
 ## Formulaires : mail récapitulatif à contact@conciergeriecapibnb.fr
 
-Les deux formulaires (Contact et étude détaillée du simulateur) envoient vers `/api/contact/`. Chaque demande produit un mail récapitulatif (nom, e-mail, téléphone, type de demande, logement, adresse, message, estimation du simulateur, page d'origine), avec « Répondre » qui écrit directement au prospect. Pièges à robots : champ caché et envoi trop rapide (moins de 2,5 s). Un événement `form_envoye` est poussé dans le dataLayer pour le suivi des conversions.
+Les deux formulaires (Contact et étude détaillée du simulateur) envoient vers `/api/contact/`. Chaque demande produit deux mails :
+
+1. **Récapitulatif pour CAPIBNB** (à contact@conciergeriecapibnb.fr) : nom, e-mail, téléphone, type de demande, logement, adresse, message, estimation du simulateur, page d'origine ; « Répondre » écrit directement au prospect.
+2. **Accusé de réception pour le prospect**, signé Dylan : confirmation, rappel du type de demande, les trois prochaines étapes (variante simulateur et variante voyageur), téléphone. Il ne recopie aucun texte libre du formulaire, pour que le site ne puisse pas servir de relais à spam. Une erreur d'envoi de l'accusé ne bloque pas la demande. Pour le désactiver : variable `MAIL_ACK=0` sur Vercel ; sur Hostinger, retirer l'appel `send_mail($ackTo, …)` en fin de `php/send.php`.
+
+Les deux mails partent de contact@conciergeriecapibnb.fr. Pièges à robots : champ caché et envoi trop rapide (moins de 2,5 s). Un événement `form_envoye` est poussé dans le dataLayer pour le suivi des conversions.
 
 - **Sur Vercel** : la fonction `api/contact.js` envoie par SMTP. À configurer une fois dans Vercel → Settings → Environment Variables, puis redéployer :
   - `SMTP_USER` = `contact@conciergeriecapibnb.fr`
