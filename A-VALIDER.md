@@ -70,5 +70,5 @@ Liste des affirmations présentes sur le nouveau site qui reposent sur la fiche 
 
 - [ ] (Seulement si le site quitte Vercel pour Hostinger) tester `php/send.php` (fonction `mail()`).
 - [x] Anciennes adresses WordPress redirigées sur Vercel (`/?page_id=1381`, `1438`, `1455`, `/estimation`, `/wp-admin`, `/wp-content`), vérifié en ligne le 20/10/2026.
-- [ ] Search Console : valider le domaine (TXT `google-site-verification` ajouté chez Hostinger), puis soumettre `sitemap.xml`.
+- [x] Search Console : domaine validé et `sitemap.xml` soumis par Mattéo le 20/10/2026.
 - [ ] Fiche Google Business : lien vers https://conciergeriecapibnb.fr et adresse identique au site.
