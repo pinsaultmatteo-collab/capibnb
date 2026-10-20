@@ -11,7 +11,7 @@ Site statique (HTML/CSS/JS), sans CMS, prêt à déposer sur l'hébergement Host
   - `build.mjs` — gabarit commun (head SEO, JSON-LD, header, footer), génère `site-internet/`, `sitemap.xml`, `robots.txt`
   - `serve.mjs` — petit serveur local de prévisualisation
 - `site-internet/` — **le site généré, à déployer tel quel** (racine du domaine)
-  - `assets/css/style.css` — design system (charte corail `#ff5a5f` / charbon `#242d2d`, polices Fraunces + Manrope auto-hébergées)
+  - `assets/css/style.css` — design system (charte corail `#ff5a5f` / charbon `#242d2d`, polices Archivo (titres) + Manrope (texte) auto-hébergées)
   - `assets/js/main.js` — navigation, apparitions au scroll, compteurs, FAQ, frise épinglée (GSAP), formulaires
   - `assets/js/hero3d.js` — scène 3D de l'accueil (Three.js)
   - `assets/js/simulateur.js` — modèle et affichage du simulateur de revenus (hypothèses dans `TYPO`, `QUARTIERS`, `STANDING`, `SEASON`)
