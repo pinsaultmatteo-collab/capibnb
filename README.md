@@ -18,6 +18,7 @@ Site statique (HTML/CSS/JS), sans CMS, prêt à déposer sur l'hébergement Host
   - `assets/js/reglementation.js` — assistant « Mon logement est-il en règle ? »
   - `php/send.php` — réception des formulaires (fonction `mail()` Hostinger)
   - `.htaccess` — HTTPS, redirections 301 depuis l'ancien WordPress, cache, en-têtes
+- `charte-graphique/` — kit logo CAPIBNB 2026 (SVG, PNG, favicons). **Source unique du logo** : le build lit les SVG pour le header, le footer et les pictos (parties noires passées en `currentColor`, donc blanches sur fond sombre), et copie les favicons et le manifeste à la racine du site. Pour changer le logo, remplacer les fichiers du kit puis relancer le build.
 - `A-VALIDER.md` — liste des affirmations à confirmer avec Dylan avant mise en ligne
 
 ## Commandes

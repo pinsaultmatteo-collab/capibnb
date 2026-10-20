@@ -3,10 +3,10 @@
 // Lit build/pages/*.html (front-matter JSON en tête), enveloppe chaque page
 // dans le gabarit commun (head SEO, header, footer) et écrit dans site-internet/.
 
-import { readFileSync, writeFileSync, mkdirSync, readdirSync, existsSync } from 'node:fs';
+import { readFileSync, writeFileSync, mkdirSync, readdirSync, existsSync, copyFileSync } from 'node:fs';
 import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
-import { partials, logoDefs } from './partials.mjs';
+import { partials } from './partials.mjs';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const ROOT = join(__dirname, '..');
@@ -114,8 +114,7 @@ function header(meta) {
 <header class="site-header${meta.darkHero ? ' site-header--on-dark' : ''}" data-header>
   <div class="container site-header__inner">
     <a href="/" class="brand" aria-label="CAPIBNB, accueil">
-      ${partials.logoMark}
-      <span class="brand__word">CAPI<span>BNB</span></span>
+      ${partials.logoFull}
     </a>
     <nav class="site-nav" aria-label="Navigation principale">
       <ul>${links}</ul>
@@ -164,9 +163,8 @@ function footer() {
   <div class="container">
     <div class="footer__top">
       <div class="footer__brand">
-        <a href="/" class="brand brand--footer" aria-label="CAPIBNB">
-          ${partials.logoMark}
-          <span class="brand__word">CAPI<span>BNB</span></span>
+        <a href="/" class="brand brand--footer" aria-label="CAPIBNB, accueil">
+          ${partials.logoFull}
         </a>
         <p class="footer__pitch">Conciergerie de location courte durée à Toulouse. Un investisseur toulousain gère votre bien comme le sien : annonces, prix, voyageurs, ménage, administratif.</p>
         <address class="footer__address">
@@ -206,7 +204,7 @@ function jsonLd(meta) {
     telephone: SITE.phone,
     email: SITE.email,
     image: SITE.url + SITE.ogImage,
-    logo: SITE.url + '/assets/img/logo-capibnb.png',
+    logo: SITE.url + '/icon-512.png',
     priceRange: '22 % TTC du chiffre d’affaires',
     founder: { '@type': 'Person', name: SITE.founder, jobTitle: 'Président' },
     address: {
@@ -267,8 +265,10 @@ function layout({ meta, body }) {
 <meta property="og:url" content="${url}">
 <meta property="og:image" content="${SITE.url}${meta.ogImage || SITE.ogImage}">
 <meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="/favicon.ico" sizes="48x48">
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
-<link rel="apple-touch-icon" href="/assets/img/logo-capibnb-256.png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="manifest" href="/site.webmanifest">
 <link rel="preload" href="/assets/fonts/fraunces.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/assets/fonts/manrope.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="/assets/css/style.css">
@@ -276,7 +276,6 @@ function layout({ meta, body }) {
 ${jsonLd(meta)}
 </head>
 <body class="${meta.bodyClass || ''}">
-${logoDefs}
 ${header(meta)}
 <main id="contenu">
 ${body}
@@ -291,7 +290,18 @@ ${scripts}
 `;
 }
 
+// Favicons et logos du kit de charte graphique, copiés à chaque build
+function copyBrandAssets() {
+  const kit = join(ROOT, 'charte-graphique');
+  const favs = ['favicon.ico', 'favicon.svg', 'favicon-16.png', 'favicon-32.png', 'apple-touch-icon.png', 'icon-192.png', 'icon-512.png', 'site.webmanifest'];
+  favs.forEach((f) => copyFileSync(join(kit, 'favicon', f), join(OUT, f)));
+  const dest = join(OUT, 'assets', 'img', 'brand');
+  mkdirSync(dest, { recursive: true });
+  readdirSync(join(kit, 'svg')).forEach((f) => copyFileSync(join(kit, 'svg', f), join(dest, f)));
+}
+
 function build() {
+  copyBrandAssets();
   const files = readdirSync(PAGES_DIR).filter((f) => f.endsWith('.html'));
   const urls = [];
   for (const file of files) {

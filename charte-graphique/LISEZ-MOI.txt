@@ -1,0 +1,29 @@
+CAPIBNB : kit logo (version 2026)
+
+SYMBOLE
+Un C épais avec une serrure au centre : la conciergerie qui garde vos clés.
+
+FICHIERS
+svg/      fichiers vectoriels, à utiliser en priorité (site, print, enseigne, Canva, Figma)
+png/      même contenu en PNG, fond transparent, haute définition
+favicon/  icônes du site (favicon, Apple, Android) et le code à coller dans le <head>
+
+VERSIONS
+couleur      sur fond clair (blanc, crème)
+fond-sombre  sur fond noir ou photo sombre
+blanc        sur fond corail ou photo
+noir         impression une couleur, tampon, documents administratifs
+
+COULEURS
+Corail  #FF5A5F
+Noir    #0A0A0A
+Crème   #FAF7F2
+
+TYPOGRAPHIE
+Logotype dessiné à partir d'Archivo ExtraBold (Google Fonts, licence libre).
+Le site utilise Archivo (titres) et Manrope (texte).
+
+RÈGLES SIMPLES
+- Garder autour du logo un espace vide d'au moins la moitié de la hauteur du symbole.
+- Taille minimale : 100 px de large pour le logo horizontal, 16 px pour le symbole seul.
+- Ne pas déformer, ne pas changer les couleurs, ne pas ajouter d'ombre ni de contour.

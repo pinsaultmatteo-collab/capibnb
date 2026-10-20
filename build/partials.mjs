@@ -1,4 +1,7 @@
 // Partiels réutilisés par le build : logo, icônes, blocs communs.
+import { readFileSync } from 'node:fs';
+import { dirname, join } from 'node:path';
+import { fileURLToPath } from 'node:url';
 
 const ICONS = {
   phone: '<path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2"/>',
@@ -48,27 +51,20 @@ export function icon(name, cls = '') {
   return `<svg class="icon ${cls}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${d}</svg>`;
 }
 
-// Logo recréé en SVG vectoriel à partir du logo existant (anneau + C + BNB, dégradé corail).
-// Le dégradé #lg-ring est défini une seule fois par page (voir logoDefs, injecté par le build).
-export const logoDefs = `<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
-  <defs>
-    <linearGradient id="lg-ring" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0" stop-color="#f9cebe"/><stop offset=".55" stop-color="#ef8c87"/><stop offset="1" stop-color="#e65a5f"/>
-    </linearGradient>
-  </defs>
-</svg>`;
-export const logoMark = `<svg class="logo-mark" viewBox="0 0 600 600" aria-hidden="true" focusable="false">
-  <circle cx="300" cy="300" r="215" fill="none" stroke="url(#lg-ring)" stroke-width="50"/>
-  <path d="M 408 274 A 110 110 0 1 0 408 326" fill="none" stroke="url(#lg-ring)" stroke-width="50"/>
-  <text x="300" y="300" text-anchor="middle" dominant-baseline="central" font-family="Manrope, Poppins, Arial, sans-serif" font-weight="800" font-size="86" letter-spacing="2" fill="#fff">BNB</text>
-</svg>`;
-
-// Favicon : version simplifiée
-export const favicon = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 600">
-  <defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#f9cebe"/><stop offset=".55" stop-color="#ef8c87"/><stop offset="1" stop-color="#e65a5f"/></linearGradient></defs>
-  <circle cx="300" cy="300" r="215" fill="none" stroke="url(#g)" stroke-width="56"/>
-  <path d="M 408 274 A 110 110 0 1 0 408 326" fill="none" stroke="url(#g)" stroke-width="56"/>
-</svg>`;
+// Logos CAPIBNB 2026, lus directement dans charte-graphique/svg (source unique).
+// Les parties noires/blanches passent en currentColor : le logo suit la couleur du texte
+// (noir sur fond clair, blanc sur fond sombre), le corail reste corail.
+const BRAND_DIR = join(dirname(fileURLToPath(import.meta.url)), '..', 'charte-graphique', 'svg');
+function brandSvg(file, cls) {
+  return readFileSync(join(BRAND_DIR, file), 'utf8')
+    .replace(/<title[^>]*>.*?<\/title>/, '')
+    .replace(/ role="img"| aria-labelledby="t"| width="[\d.]+"| height="[\d.]+"/g, '')
+    .replace(/#0a0a0a/gi, 'currentColor')
+    .replace('<svg ', `<svg class="${cls}" aria-hidden="true" focusable="false" `)
+    .trim();
+}
+export const logoFull = brandSvg('capibnb-logo-horizontal-couleur.svg', 'logo-full');
+export const logoMark = brandSvg('capibnb-symbole-couleur.svg', 'logo-mark');
 
 const TESTIMONIALS = [
   {
@@ -92,6 +88,7 @@ const stars = `<span class="stars" aria-label="5 étoiles sur 5">${icon('star', 
 
 export const partials = {
   logoMark,
+  logoFull,
   icon,
   arrowIcon: icon('arrow'),
   starsFive: icon('star', 'is-filled').repeat(5),

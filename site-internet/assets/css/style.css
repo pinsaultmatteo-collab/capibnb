@@ -640,22 +640,34 @@ strong {
   letter-spacing: 0.08em;
   font-size: 1.05rem;
 }
-.brand .logo-mark {
-  width: 40px;
-  height: 40px;
+.brand .logo-full {
+  display: block;
+  height: 36px;
+  width: auto;
+  overflow: visible;
+}
+.site-header.is-scrolled .brand .logo-full {
+  height: 32px;
+}
+.brand .logo-full,
+.logo-mark {
+  transition: height 0.4s var(--ease-out), transform 0.5s var(--ease-out);
+}
+/* au survol, la serrure tourne d'un quart de tour, comme une clé */
+.logo-full > g:first-child > g,
+.logo-mark > g > g {
+  transform-box: fill-box;
+  transform-origin: 50% 30%;
   transition: transform 0.6s var(--ease-out);
 }
-.brand:hover .logo-mark {
-  transform: rotate(180deg);
+.brand:hover .logo-full > g:first-child > g,
+.orbit:hover .logo-mark > g > g {
+  transform: rotate(-90deg);
 }
-.brand__word span {
-  color: var(--coral);
-}
-.site-header--on-dark .brand__word {
-  color: #fff;
-}
-.site-header.is-scrolled .brand__word {
-  color: var(--ink);
+@media (max-width: 640px) {
+  .brand .logo-full {
+    height: 30px;
+  }
 }
 .site-nav ul {
   display: flex;
@@ -834,10 +846,6 @@ body.menu-open .site-header {
   -webkit-backdrop-filter: none;
   box-shadow: none;
 }
-body.menu-open .site-header .brand__word,
-body.menu-open .site-header.is-scrolled .brand__word {
-  color: #fff;
-}
 body.menu-open .site-header.is-hidden {
   transform: none;
 }
@@ -996,8 +1004,9 @@ body.menu-open .site-header.is-hidden {
   animation: fadeUp 1s var(--ease-out) 0.05s forwards;
 }
 .hero__badge .logo-mark {
-  width: 24px;
-  height: 24px;
+  width: 22px;
+  height: 22px;
+  margin-left: 4px;
 }
 .hero__badge .dot {
   width: 8px;
@@ -1749,7 +1758,9 @@ body.menu-open .site-header.is-hidden {
   box-shadow: 0 30px 60px -20px rgba(10, 10, 10, 0.5);
 }
 .orbit__center .logo-mark {
-  width: 46%;
+  width: 42%;
+  height: auto;
+  margin-top: -10%;
 }
 .orbit__center small {
   position: absolute;
@@ -2830,8 +2841,9 @@ input[type='range']::-moz-range-thumb {
   font-size: 1rem;
 }
 .founder__tag .logo-mark {
-  width: 36px;
-  height: 36px;
+  width: 34px;
+  height: 34px;
+  flex: none;
 }
 .founder__quote {
   font-family: var(--font-display);
@@ -4077,8 +4089,11 @@ input[type='range']::-moz-range-thumb {
   grid-template-columns: 1.6fr 1fr 1fr 1fr;
   gap: 40px;
 }
-.brand--footer .brand__word {
+.brand--footer {
   color: #fff;
+}
+.brand--footer .logo-full {
+  height: 40px;
 }
 .footer__pitch {
   margin-top: 20px;
@@ -4699,12 +4714,6 @@ input[type='range']::-moz-range-thumb {
 .tlsmap .q:hover text {
   fill: #fff;
 }
-.brand__word {
-  transition: letter-spacing 0.4s var(--ease-out);
-}
-.brand:hover .brand__word {
-  letter-spacing: 0.14em;
-}
 .hero__floating {
   transition: transform 0.5s var(--ease-out), border-color 0.3s, background 0.3s;
   cursor: default;
@@ -4748,12 +4757,6 @@ input[type='range']::-moz-range-thumb {
 .orbit:hover .orbit__center {
   transform: translate(-50%, -50%) scale(1.04);
   box-shadow: 0 40px 70px -24px rgba(255, 90, 95, 0.45);
-}
-.orbit__center .logo-mark {
-  transition: transform 0.8s var(--ease-out);
-}
-.orbit:hover .orbit__center .logo-mark {
-  transform: rotate(180deg);
 }
 .gallery figcaption {
   transition: transform 0.4s var(--ease-out), background 0.3s;
