@@ -9,6 +9,8 @@ Site statique (HTML/CSS/JS), sans CMS, prêt à déposer sur l'hébergement Host
   - `pages/*.html` — contenu de chaque page, avec un en-tête `<!--meta {...} -->` (slug, title, description, scripts…)
   - `partials.mjs` — logo SVG, icônes, blocs communs (CTA, témoignages, « inclus »)
   - `build.mjs` — gabarit commun (head SEO, JSON-LD, header, footer), génère `site-internet/`, `sitemap.xml`, `robots.txt`
+  - `ai.mjs` — référencement par les moteurs IA : versions Markdown des pages, `llms.txt`, `llms-full.txt`, `robots.txt`
+  - `indexnow.mjs` — signale les pages à Bing et aux autres moteurs IndexNow après un déploiement
   - `serve.mjs` — petit serveur local de prévisualisation
 - `site-internet/` — **le site généré, à déployer tel quel** (racine du domaine)
   - `assets/css/style.css` — design system (charte corail `#ff5a5f` / noir `#0a0a0a`, polices Archivo (titres) + Manrope (texte) auto-hébergées)
@@ -27,7 +29,20 @@ Site statique (HTML/CSS/JS), sans CMS, prêt à déposer sur l'hébergement Host
 ```bash
 node build/build.mjs      # régénère site-internet/ à partir de build/pages
 node build/serve.mjs      # prévisualisation sur http://localhost:8791
+node build/indexnow.mjs   # après un déploiement qui ajoute ou modifie des pages : prévient Bing (ChatGPT Search, Copilot)
 ```
+
+## Référencement par les moteurs IA (ChatGPT, Claude, Perplexity, Copilot, Gemini)
+
+Tout est généré par le build, rien n'est à maintenir à la main :
+
+- **`/llms.txt`** : présentation de CAPIBNB, faits clés (tarif, inclus, zone, contact, société), repères chiffrés sur Toulouse et sommaire du site. Le texte est dans `build/ai.mjs` (fonction `intro`) ; il ne doit contenir que des informations publiées sur le site.
+- **`/llms-full.txt`** : le texte intégral des pages (hors pages légales) en un seul fichier.
+- **Une version Markdown de chaque page** : `/index.md` pour l'accueil, `/tarifs.md`, `/blog/<article>.md`… Annoncée dans le `<head>` par `<link rel="alternate" type="text/markdown">` ; servie par Vercel avec un en-tête `Link: rel="canonical"` vers la page HTML pour éviter le contenu dupliqué.
+- **`robots.txt`** : tous les robots autorisés, avec les robots IA nommés explicitement (GPTBot, OAI-SearchBot, ClaudeBot, PerplexityBot, Google-Extended, Applebot…) et la directive `Content-Signal`.
+- **Données structurées** : LocalBusiness enrichie (date de création, fondateur, SIREN, TVA, contact, domaines d'expertise), Person pour Dylan, BlogPosting, et deux schémas générés automatiquement depuis le HTML : **FAQPage** (depuis les blocs `.faq__item`) et **BreadcrumbList** (depuis le fil d'Ariane). Ajouter une question dans une FAQ suffit, le schéma suit.
+- **Contenu lisible sans JavaScript** : les compteurs et l'estimation par défaut du simulateur (T2 aux Carmes) sont écrits dans le HTML au build, car les robots IA n'exécutent pas le JavaScript.
+- **IndexNow** : la clé est servie à la racine (`/<clé>.txt`, clé dans l'objet `SITE`). Lancer `node build/indexnow.mjs` après chaque mise en ligne de nouvelles pages.
 
 ## Modifier un contenu
 

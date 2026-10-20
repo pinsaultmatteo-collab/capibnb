@@ -7,6 +7,8 @@ import { readFileSync, writeFileSync, mkdirSync, readdirSync, existsSync, copyFi
 import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { partials } from './partials.mjs';
+import { pageMarkdown, mdPath, llmsTxt, llmsFullTxt, robotsTxt } from './ai.mjs';
+import { estimate, displayValues, QUARTIERS } from '../site-internet/assets/js/simulateur.js';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const ROOT = join(__dirname, '..');
@@ -33,8 +35,11 @@ export const SITE = {
   ga4: 'G-02L6WB0EZT', // Google Analytics 4
   consentBanner: false, // true = GA4 attend « Accepter » dans un bandeau (désactivé le 20/10/2026 à la demande de Mattéo)
   rdv: '/contact/', // lien du bouton « Prendre rendez-vous » (remplacer par un lien Calendly / Google Agenda si souhaité)
+  foundingDate: '2024-02-22',
+  indexNowKey: '4cbe7d4f6f37e822a1a8d618c511a0f3', // fichier /<clé>.txt servi à la racine (IndexNow : Bing, Yandex, Seznam…)
   airbnb: '#',    // TODO : profil hôte Airbnb
   booking: '#',   // TODO : profil Booking
+  linkedin: '#',  // TODO : page LinkedIn CAPIBNB (ou profil de Dylan)
 };
 
 const NAV = [
@@ -193,7 +198,43 @@ function footer() {
 </footer>`;
 }
 
-function jsonLd(meta) {
+const FOUNDER = {
+  '@type': 'Person',
+  '@id': `${SITE.url}/#dylan`,
+  name: SITE.founder,
+  jobTitle: 'Fondateur et président',
+  url: `${SITE.url}/a-propos/`,
+};
+
+const stripTags = (h) => h.replace(/<[^>]+>/g, ' ').replace(/\s+/g, ' ').replace(/\s([,.)])/g, '$1').trim();
+
+// FAQPage générée depuis le balisage .faq__item : le schéma reste identique au texte visible
+function faqSchema(body) {
+  const items = [...body.matchAll(/<button class="faq__q"[^>]*>([\s\S]*?)<\/button>\s*<div class="faq__a">([\s\S]*?)<\/div>\s*<\/div>\s*<\/div>/g)];
+  if (!items.length) return null;
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: items.map(([, q, a]) => ({
+      '@type': 'Question',
+      name: stripTags(q),
+      acceptedAnswer: { '@type': 'Answer', text: stripTags(a) },
+    })),
+  };
+}
+
+// BreadcrumbList générée depuis le fil d'Ariane visible (ul.breadcrumb)
+function breadcrumbSchema(body, meta) {
+  const m = body.match(/<ul class="breadcrumb">([\s\S]*?)<\/ul>/);
+  if (!m) return null;
+  const items = [...m[1].matchAll(/<li>([\s\S]*?)<\/li>/g)].map(([, li], i) => {
+    const href = (li.match(/href="([^"]+)"/) || [])[1];
+    return { '@type': 'ListItem', position: i + 1, name: stripTags(li), item: href ? SITE.url + href : canonical(meta.slug) };
+  });
+  return { '@context': 'https://schema.org', '@type': 'BreadcrumbList', itemListElement: items };
+}
+
+function jsonLd(meta, body) {
   const base = {
     '@context': 'https://schema.org',
     '@type': 'LocalBusiness',
@@ -208,7 +249,29 @@ function jsonLd(meta) {
     image: SITE.url + SITE.ogImage,
     logo: SITE.url + '/icon-512.png',
     priceRange: '22 % TTC du chiffre d’affaires',
-    founder: { '@type': 'Person', name: SITE.founder, jobTitle: 'Président' },
+    legalName: 'CAPIBNB SASU',
+    foundingDate: SITE.foundingDate,
+    founder: FOUNDER,
+    vatID: SITE.tva,
+    identifier: { '@type': 'PropertyValue', propertyID: 'SIREN', value: SITE.siren.replace(/\s/g, '') },
+    contactPoint: {
+      '@type': 'ContactPoint',
+      contactType: 'customer service',
+      telephone: SITE.phone,
+      email: SITE.email,
+      availableLanguage: 'fr',
+      areaServed: 'Toulouse Métropole',
+    },
+    knowsAbout: [
+      'Conciergerie Airbnb',
+      'Gestion de location courte durée',
+      'Location saisonnière à Toulouse',
+      'Tarification dynamique',
+      'Réglementation des meublés de tourisme à Toulouse',
+      'Changement d’usage',
+      'Classement meublé de tourisme',
+      'Taxe de séjour',
+    ],
     address: {
       '@type': 'PostalAddress',
       streetAddress: '23 rue des Changes',
@@ -223,17 +286,19 @@ function jsonLd(meta) {
     ].map((name) => ({ '@type': 'City', name })),
     openingHoursSpecification: {
       '@type': 'OpeningHoursSpecification',
-      dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'],
-      opens: '08:00',
-      closes: '21:00',
+      dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'],
+      opens: '09:00',
+      closes: '19:00', // aligné sur la page contact (urgences voyageurs 7j/7 en plus)
     },
-    sameAs: [SITE.instagram, SITE.facebook, SITE.google, SITE.airbnb, SITE.booking].filter((u) => /^https?:/.test(u)),
+    sameAs: [SITE.instagram, SITE.facebook, SITE.google, SITE.airbnb, SITE.booking, SITE.linkedin].filter((u) => /^https?:/.test(u)),
   };
   if (!base.sameAs.length) delete base.sameAs; // rempli automatiquement dès que les liens réseaux sont renseignés
   const extra = (meta.jsonld || []).map((o) =>
-    o['@type'] === 'BlogPosting' && !o.image ? { ...o, image: SITE.url + (meta.ogImage || SITE.ogImage) } : o
+    o['@type'] === 'BlogPosting'
+      ? { ...o, image: o.image || SITE.url + (meta.ogImage || SITE.ogImage), author: o.author?.name === SITE.founder ? FOUNDER : o.author }
+      : o
   );
-  const list = [base, ...extra];
+  const list = [base, ...extra, breadcrumbSchema(body, meta), faqSchema(body)].filter(Boolean);
   return list
     .map((o) => `<script type="application/ld+json">${JSON.stringify(o)}</script>`)
     .join('\n');
@@ -289,7 +354,7 @@ function layout({ meta, body }) {
 <title>${title}</title>
 <meta name="description" content="${meta.description}">
 <link rel="canonical" href="${url}">
-<meta name="robots" content="${meta.noindex ? 'noindex,follow' : 'index,follow,max-image-preview:large'}">
+${meta.noindex ? '' : `<link rel="alternate" type="text/markdown" href="${SITE.url}${mdPath(meta.slug)}" title="Version Markdown">\n`}<meta name="robots" content="${meta.noindex ? 'noindex,follow' : 'index,follow,max-image-preview:large'}">
 <meta name="theme-color" content="${meta.darkHero ? '#0a0a0a' : '#faf7f2'}">
 <meta property="og:locale" content="fr_FR">
 <meta property="og:type" content="${meta.ogType || 'website'}">
@@ -308,7 +373,7 @@ function layout({ meta, body }) {
 <link rel="stylesheet" href="/assets/css/style.css">
 <script>document.documentElement.classList.replace('no-js','js')</script>
 ${SITE.ga4 ? gaHead(SITE.ga4, SITE.consentBanner) : ''}
-${jsonLd(meta)}
+${jsonLd(meta, body)}
 </head>
 <body class="${meta.bodyClass || ''}">
 ${header(meta)}
@@ -336,15 +401,38 @@ function copyBrandAssets() {
   readdirSync(join(kit, 'svg')).forEach((f) => copyFileSync(join(kit, 'svg', f), join(dest, f)));
 }
 
+// Compteurs : la valeur finale est écrite dans le HTML (main.js repart de 0 pour l'animation)
+const frNum = new Intl.NumberFormat('fr-FR');
+function prefillCounters(html) {
+  return html.replace(/<span data-count="([\d.,]+)"([^>]*)>0<\/span>/g, (m, val, attrs) => {
+    const attr = (name) => (attrs.match(new RegExp(`data-${name}="([^"]*)"`)) || [])[1] || '';
+    const value = frNum.format(parseFloat(val.replace(',', '.')));
+    return `<span data-count="${val}"${attrs}>${attr('prefix')}${value}${attr('suffix')}</span>`;
+  });
+}
+
+// Simulateur : estimation par défaut (T2 aux Carmes) et liste des quartiers écrites dans le HTML
+const SIM_DEFAULT = displayValues(estimate({}));
+function prefillSimulator(html) {
+  return html
+    .replace(/(<(\w+)[^>]*\sdata-sim-([a-z-]+)(?:\s[^>]*)?>)[^<]*(<\/\2>)/g, (m, open, tag, key, close) =>
+      key in SIM_DEFAULT ? open + SIM_DEFAULT[key] + close : m
+    )
+    .replace(/(<select [^>]*name="quartier"[^>]*>)(<\/select>)/g, (m, open, close) =>
+      open + QUARTIERS.map((q) => `<option value="${q.id}"${q.id === 'carmes' ? ' selected' : ''}>${q.label}</option>`).join('') + close
+    );
+}
+
 function build() {
   copyBrandAssets();
   const files = readdirSync(PAGES_DIR).filter((f) => f.endsWith('.html'));
   const urls = [];
+  const pages = [];
   for (const file of files) {
     const src = readFileSync(join(PAGES_DIR, file), 'utf8');
     const page = parsePage(src, file);
     const ctx = { SITE, meta: page.meta };
-    page.body = frenchSpacing(expandPartials(page.body, ctx))
+    page.body = frenchSpacing(prefillSimulator(prefillCounters(expandPartials(page.body, ctx))))
       // tableaux : défilement horizontal sur petit écran, sans faire déborder la page
       .replace(/<table>/g, '<div class="table-scroll"><table>')
       .replace(/<\/table>/g, '</table></div>');
@@ -354,9 +442,19 @@ function build() {
     writeFileSync(join(dir, 'index.html'), html);
     // Vercel et la plupart des hébergeurs statiques servent 404.html à la racine
     if (page.meta.slug === '404') writeFileSync(join(OUT, '404.html'), html);
-    if (!page.meta.noindex) urls.push({ loc: canonical(page.meta.slug), priority: page.meta.priority ?? 0.7 });
+    if (!page.meta.noindex) {
+      urls.push({ loc: canonical(page.meta.slug), priority: page.meta.priority ?? 0.7 });
+      // version Markdown de la page (/services.md, /index.md…) pour les moteurs et assistants IA
+      page.markdown = pageMarkdown(page, { SITE, url: canonical(page.meta.slug) });
+      writeFileSync(join(OUT, mdPath(page.meta.slug)), page.markdown);
+      pages.push(page);
+    }
     console.log('✓', page.meta.slug || '(accueil)');
   }
+  // fichiers pour les moteurs IA : llms.txt (sommaire) et llms-full.txt (texte intégral)
+  writeFileSync(join(OUT, 'llms.txt'), llmsTxt(pages, SITE));
+  writeFileSync(join(OUT, 'llms-full.txt'), llmsFullTxt(pages, SITE));
+  writeFileSync(join(OUT, `${SITE.indexNowKey}.txt`), SITE.indexNowKey);
   // sitemap + robots
   const today = new Date().toISOString().slice(0, 10);
   const sitemap = `<?xml version="1.0" encoding="UTF-8"?>
@@ -368,10 +466,7 @@ ${urls
 </urlset>
 `;
   writeFileSync(join(OUT, 'sitemap.xml'), sitemap);
-  writeFileSync(
-    join(OUT, 'robots.txt'),
-    `User-agent: *\nAllow: /\nDisallow: /php/\nDisallow: /api/\n\nSitemap: ${SITE.url}/sitemap.xml\n`
-  );
+  writeFileSync(join(OUT, 'robots.txt'), robotsTxt(SITE));
   console.log(`\n${files.length} pages générées dans site-internet/`);
 }
 

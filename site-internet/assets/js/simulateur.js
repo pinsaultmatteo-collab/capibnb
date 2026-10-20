@@ -140,6 +140,27 @@ const fmtPct = (v) => Math.round(v * 100) + ' %';
 const fmtNights = (v) => num.format(Math.round(v)) + ' nuits';
 const fmtRatio = (v) => '× ' + v.toFixed(1).replace('.', ',');
 
+// Champs affichés : [valeur, format]. Partagés avec le build, qui pré-remplit le HTML
+// avec l'estimation par défaut (lisible sans JavaScript, notamment par les moteurs IA).
+const FIELDS = {
+  'net-month': [(r) => r.netMonth, fmtEur],
+  'net-year': [(r) => r.net, fmtEur],
+  gross: [(r) => r.gross, fmtEur],
+  commission: [(r) => r.commission, fmtEur],
+  conso: [(r) => r.conso, fmtEurExact],
+  adr: [(r) => r.adr, fmtEurExact],
+  occ: [(r) => r.occ, fmtPct],
+  nights: [(r) => r.nights, fmtNights],
+  ld: [(r) => r.ldMonth, fmtEur],
+  'ld-year': [(r) => r.ldNet, fmtEur],
+  ratio: [(r) => r.ratio, fmtRatio],
+  gain: [(r) => Math.max(0, r.net - r.ldNet), fmtEur],
+};
+
+export function displayValues(r) {
+  return Object.fromEntries(Object.entries(FIELDS).map(([k, [get, format]]) => [k, format(get(r))]));
+}
+
 function renderChart(svg, r) {
   if (!svg) return;
   const W = 640,
@@ -194,19 +215,7 @@ function bind(root) {
   const update = () => {
     const inputs = readInputs(root);
     const r = estimate(inputs);
-    setNumber(q('[data-sim-net-month]'), r.netMonth, fmtEur);
-    setNumber(q('[data-sim-net-year]'), r.net, fmtEur);
-    setNumber(q('[data-sim-gross]'), r.gross, fmtEur);
-    setNumber(q('[data-sim-commission]'), r.commission, fmtEur);
-    setNumber(q('[data-sim-conso]'), r.conso, fmtEurExact);
-    setNumber(q('[data-sim-adr]'), r.adr, fmtEurExact);
-    setNumber(q('[data-sim-occ]'), r.occ, fmtPct);
-    setNumber(q('[data-sim-nights]'), r.nights, fmtNights);
-    setNumber(q('[data-sim-ld]'), r.ldMonth, fmtEur);
-    setNumber(q('[data-sim-ld-year]'), r.ldNet, fmtEur);
-    setNumber(q('[data-sim-ratio]'), r.ratio, fmtRatio);
-    const gain = q1('[data-sim-gain]');
-    if (gain) setNumber(gain, Math.max(0, r.net - r.ldNet), fmtEur);
+    Object.entries(FIELDS).forEach(([k, [get, format]]) => setNumber(q(`[data-sim-${k}]`), get(r), format));
     const label = q1('[data-sim-label]');
     if (label) label.textContent = r.label;
     const alert = q1('[data-sim-alert]');
@@ -239,4 +248,5 @@ function bind(root) {
   update();
 }
 
-document.querySelectorAll('[data-sim]').forEach(bind);
+// garde : le build importe aussi ce module sous Node, sans DOM
+if (typeof document !== 'undefined') document.querySelectorAll('[data-sim]').forEach(bind);

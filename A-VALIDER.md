@@ -15,7 +15,7 @@ Liste des affirmations présentes sur le nouveau site qui reposent sur la fiche 
 - [ ] **Accompagnement au classement meublé de tourisme** — présenté comme inclus (le propriétaire paie l'organisme de classement).
 - [ ] **Dossier de changement d'usage** monté avec le propriétaire — présenté comme inclus.
 - [ ] **Réponse aux voyageurs en français et en anglais** (page Services).
-- [ ] **Horaires** affichés sur Contact : lundi au samedi 9 h–19 h, urgences voyageurs 7j/7 ; JSON-LD : 8 h–21 h tous les jours.
+- [ ] **Horaires** affichés sur Contact : lundi au samedi 9 h–19 h, urgences voyageurs 7j/7. Les données structurées sont alignées dessus depuis le 20/10/2026 (elles indiquaient 8 h–21 h tous les jours) ; à reporter à l'identique sur la fiche Google Business.
 - [ ] **Zone d'intervention** : Toulouse + Blagnac, Colomiers, Balma, Ramonville, Saint-Orens cités en exemple.
 - [ ] **Réparations refacturées au coût réel sans marge** (Tarifs FAQ, CGV art. 3).
 - [ ] **Sous-location** (objet social) : non mentionnée sur le site. À décider.
@@ -72,3 +72,13 @@ Liste des affirmations présentes sur le nouveau site qui reposent sur la fiche 
 - [x] Anciennes adresses WordPress redirigées sur Vercel (`/?page_id=1381`, `1438`, `1455`, `/estimation`, `/wp-admin`, `/wp-content`), vérifié en ligne le 20/10/2026.
 - [x] Search Console : domaine validé et `sitemap.xml` soumis par Mattéo le 20/10/2026.
 - [ ] Fiche Google Business : lien vers https://conciergeriecapibnb.fr et adresse identique au site.
+
+## Référencement IA (GEO), mis en place le 20/10/2026
+
+- [x] `llms.txt`, `llms-full.txt`, versions Markdown des pages, robots IA autorisés explicitement, FAQPage et BreadcrumbList automatiques, chiffres lisibles sans JavaScript (détail dans `GEO-ANALYSIS.md` et le README).
+- [ ] **FAQ de l'accueil** (6 questions, réponses courtes faites pour être citées par les IA) : à faire relire par Dylan.
+- [ ] **Bing Webmaster Tools** (Mattéo) : importer le site depuis la Search Console (bing.com/webmasters, « Importer depuis GSC »). Bing alimente ChatGPT Search et Copilot.
+- [ ] **Fiche Google Business** complète (catégorie « Service de conciergerie », site, horaires, photos, avis) : c'est la première source des IA pour une recherche locale.
+- [ ] **Présence hors site** : page LinkedIn CAPIBNB et profil de Dylan, annuaires (Pages Jaunes, Yelp, annuaires de conciergeries), réponses sur les forums et groupes d'investisseurs toulousains (Reddit, Facebook), une ou deux vidéos YouTube (visite d'un logement, turnover). Les IA citent davantage les marques mentionnées ailleurs que sur leur propre site.
+- [ ] Dès que les liens existent, les renseigner dans l'objet `SITE` de `build/build.mjs` (Instagram, Facebook, Google, Airbnb, Booking, LinkedIn) : ils alimentent automatiquement `sameAs` dans les données structurées.
+- [ ] Chiffres réels de Dylan (logements gérés, occupation, note Airbnb) : une donnée propre à CAPIBNB est ce qu'une IA cite le plus volontiers.

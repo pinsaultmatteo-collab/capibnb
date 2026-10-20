@@ -5,7 +5,7 @@
   "title": "Conciergerie Airbnb à Toulouse, 22 % TTC",
   "description": "Conciergerie Airbnb et Booking à Toulouse : annonce, prix, voyageurs, ménage et administratif gérés de A à Z. 22 % TTC, linge et boîte à clés inclus.",
   "darkHero": true,
-  "priority": 1.0,
+  "priority": 1,
   "scripts": [
     "/assets/js/hero3d.js",
     "/assets/js/simulateur.js"
@@ -16,7 +16,11 @@
       "@type": "WebSite",
       "name": "CAPIBNB",
       "url": "https://conciergeriecapibnb.fr/",
-      "inLanguage": "fr-FR"
+      "inLanguage": "fr-FR",
+      "@id": "https://conciergeriecapibnb.fr/#website",
+      "publisher": {
+        "@id": "https://conciergeriecapibnb.fr/#business"
+      }
     }
   ]
 }
@@ -546,6 +550,24 @@
         </div>
       </div>
       {{> zoneMap}}
+    </div>
+  </div>
+</section>
+
+<!-- ============ FAQ ============ -->
+<section class="section" aria-labelledby="titre-faq-home">
+  <div class="container container--narrow">
+    <div class="section-head section-head--center">
+      <p class="eyebrow">Questions fréquentes</p>
+      <h2 id="titre-faq-home" class="display display--md">Conciergerie Airbnb à Toulouse : <em>les réponses directes.</em></h2>
+    </div>
+    <div class="faq">
+      <div class="faq__item"><button class="faq__q" type="button">Qu’est-ce qu’une conciergerie Airbnb ?{{> iconPlus}}</button><div class="faq__a"><div><p>Une conciergerie Airbnb gère à votre place la location courte durée de votre logement : création de l’annonce, prix, échanges avec les voyageurs, remise des clés, ménage, linge et démarches administratives. Vous restez propriétaire et décisionnaire. Chez CAPIBNB, à Toulouse, vous recevez chaque mois un relevé détaillé et le virement de vos revenus, sans avoir à gérer un seul message ni un seul trousseau.</p></div></div></div>
+      <div class="faq__item"><button class="faq__q" type="button">Combien coûte une conciergerie Airbnb à Toulouse ?{{> iconPlus}}</button><div class="faq__a"><div><p>Les conciergeries toulousaines facturent en général 23 à 28 % TTC, et plus de 30 % pour les offres premium. CAPIBNB applique une commission unique de 22 % TTC sur les nuitées, hors frais de ménage payés par le voyageur, plus un forfait consommables de 25 à 35 € par mois selon la taille du logement. Aucun frais d’inscription : le linge, la boîte à clés, les photos et le livret d’accueil sont inclus. <a href="/tarifs/">Le détail des tarifs.</a></p></div></div></div>
+      <div class="faq__item"><button class="faq__q" type="button">Combien rapporte un Airbnb à Toulouse ?{{> iconPlus}}</button><div class="faq__a"><div><p>D’après notre simulateur, calé sur les données AirDNA et AirROI 2026, un T2 aux Carmes rapporte environ <span data-sim-net-month>0 €</span> nets par mois après commission et consommables, contre environ <span data-sim-ld>0 €</span> en location longue durée. Le résultat dépend du quartier, de la taille, du standing et des semaines que vous réservez pour vous. <a href="/simulateur/">Estimez votre logement en 30 secondes.</a></p></div></div></div>
+      <div class="faq__item"><button class="faq__q" type="button">Louer en Airbnb est-il autorisé à Toulouse ?{{> iconPlus}}</button><div class="faq__a"><div><p>Oui, dans un cadre précis. Toute annonce doit afficher un numéro d’enregistrement. Une résidence principale se loue 120 nuits par an au maximum. Un logement d’investissement ou une résidence secondaire nécessite une autorisation de changement d’usage délivrée par Toulouse Métropole. CAPIBNB prend en charge ces démarches, incluses dans la commission. <a href="/reglementation-airbnb-toulouse/">Toute la réglementation toulousaine.</a></p></div></div></div>
+      <div class="faq__item"><button class="faq__q" type="button">Dans quels quartiers et quelles communes intervenez-vous ?{{> iconPlus}}</button><div class="faq__a"><div><p>Dans tout Toulouse intra-muros, du Capitole aux Minimes et de Saint-Cyprien à la Côte Pavée, et dans les communes de la métropole : Blagnac, Seilh, Beauzelle, Aucamville, Colomiers, Tournefeuille, Cugnaux, L’Union, Balma, Saint-Orens, Labège, Ramonville et Castanet-Tolosan. Votre commune n’est pas citée ? Appelez Dylan, la réponse est souvent oui.</p></div></div></div>
+      <div class="faq__item"><button class="faq__q" type="button">Comment démarrer avec CAPIBNB ?{{> iconPlus}}</button><div class="faq__a"><div><p>Appelez Dylan ou remplissez le formulaire de contact : il vous rappelle sous 24 h. Il visite ensuite votre logement gratuitement et vous remet une estimation de revenus. Après la signature du contrat de collaboration, nous réalisons les photos, rédigeons l’annonce et installons la boîte à clés : comptez une dizaine de jours entre la visite et la mise en ligne. <a href="/contact/">Prendre rendez-vous.</a></p></div></div></div>
     </div>
   </div>
 </section>

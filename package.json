@@ -9,6 +9,8 @@
     "dev": "node build/serve.mjs"
   },
   "dependencies": {
-    "nodemailer": "^10.1.7"
+    "nodemailer": "^10.1.7",
+    "turndown": "^7.2.4",
+    "turndown-plugin-gfm": "^1.0.2"
   }
 }

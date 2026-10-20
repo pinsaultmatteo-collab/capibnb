@@ -1,0 +1,54 @@
+# CAPIBNB, conciergerie Airbnb et Booking à Toulouse
+
+> CAPIBNB est une conciergerie de location courte durée basée à Toulouse (23 rue des Changes, 31000 Toulouse). Fondée en février 2024 par Dylan Carvalho, lui-même investisseur en courte durée, elle gère de A à Z les logements Airbnb et Booking de propriétaires toulousains, pour une commission unique de 22 % TTC du chiffre d’affaires des nuitées, hors frais de ménage.
+
+## Faits clés
+
+- Service : gestion complète de la location courte durée. Création et optimisation de l’annonce, photos, tarification dynamique, relation voyageurs 7 jours sur 7, ménage et linge à chaque rotation, réassort, petites réparations, démarches réglementaires, relevé mensuel et virement des revenus.
+- Tarif : 22 % TTC du chiffre d’affaires des nuitées hors frais de ménage (les frais de ménage sont payés par le voyageur), plus un forfait consommables de 25 à 35 € par mois selon la taille du logement. Aucun frais d’inscription ni de lancement.
+- Inclus dans la commission : linge de lit et de toilette, boîte à clés sécurisée (matériel et pose), livret d’accueil et guide de Toulouse, numéro d’enregistrement, changement d’usage, taxe de séjour, classement meublé de tourisme.
+- Comparaison : les conciergeries toulousaines facturent en général 23 à 28 % TTC, et plus de 30 % pour les offres premium.
+- Zone d’intervention : Toulouse intra-muros (Capitole, Carmes, Saint-Cyprien, Chalets, Minimes, Saint-Michel, Rangueil, Côte Pavée…) et la métropole : Blagnac, Seilh, Beauzelle, Aucamville, Fenouillet, Colomiers, Tournefeuille, Cugnaux, Portet-sur-Garonne, Balma, L’Union, Saint-Orens-de-Gameville, Labège, Ramonville-Saint-Agne, Castanet-Tolosan.
+- Plateformes : Airbnb et Booking.
+- Démarrage : prise de contact, visite gratuite du logement, signature du contrat de collaboration, préparation et mise en ligne de l’annonce.
+- Estimation indicative du simulateur CAPIBNB : un T2 aux Carmes rapporte environ 1 430 € nets par mois (17 100 € par an) après commission et consommables, soit × 1,7 le loyer d’une location longue durée équivalente (840 € par mois).
+- Contact : +33 6 19 48 59 05 · contact@conciergeriecapibnb.fr · https://conciergeriecapibnb.fr/contact/ (Dylan rappelle sous 24 h).
+- Entreprise : CAPIBNB, SASU au capital de 500 €, SIREN 984 891 671, TVA FR26984891671, président Dylan Carvalho.
+
+## Repères sur la location courte durée à Toulouse (2026)
+
+- Environ 4 200 annonces actives en septembre 2026, contre 9 000 en 2016 et 6 000 fin 2024 (AirDNA, AirROI).
+- −38,8 % d’annonces actives en 12 mois (AirDNA, septembre 2026).
+- Taux d’occupation moyen de 67 %, en hausse (AirDNA) ; délai moyen de réservation de 36 jours (AirROI).
+- Numéro d’enregistrement obligatoire sur toute annonce depuis le 20 mai 2026.
+- Résidence principale : 120 nuits par an au maximum (Toulouse n’a pas abaissé le plafond à 90).
+- Résidence secondaire ou investissement : autorisation de changement d’usage de Toulouse Métropole ; amende jusqu’à 50 000 € par logement sans autorisation.
+- Fiscalité (revenus 2025 et suivants) : micro-BIC plafonné à 15 000 € avec 30 % d’abattement pour un meublé de tourisme non classé, 83 600 € avec 50 % pour un meublé classé.
+
+## Pages du site
+
+Chaque page existe aussi en Markdown : ajouter « .md » à l’adresse sans la barre finale (par exemple https://conciergeriecapibnb.fr/tarifs.md, et https://conciergeriecapibnb.fr/index.md pour l’accueil). Texte intégral du site : https://conciergeriecapibnb.fr/llms-full.txt
+
+- [Conciergerie Airbnb à Toulouse, 22 % TTC](https://conciergeriecapibnb.fr/): Conciergerie Airbnb et Booking à Toulouse : annonce, prix, voyageurs, ménage et administratif gérés de A à Z. 22 % TTC, linge et boîte à clés inclus.
+- [Services de conciergerie Airbnb à Toulouse](https://conciergeriecapibnb.fr/services/): Annonce, prix, voyageurs 7j/7, ménage, linge et administratif : CAPIBNB gère votre location courte durée à Toulouse de A à Z, pour 22 % TTC.
+- [Tarifs conciergerie Airbnb Toulouse : 22 % TTC](https://conciergeriecapibnb.fr/tarifs/): 22 % TTC du prix des nuitées, linge et boîte à clés inclus, sans frais d’inscription. Comparez avec le marché toulousain et voyez un exemple chiffré.
+- [Simulateur de revenus Airbnb à Toulouse](https://conciergeriecapibnb.fr/simulateur/): Combien rapporte un Airbnb à Toulouse ? Estimez vos revenus nets selon le type de logement, le quartier et le standing, comparés à un loyer classique.
+- [Airbnb à Toulouse : réglementation et obligations](https://conciergeriecapibnb.fr/reglementation-airbnb-toulouse/): Numéro d’enregistrement, 120 nuits, changement d’usage, taxe de séjour, classement : les règles de la location courte durée à Toulouse en 2026.
+- [À propos : Dylan Carvalho, fondateur de CAPIBNB à Toulouse](https://conciergeriecapibnb.fr/a-propos/): CAPIBNB, conciergerie toulousaine créée en 2024 par Dylan Carvalho, investisseur en courte durée. Un seul interlocuteur, qui gère votre bien comme le sien.
+- [Avis clients de la conciergerie à Toulouse](https://conciergeriecapibnb.fr/avis/): Note Google 5/5 : les avis des propriétaires toulousains qui ont confié leur Airbnb à CAPIBNB. Réactivité, ménage irréprochable, revenus passifs.
+- [Contact : parlons de votre logement à Toulouse](https://conciergeriecapibnb.fr/contact/): Contactez CAPIBNB, conciergerie Airbnb à Toulouse : 06 19 48 59 05, 23 rue des Changes. Réponse sous 24 h, visite et estimation gratuites.
+- [Voyageurs : votre séjour à Toulouse avec CAPIBNB](https://conciergeriecapibnb.fr/voyageurs/): Séjour dans un logement CAPIBNB à Toulouse : arrivée autonome 24h/24, linge hôtelier, livret d’accueil et guide de la ville, assistance 7j/7.
+- [Blog : location courte durée à Toulouse](https://conciergeriecapibnb.fr/blog/): Revenus Airbnb, réglementation 2026, classement meublé, fiscalité : les conseils de CAPIBNB pour les propriétaires en location courte durée à Toulouse.
+
+## Guides et articles
+
+- [Classement meublé de tourisme en 2026 : le guide](https://conciergeriecapibnb.fr/blog/classement-meuble-de-tourisme-toulouse/): 150 à 300 € pour passer de 30 % à 50 % d’abattement et relever le plafond micro-BIC à 83 600 €. Le calcul, la procédure et les pièges à éviter.
+- [Courte ou longue durée à Toulouse : le comparatif](https://conciergeriecapibnb.fr/blog/courte-duree-ou-longue-duree-toulouse/): Airbnb ou bail classique à Toulouse ? Revenus, charges, fiscalité, flexibilité, usure et réglementation : le comparatif chiffré pour choisir.
+- [Réglementation Airbnb Toulouse 2026 : le guide](https://conciergeriecapibnb.fr/blog/reglementation-airbnb-toulouse-2026/): Numéro d’enregistrement, plafond de 120 nuits, changement d’usage, DPE, copropriété : ce qui a changé à Toulouse en 2026 et les amendes encourues.
+- [Combien rapporte un Airbnb à Toulouse en 2026 ?](https://conciergeriecapibnb.fr/blog/combien-rapporte-un-airbnb-a-toulouse/): Prix par nuit, taux d’occupation, saisonnalité et quartiers : les chiffres du marché toulousain 2026 et un exemple détaillé, du brut au net propriétaire.
+
+## Optional
+
+- [Conditions générales de vente](https://conciergeriecapibnb.fr/cgv/): Conditions générales de vente des prestations de conciergerie CAPIBNB : commission de 22 % TTC, consommables, obligations, durée et résiliation.
+- [Politique de confidentialité](https://conciergeriecapibnb.fr/confidentialite/): Comment CAPIBNB collecte et utilise vos données personnelles via le site conciergeriecapibnb.fr : formulaires, simulateur, cookies, droits RGPD.
+- [Mentions légales](https://conciergeriecapibnb.fr/mentions-legales/): Mentions légales du site conciergeriecapibnb.fr, édité par CAPIBNB, SASU au capital de 500 €, 23 rue des Changes, 31000 Toulouse.

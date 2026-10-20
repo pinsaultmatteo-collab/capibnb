@@ -93,7 +93,11 @@
     },
     { threshold: 0.6 }
   );
-  $$('[data-count]').forEach((el) => countIO.observe(el));
+  // Le HTML contient déjà la valeur finale (lisible sans JavaScript) : on repart de 0 pour l'animation
+  $$('[data-count]').forEach((el) => {
+    if (!reduceMotion) el.textContent = (el.dataset.prefix || '') + '0' + (el.dataset.suffix || '');
+    countIO.observe(el);
+  });
 
   /* ---------- Boutons : halo qui suit le curseur + effet magnétique ---------- */
   $$('.btn').forEach((btn) => {
