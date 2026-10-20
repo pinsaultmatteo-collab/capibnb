@@ -51,8 +51,14 @@ Liste des affirmations présentes sur le nouveau site qui reposent sur la fiche 
 - [ ] Mentions légales : hébergeur Hostinger indiqué ; vérifier l'offre exacte.
 - [ ] Informations réglementaires et fiscales : à jour en octobre 2026 selon la fiche ; à faire relire si doute (DPE, loi Le Meur, micro-BIC).
 
+## Mise en ligne (20/10/2026)
+
+- [x] Domaine conciergeriecapibnb.fr pointé vers Vercel (A @ 216.150.1.1, CNAME www vers Vercel), adresse sans www principale, www redirigé en 308, certificat HTTPS Let's Encrypt actif.
+- [x] Enregistrements mail Hostinger conservés (MX, SPF, DKIM, autodiscover, autoconfig).
+- [ ] Ancien WordPress : toujours hébergé chez Hostinger mais plus relié au domaine. À garder comme sauvegarde quelques semaines avant suppression.
+
 ## Technique (Mattéo)
 
 - [ ] Tester `php/send.php` sur Hostinger (fonction `mail()` activée, SPF du domaine).
-- [ ] Vérifier les 301 de `.htaccess` une fois le site en ligne (`/?page_id=1381`, `1438`, `1455`).
+- [x] Anciennes adresses WordPress redirigées sur Vercel (`/?page_id=1381`, `1438`, `1455`, `/estimation`, `/wp-admin`, `/wp-content`), vérifié en ligne le 20/10/2026.
 - [ ] Soumettre `sitemap.xml` dans la Search Console.
