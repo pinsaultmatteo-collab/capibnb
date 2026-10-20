@@ -87,7 +87,9 @@ export default async function handler(req, res) {
       smtp_user_renseigne: Boolean(user),
       smtp_user: user ? user.replace(/^(.).*(@.*)$/, '$1•••$2') : null,
       smtp_pass_renseigne: Boolean(pass),
+      smtp_user_exact: user.toLowerCase() === MAIL_TO_DEFAULT,
       smtp_pass_espaces_nettoyes: raw !== raw.trim(),
+      smtp_pass_entre_guillemets: /^(["'«“]).*(["'»”])$/.test(pass),
       serveur: `${host}:${port}`,
       destinataires: (process.env.MAIL_TO || MAIL_TO_DEFAULT).split(',').length,
     };
